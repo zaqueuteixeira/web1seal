@@ -1,5 +1,5 @@
 <?php
-require_once './conexao.class.php';
+require_once 'conexao.class.php';
 ?>
 <!DOCTYPE html>
 <html>

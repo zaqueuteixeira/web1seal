@@ -2,7 +2,7 @@
 <?php
     session_start();
     if(isset($_SESSION['matricula'])){
-        header("Location: ../index.php");
+        header("Location: ../inicio");
     }
 ?>
 <html>

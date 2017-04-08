@@ -15,19 +15,19 @@
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
         
-        <link rel="shortcut icon" href="./assets/images/favicon_1.ico">
+        <link rel="shortcut icon" href="/assets/images/favicon_1.ico">
 
         <title>SEAL - Inicio</title>
 
         <!--Morris Chart CSS -->
-        <link rel="stylesheet" href="./assets/plugins/morris/morris.css">
+        <link rel="stylesheet" href="/assets/plugins/morris/morris.css">
 
-        <link href="./assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="./assets/css/core.css" rel="stylesheet" type="text/css" />
-        <link href="./assets/css/components.css" rel="stylesheet" type="text/css" />
-        <link href="./assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="./assets/css/pages.css" rel="stylesheet" type="text/css" />
-        <link href="./assets/css/responsive.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/core.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/components.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/icons.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/pages.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/responsive.css" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,7 +36,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
 
-        <script src="./assets/js/modernizr.min.js"></script>
+        <script src="/assets/js/modernizr.min.js"></script>
 
     </head>
 
@@ -67,7 +67,7 @@
                                     <a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="icon-size-fullscreen"></i></a>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><img src="./assets/images/user_photo.png" alt="user-img" class="img-circle"> </a>
+                                    <a href="" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><img src="/assets/images/user_photo.png" alt="user-img" class="img-circle"> </a>
                                     <ul class="dropdown-menu">
                                         <li><a href="./classes/logout.php"><i class="ti-power-off m-r-5"></i>Sair</a></li>
                                     </ul>
