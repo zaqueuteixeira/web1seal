@@ -38,7 +38,6 @@
 
         <script src="./assets/js/modernizr.min.js"></script>
 
-
     </head>
 
     <body class="fixed-left">
@@ -63,7 +62,6 @@
                                 <span class="clearfix"></span>
                             </div>
 
-
                             <ul class="nav navbar-nav navbar-right pull-right">
                                 <li class="hidden-xs">
                                     <a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="icon-size-fullscreen"></i></a>
@@ -81,7 +79,6 @@
                 </div>
             </div>
             <!-- Top Bar End -->
-
 
             <!-- ========== Left Sidebar Start ========== -->
 
@@ -139,8 +136,6 @@
                 </div>
             </div>
             <!-- Left Sidebar End -->
-
-
 
             <!-- ============================================================== -->
             <!-- Start right Content here -->
