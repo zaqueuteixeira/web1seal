@@ -2,7 +2,7 @@
     session_start();
     
     if(!isset($_SESSION["matricula"])){
-        header("Location: ./login.php");
+        header("Location: /login");
         exit();
     }
 
