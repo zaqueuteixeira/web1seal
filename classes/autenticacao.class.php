@@ -2,8 +2,6 @@
 require_once 'conexao.class.php';
 
 $conexao = new Conexao();
-
-$mysqli = $conexao->conectar();
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,7 +11,7 @@ $mysqli = $conexao->conectar();
         <script type="text/javascript">
             function loginSuccess() {
                 setTimeout("window.location='../inicio'", 1);
-                
+
             }
 
             function loginFailed() {
@@ -25,19 +23,22 @@ $mysqli = $conexao->conectar();
         <?php
         $matricula = $_POST['matricula'];
         $senha = md5($_POST['senha']);
+
+        $mysqli = $conexao->BDConectar();
         
-        $sql = "SELECT * FROM usuario WHERE(matricula like '$matricula' and senha = '$senha')";
-        $mysqli->query($sql) or die(mysqli_error($mysqli));
-        $resultado = mysqli_affected_rows($mysqli);
+            $sql = "SELECT * FROM usuario WHERE(matricula like '$matricula' and senha = '$senha')";
+            $mysqli->query($sql) or die(mysqli_error($mysqli));
+            $resultado = mysqli_affected_rows($mysqli);
+
+        $conexao->BDFechar($mysqli);
         
-        if($resultado > 0){    
+        if ($resultado > 0) {
             session_start();
             $_SESSION['matricula'] = $_POST['matricula'];
             echo "<script>loginSuccess()</script>";
-        }else{
+        } else {
             echo "<script>loginFailed()</script>";
         }
-        
-       ?>
+        ?>
     </body>
 </html>

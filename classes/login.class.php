@@ -1,8 +1,7 @@
 <?php
+
 require_once 'conexao.class.php';
 
-$conexao = new Conexao();
-$mysqli = $conexao->conectar();
 
 /*
  * CLasse responsavel por tudo sobre o login
@@ -34,14 +33,15 @@ class Login {
      * @param string $user_id id do usuario a qual tentou logar  
      */
     public function retornarID($matricula) {
+
+        $conexao = new Conexao();
+        $mysqli = $conexao->conectar();
+
         $sql = "SELECT id from usuario WHERE(matricula LIKE '$matricula')";
         $query = $mysqli->query($sql) or die(mysqli_errno($mysqli));
         var_dump($mysqli);
-        
-        while ($dados = $query->mysqli_fetch_array()) {
-            return  $dados['id'];
-        }
-       
+
+        var_dump($query);
     }
 
     public function sair() {

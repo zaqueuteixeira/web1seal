@@ -7,15 +7,16 @@ class Conexao {
     private $pass = '';
     private $bd = 'seal';
 
-    public function conectar() {
+    public function BDConectar() {
 
-        $mysqli = new mysqli($this->localhost, $this->user, $this->pass, $this->bd);
-
-        if (!$mysqli) {
-            die('O siguintes erro foram encontrados: ' . mysqli_connect_errno());
-        }
+        $conexao = mysqli_connect($this->localhost, $this->user, $this->pass, $this->bd) or die(mysqli_connect_error());
+        mysqli_set_charset($mysqli, 'utf8') or die(mysqli_error($mysqli));
         
-        return $mysqli;
+        return $conexao;
+    }
+    
+    public function BDFechar($conexao) {
+        @mysqli_close($conexao) or die(mysqli_error($conexao));
     }
 
 }
