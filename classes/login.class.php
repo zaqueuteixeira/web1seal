@@ -16,7 +16,11 @@ class Login {
         $sql = "INSERT INTO tentativas_login values($data,$user_id)";
         $teste = $mysqli->query($sql) or die(mysqli_errno($mysqli));
         
-        return $teste;
+        if($mysqli->affected_rows > 0){
+            return TRUE;
+        }else{
+            return false;
+        }
     }
 
     /**
