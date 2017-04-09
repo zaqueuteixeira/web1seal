@@ -1,5 +1,9 @@
 <?php
-require_once './cadastrar.class.php';;
+require_once 'conexao.class.php';
+
+$conexao = new Conexao();
+$mysqli = $conexao->conectar();
+
 /*
  * CLasse responsavel por tudo sobre o login
  */
@@ -15,10 +19,10 @@ class Login {
     public function registrarTentativaLogin($data, $user_id) {
         $sql = "INSERT INTO tentativas_login values($data,$user_id)";
         $teste = $mysqli->query($sql) or die(mysqli_errno($mysqli));
-        
-        if($mysqli->affected_rows > 0){
+
+        if ($mysqli->affected_rows > 0) {
             return TRUE;
-        }else{
+        } else {
             return false;
         }
     }
@@ -30,7 +34,20 @@ class Login {
      * @param string $user_id id do usuario a qual tentou logar  
      */
     public function retornarID($matricula) {
+        $sql = "SELECT id from usuario WHERE(matricula LIKE '$matricula')";
+        $query = $mysqli->query($sql) or die(mysqli_errno($mysqli));
+        var_dump($mysqli);
         
+        while ($dados = $query->mysqli_fetch_array()) {
+            return  $dados['id'];
+        }
+       
+    }
+
+    public function sair() {
+        session_start();
+        session_destroy();
+        header("Location: /login");
     }
 
 }

@@ -1,5 +1,9 @@
 <?php
 require_once 'conexao.class.php';
+
+$conexao = new Conexao();
+
+$mysqli = $conexao->conectar();
 ?>
 <!DOCTYPE html>
 <html>
