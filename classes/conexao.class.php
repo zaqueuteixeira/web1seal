@@ -10,7 +10,7 @@ class Conexao {
     public function BDConectar() {
 
         $conexao = mysqli_connect($this->localhost, $this->user, $this->pass, $this->bd) or die(mysqli_connect_error());
-        mysqli_set_charset($mysqli, 'utf8') or die(mysqli_error($mysqli));
+        mysqli_set_charset($conexao, 'utf8') or die(mysqli_error($conexao));
         
         return $conexao;
     }
