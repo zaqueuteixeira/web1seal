@@ -7,14 +7,14 @@ class Conexao {
     private $pass = '';
     private $bd = 'seal';
 
-    public function BDConectar() {
+    public function BDAbreConexao() {
         $conexao = mysqli_connect($this->localhost, $this->user, $this->pass, $this->bd) or die(mysqli_connect_error());
         mysqli_set_charset($conexao, 'utf8') or die(mysqli_error($conexao));
         
         return $conexao;
     }
     
-    public function BDFechar($conexao) {
+    public function BDFecharConexao($conexao) {
         @mysqli_close($conexao) or die(mysqli_error($conexao));
     }
     
@@ -28,11 +28,11 @@ class Conexao {
     }
     
     public function BDExecutaQuery($query){
-        $conexao = $this->BDConectar();
+        $conexao = $this->BDAbreConexao();
         
         $resultado = mysqli_query($conexao, $query) or die(mysqli_error($conexao));
         
-        $this->BDFechar($conexao);
+        $this->BDFecharConexao($conexao);
         
         return $resultado;
     }
