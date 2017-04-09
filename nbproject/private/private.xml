@@ -3,14 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp64/www/seal/classes/logout.php</file>
-            <file>file:/C:/wamp64/www/seal/.htaccess</file>
-            <file>file:/C:/wamp64/www/seal/paginas/cadastro.php</file>
-            <file>file:/C:/wamp64/www/seal/paginas/inicio.php</file>
-            <file>file:/C:/wamp64/www/seal/index.php</file>
-            <file>file:/C:/wamp64/www/seal/header.php</file>
-            <file>file:/C:/wamp64/www/seal/paginas/login.php</file>
-            <file>file:/C:/wamp64/www/seal/classes/autenticacao.class.php</file>
+            <file>file:/opt/lampp/htdocs/seal/classes/cadastrar.class.php</file>
+            <file>file:/opt/lampp/htdocs/seal/paginas/cadastro.php</file>
+            <file>file:/opt/lampp/htdocs/seal/classes/autenticacao.class.php</file>
+            <file>file:/opt/lampp/htdocs/seal/index.php</file>
+            <file>file:/opt/lampp/htdocs/seal/paginas/inicio.php</file>
+            <file>file:/opt/lampp/htdocs/seal/header.php</file>
+            <file>file:/opt/lampp/htdocs/seal/paginas/login.php</file>
+            <file>file:/opt/lampp/htdocs/seal/classes/login.class.php</file>
         </group>
     </open-files>
 </project-private>
