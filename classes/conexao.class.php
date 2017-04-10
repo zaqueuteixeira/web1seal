@@ -6,7 +6,7 @@ class Conexao {
     private $user = 'root';
     private $pass = '';
     private $bd = 'seal';
-    
+
     /**
      * @author Deigon Prates <deigonprates@gmail.com>
      * @return obj Retorna um objeto contendo a conexao;
@@ -17,17 +17,16 @@ class Conexao {
 
         return $conexao;
     }
-    
+
     /**
      * @author Deigon Prates <deigonprates@gmail.com>
      * @param obj $$conexao precisa do objeto da conexao para poder fecha-la. 
      * @param obj $conexao
      */
-
     public function BDFecharConexao($conexao) {
         mysqli_close($conexao) or die(mysqli_error($conexao));
     }
-    
+
     /**
      * @author Deigon Prates <deigonprates@gmail.com>
      * 
@@ -44,14 +43,13 @@ class Conexao {
 
         return $this->BDExecutaQuery($sql);
     }
-    
+
     /**
      * @author Deigon Prates <deigonprates@gmail.com>
      * 
      * @param string $query contendo a query do bd
      * @return boolean 
      */
-    
     public function BDExecutaQuery($query) {
         $conexao = $this->BDAbreConexao();
 
@@ -70,7 +68,6 @@ class Conexao {
      * @param string $filtros
      * @return array $dados com o resultado do select
      */
-    
     public function BDSeleciona($tabela, $opcoes = '*', $filtros = null) {
         $filtros = ($filtros) ? " {$filtros}" : null;
 
@@ -87,23 +84,36 @@ class Conexao {
             return $dados;
         }
     }
-    
+
+    public function BDExclui($tabela, $opcoes = '*', $filtros = null) {
+       
+        $filtros = ($filtros) ? " {$filtros}" : null;
+
+        $sql = "DELETE {$opcoes} FROM {$tabela}{$filtros}";
+        $resultado = $this->BDExecutaQuery($sql);
+
+        if (!mysqli_num_rows($resultado)) {
+            return false;
+        } else {
+            return TRUE;
+        }
+    }
+
     /*
      * @author Deigon Prates <deigonprates@gmail.com>
      *
      * @param string $matricula do usuario a retornar a o id do aluno
      * @return int $id    do usuario 
      */
-    
+
     public function BDRetornaID($matricula) {
         $matricula = (int) $matricula;
         $sql = "SELECT id FROM usuario where(matricula = {$matricula})";
         $resultado = $this->BDExecutaQuery($sql);
-        
+
         $id = mysqli_fetch_array($resultado);
-        
+
         return $id[0];
-       
     }
 
 }
