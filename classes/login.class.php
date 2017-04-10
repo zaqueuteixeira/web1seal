@@ -20,7 +20,7 @@ class Login extends Conexao {
         $conexao = $this->BDAbreConexao();
 
         $id = $this->BDRetornaID($matricula);
-        
+
         if (!is_null($id)) {
 
             $dados = [
