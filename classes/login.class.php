@@ -38,7 +38,7 @@ class Login extends Conexao {
             return FALSE;
         }
     }
-
+    
     public function sair() {
         session_start();
         session_destroy();
