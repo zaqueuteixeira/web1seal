@@ -46,7 +46,7 @@ class Conexao {
         if (!mysqli_num_rows($resultado)) {
             return false;
         } else {
-            while ($aux = mysqli_affected_rows($resultado)) {
+            while ($aux = mysqli_fetch_assoc($resultado)) {
                 $dados[] = $aux;
             }
 
