@@ -53,5 +53,16 @@ class Conexao {
             return $dados;
         }
     }
+    
+    public function BDRetornaID($matricula) {
+        $matricula = (int) $matricula;
+        $sql = "SELECT id FROM usuario where(matricula = {$matricula})";
+        $resultado = $this->BDExecutaQuery($sql);
+        
+        $id = mysqli_fetch_array($resultado);
+        
+        return $id[0];
+       
+    }
 
 }
