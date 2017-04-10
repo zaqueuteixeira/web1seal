@@ -38,7 +38,29 @@ class Login extends Conexao {
             return FALSE;
         }
     }
-    
+
+    public function excluirTentativasLogin($matricula) {
+        $conexao = $this->BDAbreConexao();
+
+        $id = $this->BDRetornaID($matricula);
+
+        if (!is_null($id)) {
+
+            $this->BDExclui('tentativas_login', $opcoes, "WHERE(usuario_id = '{$id}')");
+
+            if (mysqli_affected_rows($conexao) > 0) {
+                $this->BDFecharConexao($conexao);
+                return true;
+            } else {
+                $this->BDFecharConexao($conexao);
+                return FALSE;
+            }
+        } else {
+            $this->BDFecharConexao($conexao);
+            return FALSE;
+        }
+    }
+
     public function sair() {
         session_start();
         session_destroy();

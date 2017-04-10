@@ -13,13 +13,17 @@ $mysqli = $conexao->BDAbreConexao();
 
 $resultado = $conexao->BDSeleciona('usuario', '*', "WHERE(matricula like '$matricula' and senha = '$senha')");
 
-$conexao->BDFecharConexao($mysqli);
 
 if (!is_null($resultado[0]['id'])) {
     session_start();
     $_SESSION['matricula'] = $_POST['matricula'];
+
+    $login->excluirTentativasLogin($matricula);
+
     header("Location: /inicio");
 } else {
     $login->registrarTentativaLogin($matricula);
     header("Location: /login");
 }
+
+$conexao->BDFecharConexao($mysqli);
