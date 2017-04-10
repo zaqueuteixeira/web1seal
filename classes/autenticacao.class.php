@@ -1,44 +1,28 @@
 <?php
+
 require_once 'conexao.class.php';
+require_once 'login.class.php';
+
+$login = new Login();
 
 $conexao = new Conexao();
-?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>SEAL</title>
-        <script type="text/javascript">
-            function loginSuccess() {
-                setTimeout("window.location='../inicio'", 1);
+$matricula = $_POST['matricula'];
+$senha = md5($_POST['senha']);
 
-            }
+$mysqli = $conexao->BDAbreConexao();
 
-            function loginFailed() {
-                setTimeout("window.location='../login'", 1);
-            }
-        </script>
-    </head>
-    <body>  
-        <?php
-        $matricula = $_POST['matricula'];
-        $senha = md5($_POST['senha']);
+$sql = "SELECT * FROM usuario WHERE(matricula like '$matricula' and senha = '$senha')";
+$mysqli->query($sql) or die(mysqli_error($mysqli));
+$resultado = mysqli_affected_rows($mysqli);
 
-        $mysqli = $conexao->BDConectar();
-        
-            $sql = "SELECT * FROM usuario WHERE(matricula like '$matricula' and senha = '$senha')";
-            $mysqli->query($sql) or die(mysqli_error($mysqli));
-            $resultado = mysqli_affected_rows($mysqli);
+$conexao->BDFecharConexao($mysqli);
 
-        $conexao->BDFechar($mysqli);
-        
-        if ($resultado > 0) {
-            session_start();
-            $_SESSION['matricula'] = $_POST['matricula'];
-            echo "<script>loginSuccess()</script>";
-        } else {
-            echo "<script>loginFailed()</script>";
-        }
-        ?>
-    </body>
-</html>
+if ($resultado > 0) {
+    session_start();
+    $_SESSION['matricula'] = $_POST['matricula'];
+    header("Location: /inicio");
+} else {
+    $login->registrarTentativaLogin($matricula);
+    header("Location: /login");
+}
+  

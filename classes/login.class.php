@@ -7,7 +7,7 @@ require_once 'conexao.class.php';
  * CLasse responsavel por tudo sobre o login
  */
 
-class Login {
+class Login extends Conexao {
 
     /**
      * @author Deigon Prates <deigonprates@gmail.com>
@@ -15,33 +15,28 @@ class Login {
      * @param string $data data da tentativa de login ex: 05/09/2017  
      * @param string $user_id id do usuario a qual tentou logar  
      */
-    public function registrarTentativaLogin($data, $user_id) {
-        $sql = "INSERT INTO tentativas_login values($data,$user_id)";
-        $teste = $mysqli->query($sql) or die(mysqli_errno($mysqli));
+    public function registrarTentativaLogin($matricula) {
 
-        if ($mysqli->affected_rows > 0) {
-            return TRUE;
-        } else {
-            return false;
+        $conexao = $this->BDAbreConexao();
+
+        $id = $this->BDRetornaID($matricula);
+        
+        if (!is_null($id)) {
+
+            $dados = [
+                'usuario_id' => $id,
+                'data' => date('Y-m-d')
+            ];
+
+            $this->DBGravar('tentativas_login', $dados);
         }
-    }
-
-    /**
-     * @author Deigon Prates <deigonprates@gmail.com>
-     * @return o id do usuario
-     * @param string $data data da tentativa de login ex: 05/09/2017  
-     * @param string $user_id id do usuario a qual tentou logar  
-     */
-    public function retornarID($matricula) {
-
-        $conexao = new Conexao();
-        $mysqli = $conexao->conectar();
-
-        $sql = "SELECT id from usuario WHERE(matricula LIKE '$matricula')";
-        $query = $mysqli->query($sql) or die(mysqli_errno($mysqli));
-        var_dump($mysqli);
-
-        var_dump($query);
+        if (mysqli_affected_rows($conexao) > 0) {
+            $this->BDFecharConexao($conexao);
+            return true;
+        } else {
+            $this->BDFecharConexao($conexao);
+            return FALSE;
+        }
     }
 
     public function sair() {
