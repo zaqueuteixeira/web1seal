@@ -27,21 +27,23 @@ if (!is_null($nome) && !is_null($matricula) && !is_null($email) && !is_null($use
         'semestre' => $semestre
     ];
 
-
     if ($conexao->BDSeleciona('usuario', 'matricula', "WHERE(matricula like'{$matricula}')")) {
         die("Matricula ja encontra-se em uso no nosso sistema!");
     }
     if ($conexao->BDSeleciona('usuario', 'email', "WHERE(email like'{$email}')")) {
         die("Email ja encontra-se em uso no nosso sistema!");
     }
-
     if ($senha === $repetaSenha) {
+        
         $con = $conexao->BDAbreConexao();
+        
         $sql = $conexao->DBGravar('usuario', $dados);
+        
         $conexao->BDFecharConexao($con);
-
+        
         session_start();
         $_SESSION['matricula'] = $_POST['matricula'];
+        
         header("Location: /inicio");
     } else {
         die("As senhas nao se coencidem");
