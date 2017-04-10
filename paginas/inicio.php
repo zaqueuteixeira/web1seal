@@ -1,5 +1,6 @@
 <?php
     require_once './header.php';
+
 ?>
 
 o conteudo vem aqui
