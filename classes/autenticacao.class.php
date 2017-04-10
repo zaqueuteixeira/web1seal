@@ -11,13 +11,11 @@ $senha = md5($_POST['senha']);
 
 $mysqli = $conexao->BDAbreConexao();
 
-$sql = "SELECT * FROM usuario WHERE(matricula like '$matricula' and senha = '$senha')";
-$mysqli->query($sql) or die(mysqli_error($mysqli));
-$resultado = mysqli_affected_rows($mysqli);
+$resultado = $conexao->BDSeleciona('usuario', '*', "WHERE(matricula like '$matricula' and senha = '$senha')");
 
 $conexao->BDFecharConexao($mysqli);
 
-if ($resultado > 0) {
+if (!is_null($resultado[0]['id'])) {
     session_start();
     $_SESSION['matricula'] = $_POST['matricula'];
     header("Location: /inicio");
@@ -25,4 +23,3 @@ if ($resultado > 0) {
     $login->registrarTentativaLogin($matricula);
     header("Location: /login");
 }
-  
