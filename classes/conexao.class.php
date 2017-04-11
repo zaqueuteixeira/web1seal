@@ -100,9 +100,9 @@ class Conexao {
     }
 
     public function BDAtualiza($tabela, $filtros = null, $campo = 'satatus', $valor = '0') {
-        
-        $sql = "UPDATE {$tabela} SET {$opcoes} = '{$valor}' {$filtros}";
 
+        $sql = "UPDATE {$tabela} SET {$campo} = {$valor} {$filtros}";
+        var_dump($sql);
         return $this->BDExecutaQuery($sql);
     }
 
