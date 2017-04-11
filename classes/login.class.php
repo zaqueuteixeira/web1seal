@@ -72,8 +72,6 @@ class Login extends Conexao {
            
            if($count[0]['total'] == 10){
                $this->BDAtualiza('tentativas_login', "WHERE(usuario_id = '{$id}')", 'status', 0);
-               
-               die('Usuario bloqueado');
            }
            if($count[0]['total'] < 10){
                return TRUE;
