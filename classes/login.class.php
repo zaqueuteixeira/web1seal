@@ -60,6 +60,24 @@ class Login extends Conexao {
             return FALSE;
         }
     }
+    
+    public function checarTentativasLogin($matricula) {
+        $conexao = $this->BDAbreConexao();
+        
+        $id = $this->BDRetornaID($matricula);
+        
+        if(!is_null($id)){
+            
+           $count= $this->BDSeleciona('tentativas_login', 'count(id) as total', "WHERE(usuario_id = '{$id}')");
+           
+           if($count[0]['total'] < 10){
+               
+           }else{
+               
+           }
+        }
+        
+    }
 
     public function sair() {
         session_start();
