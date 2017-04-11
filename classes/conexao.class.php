@@ -86,7 +86,7 @@ class Conexao {
     }
 
     public function BDExclui($tabela, $opcoes = '*', $filtros = null) {
-       
+
         $filtros = ($filtros) ? " {$filtros}" : null;
 
         $sql = "DELETE {$opcoes} FROM {$tabela}{$filtros}";
@@ -97,6 +97,13 @@ class Conexao {
         } else {
             return TRUE;
         }
+    }
+
+    public function BDAtualiza($tabela, $filtros = null, $campo = 'satatus', $valor = '0') {
+        
+        $sql = "UPDATE {$tabela} SET {$opcoes} = '{$valor}' {$filtros}";
+
+        return $this->BDExecutaQuery($sql);
     }
 
     /*
