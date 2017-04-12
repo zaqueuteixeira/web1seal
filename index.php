@@ -1,7 +1,8 @@
 <?php
 
-define("PASTA", "./paginas/");
+include'./classes/cadastrar.class.php';
 
+define("PASTA", "./paginas/");
 
 $REQUEST_URI = filter_input(INPUT_SERVER, 'REQUEST_URI');
 $INITE = strpos($REQUEST_URI, '?');
@@ -17,7 +18,10 @@ $URL[0] = ($URL[0] != '' ? $URL[0] : 'login');
 if (file_exists(PASTA . $URL[0] . '.php')):
     require(PASTA . $URL[0] . '.php');
 
-elseif (is_dir(PASTA . $URL[0])):
+    elseif($URL[0].'/'.$URL[1] == 'cadastrando/usuario'):
+        $cadastrar = new Cadastrar();
+        $cadastrar->cadastrarAluno($_POST);
+    elseif (is_dir(PASTA . $URL[0])):
     if (isset($URL[1]) && file_exists(PASTA . $URL[0] . '/' . $URL[1] . '.php')):
         require(PASTA . $URL[0] . '/' . $URL[1] . '.php');
     else:
