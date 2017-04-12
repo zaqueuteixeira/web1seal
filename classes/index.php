@@ -1,8 +1,8 @@
 <?php
     session_start();
     if(isset($_SESSION['matricula'])){
-        header("Location: ../index.php");
+        header("Location: /inicio");
     }else{ 
-        header("Location: ../paginas/login.php");
+        header("Location: /login");
     }
 ?>
