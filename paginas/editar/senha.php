@@ -26,7 +26,7 @@ require_once './header.php';
                 <br>
                 <br>
 
-                <form class="form-horizontal" role="form">                                    
+                <form action="/atualizar/senha" class="form-horizontal" role="form" method="post">                                    
                     <div class="form-group">
                         <label class="col-md-4 control-label">Matricula</label>
                         <div class="col-md-4">
