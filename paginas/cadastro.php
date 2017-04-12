@@ -43,7 +43,7 @@
                     <center>  <img src="../assets/images/logo.png"></center>
                 </div>
                 <div class="panel-body">
-                    <form  method="post" class="form-horizontal m-t-20" action="../classes/cadastrar.class.php">
+                    <form  method="post" class="form-horizontal m-t-20" action="cadastrando/usuario">
                         <div class="form-group ">
                             <div class="col-xs-8">
                                 <input class="form-control" type="text" required="" name="nome" placeholder="Nome">
