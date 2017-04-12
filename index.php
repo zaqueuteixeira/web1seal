@@ -21,7 +21,7 @@ elseif (is_dir(PASTA . $URL[0])):
     if (isset($URL[1]) && file_exists(PASTA . $URL[0] . '/' . $URL[1] . '.php')):
         require(PASTA . $URL[0] . '/' . $URL[1] . '.php');
     else:
-        require(PASTA . '404.php');
+        require(PASTA . '404.html');
     endif;
 else:
     require(PASTA . '404.html');
