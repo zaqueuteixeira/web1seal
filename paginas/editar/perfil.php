@@ -26,7 +26,7 @@ require_once './header.php';
                 <br>
                 <br>
 
-                <form class="form-horizontal" role="form">                                    
+                <form action="/atualizar/perfil" class="form-horizontal" role="form" method="post">                                    
                     <div class="form-group">
                         <label class="col-md-2 control-label">Nome completo:</label>
                         <div class="col-md-5">
@@ -86,9 +86,7 @@ require_once './header.php';
                             <button type="submit" class="btn btn-info waves-effect waves-light">Atualizar</button>
                         </div>
                     </div>
-
                 </form>
-
             </div>   
         </div>
     </div>
