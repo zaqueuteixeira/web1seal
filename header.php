@@ -70,7 +70,7 @@
                                 <li class="dropdown">
                                     <a href="" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><img src="/assets/images/user_photo.png" alt="user-img" class="img-circle"> </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/logout"><i class="ti-power-off m-r-5"></i>Sair</a></li>
+                                        <li><a href="/sair"><i class="ti-power-off m-r-5"></i>Sair</a></li>
                                     </ul>
                                 </li>
                             </ul>
