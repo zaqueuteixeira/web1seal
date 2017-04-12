@@ -20,57 +20,54 @@ class ValidarCampos {
         $repetaSenha = ($dados['repeta-senha']) ? filter_var($dados['repeta-senha'], FILTER_SANITIZE_STRING) : NULL;
 
         if (is_null($nome)) {
-            $objRetorno->erro = 'O campo nome nao foi preenchido corretamente';
+            $objRetorno->erro[] = 'O campo nome nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
             $objRetorno->dados = ['nome' => $nome];
         }
         if (is_null($matricula)) {
-            $objRetorno->erro = 'O campo matricula nao foi preenchido corretamente';
+            $objRetorno->erro[] = 'O campo matricula nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
             $objRetorno->dados = ['matricula' => $matricula];
         }
         if (is_null($email)) {
-            $objRetorno->erro = 'O campo email nao foi preenchido corretamente';
+            $objRetorno->erro[] = 'O campo email nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
             $objRetorno->dados = ['email' => $email];
         }
         if (is_null($username)) {
-            $objRetorno->erro = 'O campo username nao foi preenchido corretamente';
+            $objRetorno->erro[] = 'O campo username nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
             $objRetorno->dados = ['username' => $username];
         }
         if (is_null($turma)) {
-            $objRetorno->erro = 'O campo turma nao foi preenchido corretamente';
+            $objRetorno->erro[] = 'O campo turma nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
             $objRetorno->dados = ['turma' => $turma];
         }
         if (is_null($ano)) {
-            $objRetorno->erro = 'O campo ano nao foi preenchido corretamente';
+            $objRetorno->erro[] = 'O campo ano nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
             $objRetorno->dados = ['ano' => $ano];
         }
         if (is_null($semestre)) {
-            $objRetorno->erro = 'O campo semestre nao foi preenchido corretamente';
+            $objRetorno->erro[] = 'O campo semestre nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
             $objRetorno->dados = ['semestre' => $semestre];
         }
         if (is_null($senha)) {
-            $objRetorno->erro = 'O campo senha nao foi preenchido corretamente';
+            $objRetorno->erro[] = 'O campo senha nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
             $objRetorno->dados = ['senha' => $senha];
         }
         if (is_null($repetaSenha)) {
-            $objRetorno->erro = 'O campo senha nao foi preenchido corretamente';
+            $objRetorno->erro[] = 'O campo senha nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
         }
-
 
         if ($senha != $repetaSenha) {
-            $objRetorno->erro = 'As senhas informadas nao coincedem';
+            $objRetorno->erro[] = 'As senhas informadas nao coincedem';
             $objRetorno->status = FALSE;
         }
-        
-        
         return $objRetorno;
     }
 
