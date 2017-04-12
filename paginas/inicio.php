@@ -1,10 +1,15 @@
 <?php
-    require_once './header.php';
-
+require_once './header.php';
 ?>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-box">
+            conteudo vem aqui
+        </div>
+    </div>
+</div>
 
-o conteudo vem aqui
 
 <?php
-    require_once './footer.php';
+require_once './footer.php';
 ?>
