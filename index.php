@@ -18,10 +18,16 @@ $URL[0] = ($URL[0] != '' ? $URL[0] : 'login');
 if (file_exists(PASTA . $URL[0] . '.php')):
     require(PASTA . $URL[0] . '.php');
 
-    elseif($URL[0].'/'.$URL[1] == 'cadastrando/usuario'):
-        $cadastrar = new Cadastrar();
-        $cadastrar->cadastrarAluno($_POST);
-    elseif (is_dir(PASTA . $URL[0])):
+elseif ($URL[0] . '/' . $URL[1] == 'cadastrando/usuario'):
+    $cadastrar = new Cadastrar();
+    $cadastrar->cadastrarAluno($_POST);
+elseif ($URL[0] . '/' . $URL[1] == 'cadastrando/atividade'):
+    $cadastrar = new Cadastrar();
+    $cadastrar->cadastrarAtividade($_POST);
+elseif ($URL[0] . '/' . $URL[1] == 'cadastrando/avaliacao'):
+    $cadastrar = new Cadastrar();
+    $cadastrar->cadastrarAvaliacao($_POST);
+elseif (is_dir(PASTA . $URL[0])):
     if (isset($URL[1]) && file_exists(PASTA . $URL[0] . '/' . $URL[1] . '.php')):
         require(PASTA . $URL[0] . '/' . $URL[1] . '.php');
     else:
