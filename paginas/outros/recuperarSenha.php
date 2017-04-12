@@ -1,8 +1,15 @@
 <?php
+require_once './header.php';
+?>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-box">
+            conteudo vem aqui
+        </div>
+    </div>
+</div>
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
+<?php
+require_once './footer.php';
+?>
