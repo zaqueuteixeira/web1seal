@@ -1,6 +1,7 @@
 <?php
 
 include'./classes/cadastrar.class.php';
+include './classes/login.class.php';
 
 define("PASTA", "./paginas/");
 
@@ -17,7 +18,9 @@ $URL[0] = ($URL[0] != '' ? $URL[0] : 'login');
 
 if (file_exists(PASTA . $URL[0] . '.php')):
     require(PASTA . $URL[0] . '.php');
-
+elseif ($URL[0] == 'sair'):
+    $login = new login();
+    $login->sair();
 elseif ($URL[0] . '/' . $URL[1] == 'cadastrando/usuario'):
     $cadastrar = new Cadastrar();
     $cadastrar->cadastrarAluno($_POST);
