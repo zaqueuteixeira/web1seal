@@ -96,36 +96,36 @@
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="ti-list"></i> <span>Editar</span> </a>
                                 <ul class="list-unstyled">
-                                    <li><a href="#">Perfil</a></li>
-                                    <li><a href="#">Senha</a></li>
+                                    <li><a href="/editar/perfil">Perfil</a></li>
+                                    <li><a href="/editar/senha">Senha</a></li>
                                 </ul>
                             </li>
 
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="ti-pencil-alt"></i><span>Cadastar</span> </a>
                                 <ul class="list-unstyled">
-                                    <li><a href="#">Atividade</a></li>
-                                    <li><a href="#">Avaliação</a></li>
+                                    <li><a href="/cadastrar/atividade">Atividade</a></li>
+                                    <li><a href="/cadastrar/avaliacao">Avaliação</a></li>
                                 </ul>
                             </li>
 
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="ti-light-bulb"></i><span>Listar</span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="#">Listar usuario</a></li>
-                                    <li><a href="#">Listar Atividades</a></li>
-                                    <li><a href="#">Listar Avaliações</a></li>
+                                    <li><a href="/listar/usuario">Usuario</a></li>
+                                    <li><a href="/listar/atividades">Atividades</a></li>
+                                    <li><a href="/listar/avaliacoes">Avaliações</a></li>
                                 </ul>
                             </li>
 
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="ti-spray"></i> <span>Outros</span> </a>
                                 <ul class="list-unstyled">
-                                    <li><a href="#">Histórico</a></li>
-                                    <li><a href="#">Recuperar Senha</a></li>
-                                    <li><a href="#">Bloquear Aluno</a></li>
-                                    <li><a href="#">Desbloquear Aluno</a></li>
-                                    <li><a href="#">Visualizar campeonato</a></li>
+                                    <li><a href="/outros/historico">Histórico</a></li>
+                                    <li><a href="/outros/recuperarSenha">Recuperar Senha</a></li>
+                                    <li><a href="/outros/bloquearAluno">Bloquear Aluno</a></li>
+                                    <li><a href="/outros/desbloquearAluno">Desbloquear Aluno</a></li>
+                                    <li><a href="/outros/visualizarCampeonato">Visualizar campeonato</a></li>
                                 </ul>
                             </li>
 
