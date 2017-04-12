@@ -4,7 +4,7 @@ class Conexao {
 
     private $localhost = 'localhost';
     private $user = 'root';
-    private $pass = '';
+    private $pass = 'root';
     private $bd = 'seal';
 
     /**
@@ -40,7 +40,7 @@ class Conexao {
         $valores = "'" . implode("', '", $dados) . "'";
 
         $sql = "INSERT INTO {$tabela}({$indices}) VALUES ({$valores})";
-
+        var_dump($sql);
         return $this->BDExecutaQuery($sql);
     }
 
