@@ -27,6 +27,7 @@
         <link href="/assets/css/components.css" rel="stylesheet" type="text/css" />
         <link href="/assets/css/icons.css" rel="stylesheet" type="text/css" />
         <link href="/assets/css/pages.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/custom.css" rel="stylesheet" type="text/css" />
         <link href="/assets/css/responsive.css" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -48,7 +49,7 @@
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <div class="text-center">
-                        <a href="inicio" class="logo"><i class="md md-album"></i><span> SEAL</span></a>
+                        <a href="/inicio" class="logo"><i class="md md-album"></i><span> SEAL</span></a>
                     </div>
                 </div>
                 <!-- Button mobile view to collapse sidebar menu -->
@@ -89,7 +90,7 @@
                         <ul>
 
                             <li class="has_sub">
-                                <a href="#" class="waves-effect active"><i class="ti-home"></i> <span>inicio</span> </a>
+                                <a href="/inicio" class="waves-effect active"><i class="ti-home"></i> <span>inicio</span> </a>
 
                             </li>
 
