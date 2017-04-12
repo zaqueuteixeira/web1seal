@@ -21,18 +21,18 @@ require_once './header.php';
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
-                    <center><h4 class="page-title">Editar perfil</h4></center>
+                
+                    <center><h4 class="page-title">Edite seu perfil</h4></center>
                     <br>
                     <br>
                     
                     <form class="form-horizontal" role="form">                                    
                         <div class="form-group">
                             <label class="col-md-2 control-label">Nome completo:</label>
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 <input type="text" class="form-control" value="">
                             </div>
-                            <label class="col-md-2 control-label">Username</label>
+                            <label class="col-md-1 control-label">Username</label>
                             <div class="col-md-3">
                                 <input type="text" class="form-control" value="">
                             </div>
@@ -44,34 +44,50 @@ require_once './header.php';
                             </div>
                             <label class="col-md-1 control-label">Matricula</label>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" value="">
+                                <input disabled="" type="text" class="form-control" value="">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-2 control-label">Turma</label>
-                            <div class="col-md-1">
+                            <div class="col-md-2">
                                 <input disabled="" type="text" class="form-control" value="">
                             </div>
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Ano</label>
-                            <div class="col-md-1">
+                            <label class="col-md-1 control-label">Ano</label>
+                            <div class="col-md-2">
                                 <input disabled="" type="text" class="form-control" value="">
                             </div>
-                            <label class="col-md-2 control-label">Semestre</label>
-                            <div class="col-md-1">
+                            <label class="col-md-1 control-label">Semestre</label>
+                            <div class="col-md-2">
                                 <input disabled="" type="text" class="form-control" value="">
+                            </div>
+                        </div>
+                              <div class="form-group">
+                            <label class="col-md-2 control-label">Senha antiga</label>
+                            <div class="col-md-5">
+                                <input type="password" class="form-control" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Nova Senha</label>
+                            <div class="col-md-3">
+                                <input type="password" class="form-control" value="">
+                            </div>
+                            <label class="col-md-3 control-label">Repita a Senha</label>
+                            <div class="col-md-3">
+                                <input type="password" class="form-control" value="">
                             </div>
                         </div>
                             
                         <div class="form-group m-b-0">
-                            <div class="col-sm-offset-10 col-sm-9">
+                            <div class="col-sm-offset-5 col-sm-9">
                                 <button type="submit" class="btn btn-info waves-effect waves-light">Salvar</button>
                             </div>
                         </div>
 
                     </form>
                 </div>
-            </div>
+            
         </div>   
     </div>
 </div>
