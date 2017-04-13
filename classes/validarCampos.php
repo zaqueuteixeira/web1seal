@@ -74,6 +74,11 @@ class ValidarCampos extends Conexao {
             $objRetorno->erro[] = 'Ja existe um cadastro feito com esse email, por favor use outro!';
             $objRetorno->status = FALSE;
         }
+        $bdMatricula = $this->BDSeleciona('usuario', 'matricula', "WHERE(matricula like '{$matricula}')");
+        if ($bdMatricula) {
+            $objRetorno->erro[] = 'Ja existe um cadastro feito com essa matricula, por favor use outro!';
+            $objRetorno->status = FALSE;
+        }
 
         return $objRetorno;
     }
