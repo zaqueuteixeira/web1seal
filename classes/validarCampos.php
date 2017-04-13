@@ -1,6 +1,8 @@
 <?php
 
-class ValidarCampos {
+include_once './classes/conexao.class.php';
+
+class ValidarCampos extends Conexao {
 
     public function ValidarCadastroUsuario($dados) {
 
@@ -63,11 +65,16 @@ class ValidarCampos {
             $objRetorno->erro[] = 'O campo senha nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
         }
-
         if ($senha != $repetaSenha) {
             $objRetorno->erro[] = 'As senhas informadas nao coincedem';
             $objRetorno->status = FALSE;
         }
+        $bdEmail = $this->BDSeleciona('usuario', 'email', "WHERE(email like '{$email}')");
+        if ($bdEmail) {
+            $objRetorno->erro[] = 'Ja existe um cadastro feito com esse email, por favor use outro!';
+            $objRetorno->status = FALSE;
+        }
+
         return $objRetorno;
     }
 
