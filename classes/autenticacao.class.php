@@ -1,37 +1,49 @@
 <?php
-
-require_once 'conexao.class.php';
 require_once 'login.class.php';
+require_once 'validarCampos.php';
 
 $login = new Login();
+$validar = new ValidarCampos();
 
-$conexao = new Conexao();
 $matricula = $_POST['matricula'];
-$senha = md5($_POST['senha']);
+$senha = $_POST['senha'];
 
-$mysqli = $conexao->BDAbreConexao();
+$dados = [
+    'matricula' => $matricula,
+    'senha' => $senha
+];
 
-$resultado = $conexao->BDSeleciona('usuario', '*', "WHERE(matricula like '$matricula' and senha = '$senha')");
+$validacao = $validar->validarLogin($dados);
 
-if ($login->checarTentativasLogin($matricula)) {
+if ($validacao->status) {
 
+    $mysqli = $login->BDAbreConexao();
+    
+    $matricula = ($validacao->dados[0]["matricula"]);
+    
+    $senha = ($validacao->dados[1]["senha"]);
+    
+    $resultado = $login->BDSeleciona('usuario', '*', "WHERE(matricula like '$matricula' and senha = '$senha')");
+    
+    if ($login->checarTentativasLogin($matricula)) {
 
-    if (!is_null($resultado[0]['id'])) {
-        session_start();
-        $_SESSION['matricula'] = $_POST['matricula'];
+        if (!is_null($resultado[0]['id'])) {
+            session_start();
+            $_SESSION['matricula'] = $_POST['matricula'];
 
-        $login->excluirTentativasLogin($matricula);
+            $login->excluirTentativasLogin($matricula);
 
-        header("Location: /inicio");
+            header("Location: /inicio");
+        } else {
+            $login->registrarTentativaLogin($matricula);
+            $login->BDFecharConexao($mysqli);
+            header("Location: /login");
+        }
     } else {
-        $conexao->BDFecharConexao($mysqli);
-        $login->registrarTentativaLogin($matricula);
-        header("Location: /login");
+        print_r("usuario bloqueado");
     }
 
-    }else{
-        die("usuario bloqueado");
-    }
-
-
-$conexao->BDFecharConexao($mysqli);
+    $login->BDFecharConexao($mysqli);
+} else {
+    print_r($validacao->erros);
+}
