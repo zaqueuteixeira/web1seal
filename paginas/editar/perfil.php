@@ -30,36 +30,36 @@ require_once './header.php';
                     <div class="form-group">
                         <label class="col-md-2 control-label">Nome completo:</label>
                         <div class="col-md-5">
-                            <input type="text" class="form-control" value="">
+                            <input type="text" class="form-control" name="nome" value="">
                         </div>
                         <label class="col-md-1 control-label">Username</label>
                         <div class="col-md-3">
-                            <input type="text" class="form-control" value="">
+                            <input type="text" class="form-control" name="username" value="">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-2 control-label" for="example-email">Email</label>
+                        <label class="col-md-2 control-label" for="email">Email</label>
                         <div class="col-md-5">
-                            <input type="email" id="example-email" name="example-email" class="form-control" placeholder="Email">
+                            <input type="email" id="example-email" name="email" class="form-control" placeholder="Email">
                         </div>
                         <label class="col-md-1 control-label">Matricula</label>
                         <div class="col-md-3">
-                            <input disabled="" type="text" class="form-control" value="">
+                            <input disabled="" type="text" class="form-control" name="matricula" value="">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-2 control-label">Turma</label>
                         <div class="col-md-2">
-                            <input disabled="" type="text" class="form-control" value="">
+                            <input disabled="" type="text" class="form-control" name="turma" value="">
                         </div>
                         <div class="form-group">
                             <label class="col-md-1 control-label">Ano</label>
                             <div class="col-md-2">
-                                <input disabled="" type="text" class="form-control" value="">
+                                <input disabled="" type="text" class="form-control" name="ano" value="">
                             </div>
                             <label class="col-md-1 control-label">Semestre</label>
                             <div class="col-md-2">
-                                <input disabled="" type="text" class="form-control" value="">
+                                <input disabled="" type="text" class="form-control" name="semestre" value="">
                             </div>
                         </div>
 
@@ -67,17 +67,17 @@ require_once './header.php';
                     <div class="form-group">
                         <label class="col-md-2 control-label">Senha antiga</label>
                         <div class="col-md-5">
-                            <input type="password" class="form-control" value="">
+                            <input type="password" class="form-control" name="senha-antiga" value="">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-2 control-label">Nova Senha</label>
                         <div class="col-md-3">
-                            <input type="password" class="form-control" value="">
+                            <input type="password" class="form-control" name="senha-nova" value="">
                         </div>
                         <label class="col-md-3 control-label">Repita a Senha</label>
                         <div class="col-md-3">
-                            <input type="password" class="form-control" value="">
+                            <input type="password" class="form-control" name="repeta-senha" value="">
                         </div>
                     </div>
 

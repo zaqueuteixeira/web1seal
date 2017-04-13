@@ -25,24 +25,23 @@ require_once './header.php';
                 <center><h4 class="page-title">Edite a senha do Usuário</h4></center>
                 <br>
                 <br>
-
-                <form action="/atualizar/senha" class="form-horizontal" role="form" method="post">                                    
+                <form  method="post" class="form-horizontal m-t-20" action="/atualizar/senha">                                
                     <div class="form-group">
                         <label class="col-md-4 control-label">Matricula</label>
                         <div class="col-md-4">
-                            <input type="password" class="form-control" value="">
+                            <input type="text" class="form-control" name="matricula" value="">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label">Nova Senha</label>
                         <div class="col-md-4">
-                            <input type="password" class="form-control" value="">
+                            <input type="password" class="form-control" name="senha" value="">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label">Repita a Senha</label>
                         <div class="col-md-4">
-                            <input type="password" class="form-control" value="">
+                            <input type="password" class="form-control" name="repeta-senha" value="">
                         </div>
                         
                     </div>
