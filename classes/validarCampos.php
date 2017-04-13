@@ -3,6 +3,10 @@
 include_once './classes/conexao.class.php';
 
 class ValidarCampos extends Conexao {
+    
+    public function validarLogin($dados) {
+        
+    }
 
     public function ValidarCadastroUsuario($dados) {
 
@@ -82,5 +86,35 @@ class ValidarCampos extends Conexao {
 
         return $objRetorno;
     }
+    
+    public function validarCadastroAvaliacao($dados) {
+        
+    }
+    
+    public function validarCadastroAtividade($dados) {
+        
+    }
+    
+    public function validarCadastroQuestaoAvaliacao($dados) {
+        
+    }
+    
+    public function validarCadastroQuestaoAtividade($dados) {
+        
+    }
+    
+    public function validarCadastroTurma($dados) {
+        
+    }
+    
+    public function validarEdicaoPerfil($dados) {
+        
+    }
+    
+    public function validarEdicaoSenha($dados) {
+        
+    }
+    
+    
 
 }
