@@ -6,8 +6,11 @@
             <file>file:/opt/lampp/htdocs/seal/paginas/editar/perfil.php</file>
             <file>file:/opt/lampp/htdocs/seal/classes/cadastrar.class.php</file>
             <file>file:/opt/lampp/htdocs/seal/paginas/cadastro.php</file>
+            <file>file:/opt/lampp/htdocs/seal/classes/atualizar.class.php</file>
             <file>file:/opt/lampp/htdocs/seal/classes/conexao.class.php</file>
             <file>file:/opt/lampp/htdocs/seal/paginas/editar/senha.php</file>
+            <file>file:/opt/lampp/htdocs/seal/index.php</file>
+            <file>file:/opt/lampp/htdocs/seal/classes/validarCampos.php</file>
         </group>
     </open-files>
 </project-private>
