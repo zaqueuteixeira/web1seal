@@ -2,6 +2,7 @@
 
 include'./classes/cadastrar.class.php';
 include './classes/login.class.php';
+include './classes/atualizar.class.php';
 
 define("PASTA", "./paginas/");
 
@@ -21,6 +22,12 @@ if (file_exists(PASTA . $URL[0] . '.php')):
 elseif ($URL[0] == 'sair'):
     $login = new login();
     $login->sair();
+elseif ($URL[0] . '/' . $URL[1] == 'atualizar/perfil'):
+    $atualizar = new Atualizar();
+    $atualizar->atualizarPerfil($_POST);
+elseif ($URL[0] . '/' . $URL[1] == 'atualizar/senha'):
+    $atualizar = new Atualizar();
+    $atualizar->atualizarSenha($_POST);
 elseif ($URL[0] . '/' . $URL[1] == 'cadastrando/usuario'):
     $cadastrar = new Cadastrar();
     $cadastrar->cadastrarAluno($_POST);
