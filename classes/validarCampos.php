@@ -76,7 +76,7 @@ class ValidarCampos extends Conexao {
         }
         $bdMatricula = $this->BDSeleciona('usuario', 'matricula', "WHERE(matricula like '{$matricula}')");
         if ($bdMatricula) {
-            $objRetorno->erro[] = 'Ja existe um cadastro feito com essa matricula, por favor use outro!';
+            $objRetorno->erro[] = 'Ja existe um cadastro feito com essa matricula, por favor use outra!';
             $objRetorno->status = FALSE;
         }
 
