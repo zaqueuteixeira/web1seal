@@ -4,7 +4,7 @@ class Conexao {
 
     private $localhost = 'localhost';
     private $user = 'root';
-    private $pass = 'root';
+    private $pass = '';
     private $bd = 'seal';
 
     /**
