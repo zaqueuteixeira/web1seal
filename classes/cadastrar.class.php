@@ -22,12 +22,32 @@ class Cadastrar extends Conexao {
         }
     }
 
-    public function cadastrarAtividade(array $dados) {
+    public function cadastrarAtividade($dados) {
         
+        $validar = new ValidarCampos();
+        $objValidar = $validar->validarCadastroAtividade($dados);
+
+        if ($objValidar->status === TRUE) {
+            $this->DBGravar('atividade', $objValidar->dados);
+            
+            header("Location: /inicio");
+        } else {
+            print_r($objValidar->erro);
+        }
     }
 
-    public function cadastrarAvaliacao(array $dados) {
+    public function cadastrarAvaliacao($dados) {
         
+        $validar = new ValidarCampos();
+        $objValidar = $validar->ValidarCadastroUsuario($dados);
+
+        if ($objValidar->status === TRUE) {
+            $this->DBGravar('avaliacao', $objValidar->dados);
+            
+            header("Location: /inicio");
+        } else {
+            print_r($objValidar->erro);
+        }
     }
 
 }
