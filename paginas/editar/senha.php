@@ -25,7 +25,7 @@ require_once './header.php';
                 <center><h4 class="page-title">Edite a senha do Usuário</h4></center>
                 <br>
                 <br>
-                <form  method="post" class="form-horizontal m-t-20" action="/atualizar/senha">                                
+                <form  method="post" class="form-horizontal m-t-20" action="/atualizando/senha">                                
                     <div class="form-group">
                         <label class="col-md-4 control-label">Matricula</label>
                         <div class="col-md-4">
