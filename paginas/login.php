@@ -43,7 +43,7 @@
                     <center>  <img src="../assets/images/logo.png"></center>
                 </div> 
                 <div class="panel-body">
-                    <form class="form-horizontal m-t-20" action="../classes/autenticacao.class.php" method="post">
+                    <form class="form-horizontal m-t-20" action="/autenticacao" method="post">
 
                         <div class="form-group ">
                             <div class="col-xs-12">
@@ -86,7 +86,7 @@
             </div>                              
             <div class="row">
                 <div class="col-sm-12 text-center">
-                    <p>Não possui cadastro? <a href="../cadastro" class="text-primary m-l-5"><b>Clique aqui</b></a></p>
+                    <p>Não possui cadastro? <a href="./cadastro" class="text-primary m-l-5"><b>Clique aqui</b></a></p>
 
                 </div>
             </div>
