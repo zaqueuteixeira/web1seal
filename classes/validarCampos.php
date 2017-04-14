@@ -1,6 +1,6 @@
 <?php
 
-include_once './classes/conexao.class.php';
+#include_once './classes/conexao.class.php';
 
 class ValidarCampos {
 
@@ -106,12 +106,12 @@ class ValidarCampos {
             $objRetorno->erro[] = 'As senhas informadas nao coincedem';
             $objRetorno->status = FALSE;
         }
-        $bdEmail = $conexao->BDSeleciona('usuario', 'email', "WHERE(email like '{$email}')");
+        #$bdEmail = $conexao->BDSeleciona('usuario', 'email', "WHERE(email like '{$email}')");
         if ($bdEmail) {
             $objRetorno->erro[] = 'Ja existe um cadastro feito com esse email, por favor use outro!';
             $objRetorno->status = FALSE;
         }
-        $bdMatricula = $conexao->BDSeleciona('usuario', 'matricula', "WHERE(matricula like '{$matricula}')");
+       #$bdMatricula = $conexao->BDSeleciona('usuario', 'matricula', "WHERE(matricula like '{$matricula}')");
         if ($bdMatricula) {
             $objRetorno->erro[] = 'Ja existe um cadastro feito com essa matricula, por favor use outra!';
             $objRetorno->status = FALSE;
