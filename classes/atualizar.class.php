@@ -35,7 +35,7 @@ class Atualizar extends Conexao {
             for($i=0;$i<count($indices); $i++){
                 $this->BDAtualiza('usuario', "WHERE(matricula like '{$_SESSION["matricula"]}')", $indices[$i], $valores[$i]);
             }
-            header("Location: /editar/perfil");
+            header("Location: /inicio");
         } else {
             print_r($teste->erros);
         }
