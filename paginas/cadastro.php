@@ -96,7 +96,7 @@
             <div class="row">
                 <div class="col-sm-12 text-center">
                     <p>
-                        Possui conta? <a href="login" class="text-primary m-l-5"><b>Clique aqui</b></a>
+                        Possui conta? <a href="./login" class="text-primary m-l-5"><b>Clique aqui</b></a>
                     </p>
                 </div>
             </div>
