@@ -70,6 +70,7 @@
                                 <li class="dropdown">
                                     <a href="" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><img src="/assets/images/user_photo.png" alt="user-img" class="img-circle"> </a>
                                     <ul class="dropdown-menu">
+                                        <li><a href="/editar/perfil"><i class="ti-user m-r-5"></i>Perfil</a></li>
                                         <li><a href="/sair"><i class="ti-power-off m-r-5"></i>Sair</a></li>
                                     </ul>
                                 </li>
@@ -97,8 +98,10 @@
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="ti-list"></i> <span>Editar</span> </a>
                                 <ul class="list-unstyled">
-                                    <li><a href="/editar/perfil">Perfil</a></li>
+                                    <li><a href="/editar/atividade">Atividade</a></li>
+                                    <li><a href="/editar/avaliacao">Avaliacao</a></li>
                                     <li><a href="/editar/senha">Senha</a></li>
+                                    <li><a href="/editar/turma">Turma</a></li>
                                 </ul>
                             </li>
 
