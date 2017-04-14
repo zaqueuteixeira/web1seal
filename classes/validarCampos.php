@@ -167,31 +167,31 @@ class ValidarCampos {
             $objRetorno->erro[] = 'O campo email nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
         } else {
-            $objRetorno->dados = array_merge($dados, ['email' => $email]);
+            $objRetorno->dados = array_merge($objRetorno->dados, ['email' => $email]);
         }
         if (is_null($username)) {
             $objRetorno->erro[] = 'O campo username nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
         } else {
-            $objRetorno->dadosdados = array_merge($dados, ['username' => $username]);
+            $objRetorno->dadosdados = array_merge($objRetorno->dados, ['username' => $username]);
         }
         if (is_null($turma)) {
             $objRetorno->erro[] = 'O campo turma nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
         } else {
-            $objRetorno->dadosdados = array_merge($dados, ['turma' => $turma]);
+            $objRetorno->dadosdados = array_merge($objRetorno->dados, ['turma' => $turma]);
         }
         if (is_null($ano)) {
             $objRetorno->erro[] = 'O campo ano nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
         } else {
-            $objRetorno->dadosdados = array_merge($dados, ['ano' => $ano]);
+            $objRetorno->dadosdados = array_merge($objRetorno->dados, ['ano' => $ano]);
         }
         if (is_null($semestre)) {
             $objRetorno->erro[] = 'O campo semestre nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
         } else {
-            $objRetorno->dadosdados = array_merge($dados, ['semestre' => $semestre]);
+            $objRetorno->dadosdados = array_merge($objRetorno->dados, ['semestre' => $semestre]);
         }
         if ($senhaAntiga) {
             $senha = md5($senha);
