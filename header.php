@@ -107,6 +107,7 @@
                                 <ul class="list-unstyled">
                                     <li><a href="/cadastrar/atividade">Atividade</a></li>
                                     <li><a href="/cadastrar/avaliacao">Avaliação</a></li>
+                                    <li><a href="/cadastrar/turma">Turma</a></li>
                                 </ul>
                             </li>
 
