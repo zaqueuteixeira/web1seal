@@ -1,6 +1,6 @@
 <?php
 
-require_once 'conexao.class.php';
+include_once 'conexao.class.php';
 
 
 /*
