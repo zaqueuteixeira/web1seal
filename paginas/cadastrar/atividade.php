@@ -56,7 +56,7 @@ require_once './classes/conexao.class.php';
                     </div>
                     <div class="form-group m-b-0">
                         <div class="col-sm-offset-5 col-sm-9">
-                            <button type="submit" class="btn btn-info waves-effect waves-light">Atualizar</button>
+                            <button type="submit" class="btn btn-info waves-effect waves-light">Cadastrar</button>
                         </div>
                     </div>
                 </form>
