@@ -51,7 +51,7 @@ $conexao->BDFecharConexao($con);
                 <br>
                 <br>
 
-                <form action="/atualizar/perfil" class="form-horizontal" role="form" method="post">                                    
+                <form action="/atualizando/perfil" class="form-horizontal" role="form" method="post">                                    
                     <div class="form-group">
                         <label class="col-md-2 control-label">Nome completo:</label>
                         <div class="col-md-5">
