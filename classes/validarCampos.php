@@ -1,6 +1,6 @@
 <?php
 
-#include_once './classes/conexao.class.php';
+include_once './classes/conexao.class.php';
 
 class ValidarCampos {
 
@@ -106,12 +106,12 @@ class ValidarCampos {
             $objRetorno->erro[] = 'As senhas informadas nao coincedem';
             $objRetorno->status = FALSE;
         }
-        #$bdEmail = $conexao->BDSeleciona('usuario', 'email', "WHERE(email like '{$email}')");
+        $bdEmail = $conexao->BDSeleciona('usuario', 'email', "WHERE(email like '{$email}')");
         if ($bdEmail) {
             $objRetorno->erro[] = 'Ja existe um cadastro feito com esse email, por favor use outro!';
             $objRetorno->status = FALSE;
         }
-        #$bdMatricula = $conexao->BDSeleciona('usuario', 'matricula', "WHERE(matricula like '{$matricula}')");
+        $bdMatricula = $conexao->BDSeleciona('usuario', 'matricula', "WHERE(matricula like '{$matricula}')");
         if ($bdMatricula) {
             $objRetorno->erro[] = 'Ja existe um cadastro feito com essa matricula, por favor use outra!';
             $objRetorno->status = FALSE;
@@ -121,11 +121,82 @@ class ValidarCampos {
     }
 
     public function validarCadastroAvaliacao($dados) {
-        
+
+        $objRetorno = new stdClass();
+        $objRetorno->erro = [];
+        $objRetorno->dados = [];
+        $objRetorno->status = TRUE;
+
+        $assunto = ($dados['assunto']) ? filter_var($dados['assunto'], FILTER_SANITIZE_STRING) : null;
+        $turma = ($dados['turma']) ? filter_var($dados['turma'], FILTER_SANITIZE_NUMBER_INT) : null;
+        $data = ($dados['data']) ? filter_var($dados['data'], FILTER_SANITIZE_STRING) : null;
+        $valor = ($dados['valor']) ? filter_var($dados['valor'], FILTER_SANITIZE_NUMBER_INT) : null;
+
+        if (is_null($assunto)) {
+            $objRetorno->erro[] = 'O campo assunto nao foi preenchido corretamente';
+            $objRetorno->status = FALSE;
+        } else {
+            $objRetorno->dados = array_merge($objRetorno->dados, ['assunto' => $assunto]);
+        }
+        if (is_null($turma)) {
+            $objRetorno->erro[] = 'O campo turma nao foi preenchido corretamente';
+            $objRetorno->status = FALSE;
+        } else {
+            $objRetorno->dados = array_merge($objRetorno->dados, ['turma' => $turma]);
+        }
+        if (is_null($dataInicio)) {
+            $objRetorno->erro[] = 'O campo data nao foi preenchido corretamente';
+            $objRetorno->status = FALSE;
+        } else {
+            $objRetorno->dados = array_merge($objRetorno->dados, ['dataInicio' => $dataInicio]);
+        }
+        if (is_null($dataTermino)) {
+            $objRetorno->erro[] = 'O campo valor nao foi preenchido corretamente';
+            $objRetorno->status = FALSE;
+        } else {
+            $objRetorno->dados = array_merge($objRetorno->dados, ['dataTermino' => $dataTermino]);
+        }
+
+        return $objRetorno;
     }
 
     public function validarCadastroAtividade($dados) {
-        
+        $objRetorno = new stdClass();
+        $objRetorno->erro = [];
+        $objRetorno->dados = [];
+        $objRetorno->status = TRUE;
+
+        $assunto = ($dados['assunto']) ? filter_var($dados['assunto'], FILTER_SANITIZE_STRING) : null;
+        $turma = ($dados['turma']) ? filter_var($dados['turma'], FILTER_SANITIZE_NUMBER_INT) : null;
+        $dataInicio = ($dados['dataInicio']) ? filter_var($dados['dataInicio'], FILTER_SANITIZE_STRING) : null;
+        $dataTermino = ($dados['dataTermino']) ? filter_var($dados['dataTermino'], FILTER_SANITIZE_STRING) : null;
+
+        if (is_null($assunto)) {
+            $objRetorno->erro[] = 'O campo assunto nao foi preenchido corretamente';
+            $objRetorno->status = FALSE;
+        } else {
+            $objRetorno->dados = array_merge($objRetorno->dados, ['assunto' => $assunto]);
+        }
+        if (is_null($turma)) {
+            $objRetorno->erro[] = 'O campo turma nao foi preenchido corretamente';
+            $objRetorno->status = FALSE;
+        } else {
+            $objRetorno->dados = array_merge($objRetorno->dados, ['turma' => $turma]);
+        }
+        if (is_null($dataInicio)) {
+            $objRetorno->erro[] = 'O campo data de inicio nao foi preenchido corretamente';
+            $objRetorno->status = FALSE;
+        } else {
+            $objRetorno->dados = array_merge($objRetorno->dados, ['dataInicio' => $dataInicio]);
+        }
+        if (is_null($dataTermino)) {
+            $objRetorno->erro[] = 'O campo data de termino nao foi preenchido corretamente';
+            $objRetorno->status = FALSE;
+        } else {
+            $objRetorno->dados = array_merge($objRetorno->dados, ['dataTermino' => $dataTermino]);
+        }
+
+        return $objRetorno;
     }
 
     public function validarCadastroQuestaoAvaliacao($dados) {
@@ -239,7 +310,7 @@ class ValidarCampos {
             $objRetorno->dados = array_merge($objRetorno->dados, ['senha' => md5($senha)]);
             $objRetorno->dados = array_merge($objRetorno->dados, ['matricula' => $matricula]);
         }
-        if ((!$senha) &&(!$repetaSenha)){ 
+        if ((!$senha) && (!$repetaSenha)) {
             $objRetorno->dados = array_merge($objRetorno->dados, ['senha' => md5($matricula)]);
             $objRetorno->dados = array_merge($objRetorno->dados, ['matricula' => $matricula]);
         }
