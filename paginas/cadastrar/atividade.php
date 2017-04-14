@@ -27,7 +27,7 @@ require_once './classes/conexao.class.php';
                 <br>
                 <br>
 
-                <form action="/atualizando/perfil" class="form-horizontal" role="form" method="post">                                    
+                <form action="/atualizando/atividade" class="form-horizontal" role="form" method="post">                                    
                     <div class="form-group">
                         <label class="col-md-2 control-label">Assunto:</label>
                         <div class="col-md-5">
@@ -45,14 +45,13 @@ require_once './classes/conexao.class.php';
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-2 control-label">Data</label>
+                        <label class="col-md-2 control-label">Data inicio:</label>
                         <div class="col-md-5">
-                            <input type="date" class="form-control" name="data" value="" placeholder="">
+                            <input type="date" class="form-control" name="dataInicio" value="" placeholder="">
                         </div>
-                        
-                        <label class="col-md-1 control-label">Valor:</label>
+                        <label class="col-md-1 control-label">Termino:</label>
                         <div class="col-md-3">
-                            <input type="number" class="form-control" name="valor" value=""placeholder="">
+                            <input type="date" class="form-control" name="dataTermino" value="" placeholder="">
                         </div>
                     </div>
                     <div class="form-group m-b-0">
