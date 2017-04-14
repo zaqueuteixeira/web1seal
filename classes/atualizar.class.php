@@ -17,22 +17,21 @@ class Atualizar extends Conexao {
         $validar = new ValidarCampos();
         $teste = $validar->validarEdicaoPerfil($dados);
         $dados = $teste->dados;
-        
-        
+
+
         if ($teste) {
             $dados = array_filter($dados); //limpa o array de null e vazios
-
             //cria uma string so com as keys
             $indices = implode(", ", array_keys($dados));
-            
+
             //cria uma string so com os valores
             $valores = "'" . implode("', '", $dados) . "'";
 
             // transforma a string em array.
             $indices = explode(',', $indices);
             $valores = explode(',', $valores);
-            
-            for($i=0;$i<count($indices); $i++){
+
+            for ($i = 0; $i < count($indices); $i++) {
                 $this->BDAtualiza('usuario', "WHERE(matricula like '{$_SESSION["matricula"]}')", $indices[$i], $valores[$i]);
             }
             header("Location: /inicio");
@@ -42,7 +41,21 @@ class Atualizar extends Conexao {
     }
 
     public function atualizarSenha($dados) {
-        print_r($dados);
+
+        $validar = new ValidarCampos();
+        $teste = $validar->validarEdicaoSenha($dados);
+        $dados = $teste->dados;
+
+        if (!empty($teste->erro)) {
+            print_r($teste->erros);
+        } else {
+            $conn = $this->BDAbreConexao();
+            $this->BDAtualiza('usuario', "WHERE(matricula like '{$dados['matricula']}')", 'senha', "'{$dados['senha']}'");
+            $this->BDFecharConexao($conn);
+
+
+            header("Location: /editar/senha");
+        }
     }
 
 }
