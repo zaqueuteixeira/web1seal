@@ -22,15 +22,20 @@ class Atualizar extends Conexao {
         if ($teste) {
             $dados = array_filter($dados); //limpa o array de null e vazios
             //cria uma string so com as keys
+            
+            unset($dados['senha-antiga']);
+            unset($dados['senha-nova']);
+            unset($dados['repeta-senha']);
+            unset($dados['matricula']);
+            
             $indices = implode(", ", array_keys($dados));
-
             //cria uma string so com os valores
             $valores = "'" . implode("', '", $dados) . "'";
 
             // transforma a string em array.
             $indices = explode(',', $indices);
             $valores = explode(',', $valores);
-
+            
             for ($i = 0; $i < count($indices); $i++) {
                 $this->BDAtualiza('usuario', "WHERE(matricula like '{$_SESSION["matricula"]}')", $indices[$i], $valores[$i]);
             }
