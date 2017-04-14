@@ -1,49 +1,57 @@
 <?php
+
 require_once 'login.class.php';
 require_once 'validarCampos.php';
 
-$login = new Login();
-$validar = new ValidarCampos();
+class Autenticacao {
 
-$matricula = $_POST['matricula'];
-$senha = $_POST['senha'];
+    public function autenticarUsuario($dados) {
 
-$dados = [
-    'matricula' => $matricula,
-    'senha' => $senha
-];
+        $login = new Login();
+        $validar = new ValidarCampos();
 
-$validacao = $validar->validarLogin($dados);
+        $matricula = $_POST['matricula'];
+        $senha = $_POST['senha'];
 
-if ($validacao->status) {
+        $dados = [
+            'matricula' => $matricula,
+            'senha' => $senha
+        ];
 
-    $mysqli = $login->BDAbreConexao();
-    
-    $matricula = ($validacao->dados[0]["matricula"]);
-    
-    $senha = ($validacao->dados[1]["senha"]);
-    
-    $resultado = $login->BDSeleciona('usuario', '*', "WHERE(matricula like '$matricula' and senha = '$senha')");
-    
-    if ($login->checarTentativasLogin($matricula)) {
+        $validacao = $validar->validarLogin($dados);
 
-        if (!is_null($resultado[0]['id'])) {
-            session_start();
-            $_SESSION['matricula'] = $_POST['matricula'];
+        if ($validacao->status) {
 
-            $login->excluirTentativasLogin($matricula);
+            $mysqli = $login->BDAbreConexao();
 
-            header("Location: /inicio");
-        } else {
-            $login->registrarTentativaLogin($matricula);
+            $matricula = ($validacao->dados[0]["matricula"]);
+
+            $senha = ($validacao->dados[1]["senha"]);
+
+            $resultado = $login->BDSeleciona('usuario', '*', "WHERE(matricula like '$matricula' and senha = '$senha')");
+
+            if ($login->checarTentativasLogin($matricula)) {
+
+                if (!is_null($resultado[0]['id'])) {
+                    session_start();
+                    $_SESSION['matricula'] = $_POST['matricula'];
+
+                    $login->excluirTentativasLogin($matricula);
+
+                    header("Location: /inicio");
+                } else {
+                    $login->registrarTentativaLogin($matricula);
+                    $login->BDFecharConexao($mysqli);
+                    header("Location: /login");
+                }
+            } else {
+                print_r("usuario bloqueado");
+            }
+
             $login->BDFecharConexao($mysqli);
-            header("Location: /login");
+        } else {
+            print_r($validacao->erros);
         }
-    } else {
-        print_r("usuario bloqueado");
     }
 
-    $login->BDFecharConexao($mysqli);
-} else {
-    print_r($validacao->erros);
 }
