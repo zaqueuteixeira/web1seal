@@ -39,7 +39,7 @@ class Cadastrar extends Conexao {
     public function cadastrarAvaliacao($dados) {
 
         $validar = new ValidarCampos();
-        $objValidar = $validar->ValidarCadastroUsuario($dados);
+        $objValidar = $validar->validarCadastroAvaliacao($dados);
 
         if ($objValidar->status === TRUE) {
             $this->DBGravar('avaliacao', $objValidar->dados);

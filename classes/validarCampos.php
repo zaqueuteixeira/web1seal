@@ -128,33 +128,33 @@ class ValidarCampos {
         $objRetorno->status = TRUE;
 
         $assunto = ($dados['assunto']) ? filter_var($dados['assunto'], FILTER_SANITIZE_STRING) : null;
-        $turma = ($dados['turma']) ? filter_var($dados['turma'], FILTER_SANITIZE_NUMBER_INT) : null;
-        $data = ($dados['data']) ? filter_var($dados['data'], FILTER_SANITIZE_STRING) : null;
-        $valor = ($dados['valor']) ? filter_var($dados['valor'], FILTER_SANITIZE_NUMBER_INT) : null;
+        $turma = 1;
+        $data = $dados['data'];
+        $valor = $dados['valor'];
 
         if (is_null($assunto)) {
             $objRetorno->erro[] = 'O campo assunto nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
         } else {
-            $objRetorno->dados = array_merge($objRetorno->dados, ['assunto' => $assunto]);
+            $objRetorno->dados = array_merge($objRetorno->dados, ['conteudo' => $assunto]);
         }
         if (is_null($turma)) {
             $objRetorno->erro[] = 'O campo turma nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
         } else {
-            $objRetorno->dados = array_merge($objRetorno->dados, ['turma' => $turma]);
+            $objRetorno->dados = array_merge($objRetorno->dados, ['turma_id' => $turma]);
         }
-        if (is_null($dataInicio)) {
+        if (is_null($data)) {
             $objRetorno->erro[] = 'O campo data nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
         } else {
-            $objRetorno->dados = array_merge($objRetorno->dados, ['dataInicio' => $dataInicio]);
+            $objRetorno->dados = array_merge($objRetorno->dados, ['data' => $data]);
         }
-        if (is_null($dataTermino)) {
+        if (is_null($valor)) {
             $objRetorno->erro[] = 'O campo valor nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
         } else {
-            $objRetorno->dados = array_merge($objRetorno->dados, ['dataTermino' => $dataTermino]);
+            $objRetorno->dados = array_merge($objRetorno->dados, ['nota' => $valor]);
         }
 
         return $objRetorno;
@@ -166,22 +166,22 @@ class ValidarCampos {
         $objRetorno->dados = [];
         $objRetorno->status = TRUE;
 
-        $assunto = ($dados['assunto']) ? filter_var($dados['assunto'], FILTER_SANITIZE_STRING) : null;
-        $turma = ($dados['turma']) ? filter_var($dados['turma'], FILTER_SANITIZE_NUMBER_INT) : null;
-        $dataInicio = ($dados['dataInicio']) ? filter_var($dados['dataInicio'], FILTER_SANITIZE_STRING) : null;
-        $dataTermino = ($dados['dataTermino']) ? filter_var($dados['dataTermino'], FILTER_SANITIZE_STRING) : null;
+        $assunto = $dados['assunto'];
+        $turma = 1;
+        $dataInicio = $dados['dataInicio'];
+        $dataTermino = $dados['dataTermino'];
 
         if (is_null($assunto)) {
             $objRetorno->erro[] = 'O campo assunto nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
         } else {
-            $objRetorno->dados = array_merge($objRetorno->dados, ['assunto' => $assunto]);
+            $objRetorno->dados = array_merge($objRetorno->dados, ['conteudo' => $assunto]);
         }
         if (is_null($turma)) {
             $objRetorno->erro[] = 'O campo turma nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
         } else {
-            $objRetorno->dados = array_merge($objRetorno->dados, ['turma' => $turma]);
+            $objRetorno->dados = array_merge($objRetorno->dados, ['turma_id' => $turma]);
         }
         if (is_null($dataInicio)) {
             $objRetorno->erro[] = 'O campo data de inicio nao foi preenchido corretamente';
