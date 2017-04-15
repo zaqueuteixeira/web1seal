@@ -21,6 +21,10 @@ if ((isset($URL[0])) && ($URL[0] == 'sair')):
     $login = new Login();
     $login->sair();
 endif;
+if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'cadastrando/turma')):
+   $cadastrar = new Cadastrar();
+    $cadastrar->cadastrarTurma($_POST);
+endif;
 if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'atualizando/perfil')):
     include_once'./classes/atualizar.class.php';
     $atualizar = new Atualizar();
