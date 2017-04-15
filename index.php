@@ -1,6 +1,5 @@
 <?php
 
-include_once'./classes/cadastrar.class.php';
 include_once'./classes/login.class.php';
 include_once'./classes/autenticacao.class.php';
 
@@ -21,18 +20,6 @@ if ((isset($URL[0])) && ($URL[0] == 'sair')):
     $login = new Login();
     $login->sair();
 endif;
-if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'cadastrando/turma')):
-   $cadastrar = new Cadastrar();
-    $cadastrar->cadastrarTurma($_POST);
-endif;
-if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'cadastro/atividade')):
-   $cadastrar = new Cadastrar();
-    $cadastrar->cadastrarAtividade($_POST);
-endif;
-if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'cadastro/avaliacao')):
-   $cadastrar = new Cadastrar();
-    $cadastrar->cadastrarAvaliacao($_POST);
-endif;
 if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'atualizando/perfil')):
     include_once'./classes/atualizar.class.php';
     $atualizar = new Atualizar();
@@ -52,6 +39,10 @@ if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'cadastr
     include_once'./classes/cadastrar.class.php';
     $cadastrar = new Cadastrar();
     $cadastrar->cadastrarAvaliacao($_POST);
+endif;
+if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'cadastrando/turma')):
+   $cadastrar = new Cadastrar();
+    $cadastrar->cadastrarTurma($_POST);
 endif;
 
 if ((isset($URL[0])) && ($URL[0] == 'autenticacao')):
