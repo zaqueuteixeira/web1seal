@@ -208,7 +208,49 @@ class ValidarCampos {
     }
 
     public function validarCadastroTurma($dados) {
+        $objRetorno = new stdClass();
+        $objRetorno->erro = [];
+        $objRetorno->dados = [];
+        $objRetorno->status = TRUE;
+
+        $nome = ($dados['nome']) ? filter_var($dados['nome'], FILTER_SANITIZE_STRING) : null;
+        $professor = ($dados['professor']) ? filter_var($dados['professor'], FILTER_SANITIZE_STRING) : null;
+        $codigo = ($dados['codigo']) ? filter_var($dados['codigo'], FILTER_SANITIZE_STRING) : null;
+        $ano = ($dados['ano']) ? filter_var($dados['ano'], FILTER_SANITIZE_NUMBER_INT) : NULL;
+        $semestre = ($dados['semestre']) ? filter_var($dados['semestre'], FILTER_SANITIZE_NUMBER_INT) : NULL;
+
+        if (is_null($nome)) {
+            $objRetorno->erro[] = 'O campo nome nao foi preenchido corretamente';
+            $objRetorno->status = FALSE;
+        } else {
+            $objRetorno->dados = array_merge($objRetorno->dados, ['nome' => $nome]);
+        }
+        if (is_null($professor)) {
+            $objRetorno->erro[] = 'O campo professor nao foi preenchido corretamente';
+            $objRetorno->status = FALSE;
+        } else {
+            $objRetorno->dados = array_merge($objRetorno->dados, ['professor' => $professor]);
+        }
+        if (is_null($codigo)) {
+            $objRetorno->erro[] = 'O campo codigo nao foi preenchido corretamente';
+            $objRetorno->status = FALSE;
+        } else {
+            $objRetorno->dados = array_merge($objRetorno->dados, ['codigo' => $codigo]);
+        }
+        if (is_null($ano)) {
+            $objRetorno->erro[] = 'O campo nome ano foi preenchido corretamente';
+            $objRetorno->status = FALSE;
+        } else {
+            $objRetorno->dados = array_merge($objRetorno->dados, ['ano' => $ano]);
+        }
+        if (is_null($semestre)) {
+            $objRetorno->erro[] = 'O campo semestre nao foi preenchido corretamente';
+            $objRetorno->status = FALSE;
+        } else {
+            $objRetorno->dados = array_merge($objRetorno->dados, ['semestre' => $semestre]);
+        }
         
+        return $objRetorno;
     }
 
     public function validarEdicaoPerfil($dados) {
