@@ -25,6 +25,14 @@ if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'cadastr
    $cadastrar = new Cadastrar();
     $cadastrar->cadastrarTurma($_POST);
 endif;
+if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'cadastro/atividade')):
+   $cadastrar = new Cadastrar();
+    $cadastrar->cadastrarAtividade($_POST);
+endif;
+if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'cadastro/avaliacao')):
+   $cadastrar = new Cadastrar();
+    $cadastrar->cadastrarAvaliacao($_POST);
+endif;
 if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'atualizando/perfil')):
     include_once'./classes/atualizar.class.php';
     $atualizar = new Atualizar();
