@@ -27,7 +27,7 @@ require_once './classes/conexao.class.php';
                 <br>
                 <br>
 
-                <form action="/atualizando/atividade" class="form-horizontal" role="form" method="post">                                    
+                <form action="/cadastro/atividade" class="form-horizontal" role="form" method="post">                                    
                     <div class="form-group">
                         <label class="col-md-2 control-label">Assunto:</label>
                         <div class="col-md-5">
@@ -36,11 +36,8 @@ require_once './classes/conexao.class.php';
                         <label class="col-md-1 control-label">Turma:</label>
                         <div class="col-md-3">
                             <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <option disabled="" selected="" value="1">Selecione</option>
+                                <option value="1">1</option>
                             </select>
                         </div>
                     </div>
