@@ -41,7 +41,8 @@ if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'cadastr
     $cadastrar->cadastrarAvaliacao($_POST);
 endif;
 if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'cadastrando/turma')):
-   $cadastrar = new Cadastrar();
+    include_once'./classes/cadastrar.class.php';
+    $cadastrar = new Cadastrar();
     $cadastrar->cadastrarTurma($_POST);
 endif;
 
