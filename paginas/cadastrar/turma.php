@@ -2,6 +2,14 @@
 $title = "Cadastrar Turma";
 require_once './header.php';
 require_once './classes/conexao.class.php';
+
+
+$conexao = new Conexao();
+
+$con = $conexao->BDAbreConexao();
+$professores = $conexao->BDSeleciona('usuario', '*', "where(papel_id = '1')");
+$conexao->BDFecharConexao($con);
+
 ?>
 <div class="row">
     <div class="col-sm-12">
@@ -36,7 +44,15 @@ require_once './classes/conexao.class.php';
                         </div>
                         <label class="col-md-1 control-label">Professor:</label>
                         <div class="col-md-4">
-                            <input type="text" class="form-control" name="professor" value="">
+                            <select class="form-control" name="professor">
+                                <option selected="" disabled="">Selecione</option>
+                                <?php
+                                foreach ($professores as $key => $value) {
+                                    echo "<option value='{$value['nome']}'>".$value['nome']."</option>";
+                                }
+                                
+                                ?>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
