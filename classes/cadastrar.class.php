@@ -27,7 +27,8 @@ class Cadastrar extends Conexao {
         $validar = new ValidarCampos();
         $objValidar = $validar->validarCadastroAtividade($dados);
 
-        if ($objValidar->status === TRUE) {
+        if ($objValidar->status) {
+
             $this->DBGravar('atividade', $objValidar->dados);
 
             header("Location: /inicio");
@@ -53,7 +54,7 @@ class Cadastrar extends Conexao {
     public function cadastrarTurma($dados) {
         $validar = new ValidarCampos();
         $objValidar = $validar->validarCadastroTurma($dados);
-        
+
         if ($objValidar->status) {
             $this->DBGravar('turma', $objValidar->dados);
 
