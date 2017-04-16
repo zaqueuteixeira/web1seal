@@ -5,10 +5,9 @@
         <group>
             <file>file:/opt/lampp/htdocs/projetos/seal/classes/validarCampos.php</file>
             <file>file:/opt/lampp/htdocs/projetos/seal/classes/cadastrar.class.php</file>
-            <file>file:/opt/lampp/htdocs/projetos/seal/paginas/listar/turma.php</file>
-            <file>file:/opt/lampp/htdocs/projetos/seal/paginas/listar/avaliacoes.php</file>
+            <file>file:/opt/lampp/htdocs/projetos/seal/paginas/cadastrar/atividade.php</file>
+            <file>file:/opt/lampp/htdocs/projetos/seal/classes/conexao.class.php</file>
             <file>file:/opt/lampp/htdocs/projetos/seal/paginas/cadastrar/turma.php</file>
-            <file>file:/opt/lampp/htdocs/projetos/seal/paginas/listar/usuario.php</file>
         </group>
     </open-files>
 </project-private>
