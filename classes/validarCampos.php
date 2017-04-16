@@ -216,8 +216,8 @@ class ValidarCampos {
         $nome = ($dados['nome']) ? filter_var($dados['nome'], FILTER_SANITIZE_STRING) : null;
         $professor = ($dados['professor']) ? filter_var($dados['professor'], FILTER_SANITIZE_STRING) : null;
         $codigo = ($dados['codigo']) ? filter_var($dados['codigo'], FILTER_SANITIZE_STRING) : null;
-        $ano = ($dados['ano']) ? filter_var($dados['ano'], FILTER_SANITIZE_NUMBER_INT) : NULL;
-        $semestre = ($dados['semestre']) ? filter_var($dados['semestre'], FILTER_SANITIZE_NUMBER_INT) : NULL;
+        $ano = ($dados['ano']) ? filter_var($dados['ano'], FILTER_SANITIZE_STRING) : NULL;
+        $semestre = ($dados['semestre']) ? filter_var($dados['semestre'], FILTER_SANITIZE_STRING) : NULL;
 
         if (is_null($nome)) {
             $objRetorno->erro[] = 'O campo nome nao foi preenchido corretamente';
