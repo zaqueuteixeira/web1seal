@@ -36,10 +36,11 @@ class Conexao {
      * 
      */
     public function DBGravar($tabela, array $dados) {
+        
         $indices = implode(", ", array_keys($dados));
         $valores = "'" . implode("', '", $dados) . "'";
 
-        $sql = "INSERT INTO {$tabela}({$indices}) VALUES ({$valores})";
+        $sql = "INSERT INTO {$tabela}({$indices}) VALUES ({$valores});";
         var_dump($sql);
         return $this->BDExecutaQuery($sql);
     }
