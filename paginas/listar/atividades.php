@@ -1,4 +1,6 @@
 <?php
+
+$title = "Atividades";
 require_once './header.php';
 ?>
 <div class="row">

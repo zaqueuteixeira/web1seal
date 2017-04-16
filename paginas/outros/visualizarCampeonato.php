@@ -1,4 +1,5 @@
 <?php
+$title = "Visualizar Campeonato";
 require_once './header.php';
 ?>
 <div class="row">

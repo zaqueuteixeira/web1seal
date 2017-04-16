@@ -1,4 +1,5 @@
 <?php
+$title = "Cadastrar Avaliacao";
 require_once './header.php';
 require_once './classes/conexao.class.php';
 ?>

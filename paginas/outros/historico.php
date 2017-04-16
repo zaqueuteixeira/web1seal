@@ -1,4 +1,6 @@
 <?php
+
+$title = "Historico";
 require_once './header.php';
 ?>
 <div class="row">

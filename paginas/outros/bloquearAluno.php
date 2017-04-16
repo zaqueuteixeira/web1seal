@@ -1,4 +1,6 @@
 <?php
+
+$title = "Bloquear Aluno";
 require_once './header.php';
 ?>
 <div class="row">

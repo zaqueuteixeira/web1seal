@@ -1,4 +1,5 @@
 <?php
+$title = "Recuperar Senha";
 require_once './header.php';
 ?>
 <div class="row">

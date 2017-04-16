@@ -1,4 +1,6 @@
 <?php
+
+$title = "Editar Atividade";
 require_once './header.php';
 require_once './classes/conexao.class.php';
 ?>
@@ -13,17 +15,17 @@ require_once './classes/conexao.class.php';
                             <a href="/inicio">Inicio</a>
                         </li>
                         <li class="active">
-                            Cadastrar
+                            editar
                         </li>
                         <li>
-                            <a href="/cadastrar/atividade">Atividade</a>
+                            <a href="/editar/atividade">Atividade</a>
                         </li>
                     </ol>
                 </div>
             </div>
             <div class="row">
 
-                <center><h4 class="page-title">Cadastrando atividade</h4></center>
+                <center><h4 class="page-title">Editar atividade</h4></center>
                 <br>
                 <br>
 

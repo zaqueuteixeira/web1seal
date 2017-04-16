@@ -16,7 +16,7 @@ if (!isset($_SESSION["matricula"])) {
 
         <link rel="shortcut icon" href="/assets/images/favicon_1.ico">
 
-        <title>SEAL - Inicio</title>
+        <title><?php echo $title;?></title>
 
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="/assets/plugins/morris/morris.css">

@@ -1,4 +1,5 @@
 <?php
+$title = "Inicio";
 require_once './header.php';
 ?>
 <div class="row">

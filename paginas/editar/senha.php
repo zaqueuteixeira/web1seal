@@ -1,4 +1,6 @@
 <?php
+
+$title = "Editar Turma";
 require_once './header.php';
 ?>
 <div class="row">
