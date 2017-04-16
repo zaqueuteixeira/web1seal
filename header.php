@@ -92,10 +92,8 @@ if (!isset($_SESSION["matricula"])) {
                     <!--- Divider -->
                     <div id="sidebar-menu">
                         <ul>
-
                             <li class="has_sub">
                                 <a href="/inicio" class="waves-effect active"><i class="ti-home"></i> <span>inicio</span> </a>
-
                             </li>
 
                             <li class="has_sub">
@@ -120,9 +118,10 @@ if (!isset($_SESSION["matricula"])) {
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="ti-light-bulb"></i><span>Listar</span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="/listar/usuario">Usuario</a></li>
                                     <li><a href="/listar/atividades">Atividades</a></li>
                                     <li><a href="/listar/avaliacoes">Avaliações</a></li>
+                                    <li><a href="/listar/turma">Turmas</a></li>
+                                    <li><a href="/listar/usuario">Usuarios</a></li>
                                 </ul>
                             </li>
 
