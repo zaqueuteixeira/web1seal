@@ -2,6 +2,7 @@
 
 include_once'./classes/login.class.php';
 include_once'./classes/autenticacao.class.php';
+include_once'./classes/cadastrar.class.php';
 
 define("PASTA", "./paginas/");
 
