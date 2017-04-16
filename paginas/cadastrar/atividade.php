@@ -2,6 +2,13 @@
 $title = "Cadastrar Atividade";
 require_once './header.php';
 require_once './classes/conexao.class.php';
+
+$conexao = new Conexao();
+$con = $conexao->BDAbreConexao();
+
+$dados = $conexao->BDSeleciona('turma', '*', "where(status = '1')");
+
+$conexao->BDFecharConexao($con);
 ?>
 <div class="row">
     <div class="col-sm-12">
@@ -36,9 +43,14 @@ require_once './classes/conexao.class.php';
                         </div>
                         <label class="col-md-1 control-label">Turma:</label>
                         <div class="col-md-3">
-                            <select class="form-control" name="turma">
-                                <option disabled="" selected="" value="1">Selecione</option>
-                                <option value="1">1</option>
+                             <select class="form-control" name="turma">
+                                <option selected="" disabled="">Selecione</option>
+                                <?php
+                                foreach ($dados as $key => $value) {
+                                    echo "<option value='{$value['id']}'>".$value['nome']."</option>";
+                                }
+                                
+                                ?>
                             </select>
                         </div>
                     </div>
