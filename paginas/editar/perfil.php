@@ -2,6 +2,8 @@
 require_once './header.php';
 require_once './classes/conexao.class.php';
 
+$title = "Editar Perfil";
+
 $conexao = new Conexao();
 
 $con = $conexao->BDAbreConexao();
