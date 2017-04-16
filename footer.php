@@ -46,6 +46,14 @@
 <script src="/assets/js/jquery.core.js"></script>
 <script src="/assets/js/jquery.app.js"></script>
 
+<!--FooTable-->
+<script src="/assets/plugins/footable/js/footable.all.min.js"></script>
+
+<script src="/assets/plugins/bootstrap-select/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
+
+<!--FooTable Example-->
+<script src="/assets/pages/jquery.footable.js"></script>
+
 <script type="text/javascript">
     jQuery(document).ready(function ($) {
         $('.counter').counterUp({
