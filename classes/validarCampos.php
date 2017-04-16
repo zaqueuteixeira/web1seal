@@ -128,7 +128,7 @@ class ValidarCampos {
         $objRetorno->status = TRUE;
 
         $assunto = ($dados['assunto']) ? filter_var($dados['assunto'], FILTER_SANITIZE_STRING) : null;
-        $turma = 1;
+        $turma = ($dados['turma']) ? filter_var($dados['turma'], FILTER_SANITIZE_STRING) : null;
         $data = $dados['data'];
         $valor = $dados['valor'];
 
@@ -167,7 +167,7 @@ class ValidarCampos {
         $objRetorno->status = TRUE;
 
         $assunto = $dados['assunto'];
-        $turma = 1;
+        $turma = $dados['turma'];
         $dataInicio = $dados['dataInicio'];
         $dataTermino = $dados['dataTermino'];
 
