@@ -71,7 +71,7 @@ if (!isset($_SESSION["matricula"])) {
                                     <a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="icon-size-fullscreen"></i></a>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><img src="/assets/images/user_photo.png" alt="user-img" class="img-circle"> </a>
+                                    <a href="" class="dropagsquare.pngdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><img src="/assets/images/user_photo.png" alt="user-img" class="img-circle"> </a>
                                     <ul class="dropdown-menu">
                                         <li><a href="/editar/perfil"><i class="ti-user m-r-5"></i>Perfil</a></li>
                                         <li><a href="/sair"><i class="ti-power-off m-r-5"></i>Sair</a></li>
@@ -92,7 +92,7 @@ if (!isset($_SESSION["matricula"])) {
                     <!--- Divider -->
                     <div id="sidebar-menu">
                         <ul>
-                            <li class="has_sub">
+                            <li class="">
                                 <a href="/inicio" class="waves-effect active"><i class="ti-home"></i> <span>inicio</span> </a>
                             </li>
 
