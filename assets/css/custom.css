@@ -6,3 +6,6 @@
 .margem-esquerda{
     margin-left: 4%!important;
 }
+body{
+  background: url("../images/agsquare.png")!important; 
+}
