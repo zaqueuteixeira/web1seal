@@ -62,11 +62,11 @@ $conexao->BDFecharConexao($con);
                         </div>
                         <label class="col-md-1 control-label">Ano:</label>
                         <div class="col-md-2">
-                            <input type="text" class="form-control" name="ano" value="">
+                            <input type="text" class="form-control" name="ano" value="<?php echo date('Y');?>">
                         </div>
                         <label class="col-md-1 control-label">Semestre:</label>
                         <div class="col-md-2">
-                            <input type="text" class="form-control" name="semestre" value="">
+                            <input type="number" class="form-control" name="semestre" value="">
                         </div>
                     </div>
                     <div class="form-group m-b-0">
