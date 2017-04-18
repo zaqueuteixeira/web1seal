@@ -171,6 +171,7 @@ class ValidarCampos {
         $objRetorno->erro = [];
         $objRetorno->dados = [];
         $objRetorno->status = TRUE;
+        $dataAtual = date('Y-m-d');
 
         $assunto = $dados['assunto'];
         $turma = $dados['turma'];
@@ -205,6 +206,14 @@ class ValidarCampos {
             $objRetorno->erro[] = 'A data de inicio tem que ser menor que a data de termino';
             $objRetorno->status = FALSE;
         } 
+        if(strtotime($dataInicio) < strtotime($dataAtual)){
+            $objRetorno->erro[] = 'A data de inicio esta menor que a data atual por favor corrija';
+            $objRetorno->status = FALSE;
+        }
+        if(strtotime($dataTermino) < strtotime($dataAtual)){
+            $objRetorno->erro[] = 'A data de termino esta menor que a data atual por favor corrija';
+            $objRetorno->status = FALSE;
+        }
         return $objRetorno;
     }
 
