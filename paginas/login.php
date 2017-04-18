@@ -86,8 +86,9 @@
             </div>                              
             <div class="row">
                 <div class="col-sm-12 text-center">
+                    <div class="cor-fonte" style="color: white">
                     <p>Não possui cadastro? <a href="./cadastro" class="text-primary m-l-5"><b>Clique aqui</b></a></p>
-
+                    </div>
                 </div>
             </div>
 

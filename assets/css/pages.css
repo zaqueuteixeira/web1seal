@@ -8,8 +8,12 @@ File: Pages
    Calendar
 ============= */
 body{
-  background: url("../images/agsquare.png")!important; 
+  background-color: #12536b!important; 
 }
+.div-color{
+    background-color: #FFF!important;
+}
+
 .calendar {
   float: left;
   margin-bottom: 0px;

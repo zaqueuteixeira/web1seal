@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <?php
-    session_start();
-    if(isset($_SESSION['matricula'])){
-        header("Location: ./inicio");
-    }
+session_start();
+if (isset($_SESSION['matricula'])) {
+    header("Location: ./inicio");
+}
 ?>
 <html>
     <head>
@@ -67,7 +67,7 @@
                             <div class="col-xs-4">
                                 <input class="form-control" type="text" required="" name="turma" placeholder="Turma">
                             </div>
-                            
+
                             <div class="col-xs-4">
                                 <input class="form-control" type="text" required="" name="ano" placeholder="Ano">
                             </div>
@@ -95,9 +95,12 @@
             </div>
             <div class="row">
                 <div class="col-sm-12 text-center">
-                    <p>
-                        Possui conta? <a href="./login" class="text-primary m-l-5"><b>Clique aqui</b></a>
-                    </p>
+                    <div class="cor-fonte">
+                        <p>
+                            Possui conta? <a href="./login" class="text-primary m-l-5"><b>Clique aqui</b></a>
+
+                        </p>
+                    </div>
                 </div>
             </div>
 
