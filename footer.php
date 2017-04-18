@@ -1,13 +1,15 @@
-</div> <!-- content -->
-<footer class="footer text-right">
-    <div class="form-group posicao">
+</div> <!-- content
+<footer class="footer text-right"  style="background-color:#FFF">
+    
+    <div class="form-group" style="color: black">
 
-        <div class="col-xs-11">
-            SEAL © <?php echo date("Y"); ?> 
+            <div class="col-xs-11">
+                SEAL © <?php# echo date("Y"); ?> 
+            </div>
+            <a href="https://github.com/deigonPrates/seal"><i class="col-xs-1 ti-github"></i></a>
         </div>
-        <a href="https://github.com/deigonPrates/seal"><i class="col-xs-1 ti-github"></i></a>
-    </div>
-</footer>
+    
+</footer> -->
 
 </div>
 <!-- ============================================================== -->
