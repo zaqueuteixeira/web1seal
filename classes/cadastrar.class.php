@@ -42,7 +42,7 @@ class Cadastrar extends Conexao {
         $validar = new ValidarCampos();
         $objValidar = $validar->validarCadastroAvaliacao($dados);
 
-        if ($objValidar->status === TRUE) {
+        if ($objValidar->status) {
             $this->DBGravar('avaliacao', $objValidar->dados);
 
             header("Location: /inicio");
