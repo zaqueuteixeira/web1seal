@@ -4,12 +4,20 @@ require_once './header.php';
 require_once './classes/conexao.class.php';
 
 $conexao = new Conexao();
-
-$con = $conexao->BDAbreConexao();
-$dados = $conexao->BDSeleciona('usuario', '*');
-$conexao->BDFecharConexao($con);
-
 ?>
+<script>
+    function funcao1(id) {
+        $.ajax({
+            method: "post",
+            url: "atualizar/status0",
+            data: {meuParametro1: "id"}
+            success: function (data) {
+                alert(data);
+            }
+
+        });
+    }
+</script>
 <div class="row">
     <div class="col-sm-12">
         <div class="card-box">
@@ -53,8 +61,8 @@ $conexao->BDFecharConexao($con);
                                         <select id="demo-foo-filter-status" class="form-control input-sm">
                                             <option selected="" disabled=""value="">Selecione</option>
                                             <option value="">Todos</option>
-                                            <option value="disponivel">disponivel</option>
-                                            <option value="bloqueado">bloqueado</option>
+                                            <option value="liberar">liberar</option>
+                                            <option value="bloquear">bloquear</option>
                                         </select>
                                     </div>
                                 </div>
@@ -67,6 +75,10 @@ $conexao->BDFecharConexao($con);
                         </div>
                         <tbody>
                             <?php
+                            $con = $conexao->BDAbreConexao();
+                            $dados = $conexao->BDSeleciona('usuario', '*');
+                            $conexao->BDFecharConexao($con);
+
                             foreach ($dados as $key => $valor):
                                 echo "<tr>";
                                 echo "<td>{$valor['nome']}</td>";
@@ -75,9 +87,12 @@ $conexao->BDFecharConexao($con);
                                 echo "<td>{$valor['ano']}</td>";
                                 echo "<td>{$valor['semestre']}</td>";
                                 if ($valor['status'] == 0):
-                                    echo "<td><span class='label label-table label-danger'>bloqueado</span></td>";
+                                    $aux = $valor['id'];
+                                    echo "<td><span><button type='button' class='btn btn-success btn-xs'" . "onclick='funcao2($aux)'" . ">liberar</button></span></td>";
+                                    echo "<td></td>";
                                 else:
-                                    echo "<td><span class='label label-table label-success'>disponivel</span></td>";
+                                    $aux = $valor['id'];
+                                    echo "<td><span><button type='button' class='btn btn-danger btn-xs'" . "onclick='funcao1($aux)'" . ">bloquear</button></span></td>";
                                 endif;
                                 echo "</tr>";
                             endforeach;
@@ -99,8 +114,6 @@ $conexao->BDFecharConexao($con);
     </div>
 </div>
 </div>
-
-
 <?php
 require_once './footer.php';
 ?>
