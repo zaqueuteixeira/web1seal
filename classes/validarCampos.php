@@ -131,7 +131,7 @@ class ValidarCampos {
         $turma = ($dados['turma']) ? filter_var($dados['turma'], FILTER_SANITIZE_STRING) : null;
         $data = $dados['data'];
         $valor = $dados['valor'];
-
+        $dataAtual = date('Y-m-d');
         if (is_null($assunto)) {
             $objRetorno->erro[] = 'O campo assunto nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
@@ -146,6 +146,12 @@ class ValidarCampos {
         }
         if (is_null($data)) {
             $objRetorno->erro[] = 'O campo data nao foi preenchido corretamente';
+            $objRetorno->status = FALSE;
+        } else {
+            $objRetorno->dados = array_merge($objRetorno->dados, ['data' => $data]);
+        }
+        if(strtotime($data) < strtotime($dataAtual)){
+            $objRetorno->erro[] = 'A data informada e menor que a data atual. Por favor corrija';
             $objRetorno->status = FALSE;
         } else {
             $objRetorno->dados = array_merge($objRetorno->dados, ['data' => $data]);
@@ -195,7 +201,10 @@ class ValidarCampos {
         } else {
             $objRetorno->dados = array_merge($objRetorno->dados, ['dataTermino' => $dataTermino]);
         }
-
+        if(strtotime($dataInicio) > strtotime($dataTermino)){
+            $objRetorno->erro[] = 'A data de inicio tem que ser menor que a data de termino';
+            $objRetorno->status = FALSE;
+        } 
         return $objRetorno;
     }
 
