@@ -62,5 +62,11 @@ class Atualizar extends Conexao {
             header("Location: /editar/senha");
         }
     }
+    
+    public function bloquearUsuario($dados) {
+        echo '<pre>';   
+        print_r($dados);
+        echo '</pre>';   
+    }
 
 }
