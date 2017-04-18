@@ -7,17 +7,17 @@ $conexao = new Conexao();
 ?>
 <script>
     function funcao1(id) {
+        var tese;
+        
         $.ajax({
-            method: "post",
-            url: "atualizar/status0",
-            data: {meuParametro1: "id"}
-            success: function (data) {
-                alert(data);
-            }
-
+            url: 'atualizar/status0',
+            type: 'POST',
+            data: tese.serialize()
         });
+       
     }
 </script>
+
 <div class="row">
     <div class="col-sm-12">
         <div class="card-box">
@@ -88,12 +88,12 @@ $conexao = new Conexao();
                                 echo "<td>{$valor['semestre']}</td>";
                                 if ($valor['status'] == 0):
                                     $aux = $valor['id'];
-                                    echo "<td><span><button type='button' class='btn btn-success btn-xs'" . "onclick='funcao2($aux)'" . ">liberar</button></span></td>";
+                                    echo "<td><span><button type='button' class='btn btn-success btn-xs'" . "onclick='funcao1($aux)'" . ">liberar</button></span></td>";
                                     echo "<td></td>";
                                 else:
                                     $aux = $valor['id'];
                                     echo "<td><span><button type='button' class='btn btn-danger btn-xs'" . "onclick='funcao1($aux)'" . ">bloquear</button></span></td>";
-                                endif;
+                                    endif;
                                 echo "</tr>";
                             endforeach;
                             ?>
