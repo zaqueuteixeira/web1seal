@@ -66,9 +66,9 @@ class Atualizar extends Conexao {
     public function atualizaStatus($dados) {
 
         $id = implode(", ", array_keys($dados));
-        $bd_id = $this->BDSeleciona('usuario', 'status', "WHERE(id = '{$id}')");
+        $status = $this->BDSeleciona('usuario', 'status', "WHERE(id = '{$id}')");
         
-        if ($bd_id[0]['status'] == 1) {
+        if ($status[0]['status'] == 1) {
             $this->BDAtualiza('usuario', "WHERE(id = {$id})", 'status', '0');
         } else {
             $this->BDAtualiza('usuario', "WHERE(id = {$id})", 'status'," '1'");
