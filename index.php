@@ -31,10 +31,10 @@ if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'atualiz
     $atualizar = new Atualizar();
     $atualizar->atualizarSenha($_POST);
 endif;
-if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'atualizar/status')):
+if ((isset($URL[0])) && (isset($URL[1])) && (isset($URL[2])) && ($URL[0] . '/' . $URL[1]. '/' . $URL[2] == 'atualizar/status/usuario')):
     include_once'./classes/atualizar.class.php';
     $atualizar = new Atualizar();
-    $atualizar->atualizaStatus($_POST);
+    $atualizar->atualizaStatus($URL[2],$_POST);
 endif;
 if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'cadastrando/atividade')):
     include_once'./classes/cadastrar.class.php';

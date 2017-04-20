@@ -63,15 +63,15 @@ class Atualizar extends Conexao {
         }
     }
 
-    public function atualizaStatus($dados) {
+    public function atualizaStatus($tabela,$dados) {
 
         $id = implode(", ", array_keys($dados));
-        $status = $this->BDSeleciona('usuario', 'status', "WHERE(id = '{$id}')");
+        $status = $this->BDSeleciona("$tabela", 'status', "WHERE(id = '{$id}')");
         
         if ($status[0]['status'] == 1) {
-            $this->BDAtualiza('usuario', "WHERE(id = {$id})", 'status', '0');
+            $this->BDAtualiza("$tabela", "WHERE(id = {$id})", 'status', '0');
         } else {
-            $this->BDAtualiza('usuario', "WHERE(id = {$id})", 'status'," '1'");
+            $this->BDAtualiza("$tabela", "WHERE(id = {$id})", 'status'," '1'");
         }
 
         header("Location: /listar/usuario");
