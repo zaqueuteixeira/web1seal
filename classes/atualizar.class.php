@@ -22,12 +22,12 @@ class Atualizar extends Conexao {
         if ($teste) {
             $dados = array_filter($dados); //limpa o array de null e vazios
             //cria uma string so com as keys
-            
+
             unset($dados['senha-antiga']);
             unset($dados['senha-nova']);
             unset($dados['repeta-senha']);
             unset($dados['matricula']);
-            
+
             $indices = implode(", ", array_keys($dados));
             //cria uma string so com os valores
             $valores = "'" . implode("', '", $dados) . "'";
@@ -35,7 +35,7 @@ class Atualizar extends Conexao {
             // transforma a string em array.
             $indices = explode(',', $indices);
             $valores = explode(',', $valores);
-            
+
             for ($i = 0; $i < count($indices); $i++) {
                 $this->BDAtualiza('usuario', "WHERE(matricula like '{$_SESSION["matricula"]}')", $indices[$i], $valores[$i]);
             }
@@ -62,11 +62,19 @@ class Atualizar extends Conexao {
             header("Location: /editar/senha");
         }
     }
-    
-    public function bloquearUsuario($dados) {
-        echo '<pre>';   
-        print_r($dados);
-        echo '</pre>';   
+
+    public function atualizaStatus($dados) {
+
+        $id = implode(", ", array_keys($dados));
+        $bd_id = $this->BDSeleciona('usuario', 'status', "WHERE(id = '{$id}')");
+        
+        if ($bd_id[0]['status'] == 1) {
+            $this->BDAtualiza('usuario', "WHERE(id = {$id})", 'status', '0');
+        } else {
+            $this->BDAtualiza('usuario', "WHERE(id = {$id})", 'status'," '1'");
+        }
+
+        header("Location: /listar/usuario");
     }
 
 }
