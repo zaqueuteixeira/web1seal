@@ -8,7 +8,7 @@ File: Pages
    Calendar
 ============= */
 body{
-  background-color: #12536b!important; 
+  background-color: #e9ebee!important;
 }
 .div-color{
     background-color: #FFF!important;
@@ -1688,7 +1688,7 @@ body{
    Accounts pages
 ============= */
 .account-pages {
-  background: url("../images/agsquare.png");
+  background-color: #e9ebee!important;
   position: absolute;
   height: 100%;
   width: 100%;

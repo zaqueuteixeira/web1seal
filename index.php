@@ -31,10 +31,10 @@ if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'atualiz
     $atualizar = new Atualizar();
     $atualizar->atualizarSenha($_POST);
 endif;
-if ((isset($URL[0])) && (isset($URL[1])) && (isset($URL[2])) && ($URL[0] . '/' . $URL[1]. '/' . $URL[2] == 'atualizar/status/usuario')):
+if ((isset($URL[0])) && (isset($URL[1])) && (isset($URL[2])) && ($URL[0] . '/' . $URL[1] == 'atualizar/status')):
     include_once'./classes/atualizar.class.php';
     $atualizar = new Atualizar();
-    $atualizar->atualizaStatus($URL[2],$_POST);
+    $atualizar->atualizaStatus($URL[2], $_POST);
 endif;
 if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'cadastrando/atividade')):
     include_once'./classes/cadastrar.class.php';
@@ -68,5 +68,5 @@ elseif (is_dir(PASTA . $URL[0])):
         require(PASTA . '404.html');
     endif;
 else:
-    require(PASTA . '404.html');
-endif;
+        require(PASTA . '404.html');
+    endif;

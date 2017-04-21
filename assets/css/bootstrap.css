@@ -11,7 +11,7 @@ html {
 }
 body {
     margin: 0;
-    background: url("../images/agsquare.png")!important; 
+    background-color: #e9ebee!important;
     position: absolute;
     height: 100%;
     width: 100%;

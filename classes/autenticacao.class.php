@@ -30,19 +30,24 @@ class Autenticacao {
 
             $resultado = $login->BDSeleciona('usuario', '*', "WHERE(matricula like '$matricula' and senha = '$senha')");
 
-            if ($login->checarTentativasLogin($matricula)) {
+            if ($resultado[0]['status'] == 1) {
 
-                if (!is_null($resultado[0]['id'])) {
-                    session_start();
-                    $_SESSION['matricula'] = $_POST['matricula'];
+                if ($login->checarTentativasLogin($matricula)) {
 
-                    $login->excluirTentativasLogin($matricula);
+                    if (!is_null($resultado[0]['id'])) {
+                        session_start();
+                        $_SESSION['matricula'] = $_POST['matricula'];
 
-                    header("Location: /inicio");
+                        $login->excluirTentativasLogin($matricula);
+
+                        header("Location: /inicio");
+                    } else {
+                        $login->registrarTentativaLogin($matricula);
+                        $login->BDFecharConexao($mysqli);
+                        header("Location: /login");
+                    }
                 } else {
-                    $login->registrarTentativaLogin($matricula);
-                    $login->BDFecharConexao($mysqli);
-                    header("Location: /login");
+                    print_r("usuario bloqueado");
                 }
             } else {
                 print_r("usuario bloqueado");

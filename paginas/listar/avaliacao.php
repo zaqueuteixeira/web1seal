@@ -1,12 +1,12 @@
 <?php
-$title = "Listar Turma";
+$title = "Listar Avaliaçoes";
 require_once './header.php';
 require_once './classes/conexao.class.php';
 
 $conexao = new Conexao();
 
 $con = $conexao->BDAbreConexao();
-$dados = $conexao->BDSeleciona('turma', '*');
+$dados = $conexao->BDSeleciona('avaliacao', '*');
 
 $conexao->BDFecharConexao($con);
 ?>
@@ -24,25 +24,23 @@ $conexao->BDFecharConexao($con);
                             listar
                         </li>
                         <li>
-                            <a href="/listar/turma">Turma</a>
+                            <a href="/listar/avaliacoes">Avaliacoes</a>
                         </li>
                     </ol>
                 </div>
             </div>
             <div class="row">
-                <center><h4 class="page-title">Listando Turma</h4></center>
+                <center><h4 class="page-title">Listando Avaliaçoes</h4></center>
                 <br>
                 <br>
                 <div class="card-box">
-                    <form action="/atualizar/status/turma" class="form-horizontal" role="form" method="post">
+                    <form action="/atualizar/status/avaliacao" class="form-horizontal" role="form" method="post">
                         <table id="demo-foo-filtering" class="table table-striped toggle-circle m-b-0" data-page-size="7">
                             <thead>
                                 <tr>
-                                    <th data-toggle="true">Nome</th>
-                                    <th data-toggle="true">Professor</th>
-                                    <th data-hide="phone, tablet">Codigo</th>
-                                    <th data-hide="phone, tablet">Semestre</th>
-                                    <th data-hide="phone, tablet">Ano</th>
+                                    <th data-toggle="true">Turma</th>
+                                    <th data-toggle="true">Conteudo</th>
+                                    <th data-hide="phone, tablet">Data</th>
                                     <th data-hide="phone, tablet">Status</th>
                                 </tr>
                             </thead>
@@ -68,23 +66,21 @@ $conexao->BDFecharConexao($con);
                             </div>
                             <tbody>
                                 <?php
-                                foreach ($dados as $key => $valor):
-                                    echo "<tr>";
-                                    echo "<td>{$valor['nome']}</td>";
-                                    echo "<td>{$valor['professor']}</td>";
-                                    echo "<td>{$valor['codigo']}</td>";
-                                    echo "<td>{$valor['ano']}</td>";
-                                    echo "<td>{$valor['semestre']}</td>";
-                                    if ($valor['status'] == 0):
-                                        $aux = $valor['id'];
-                                        echo "<td><span><button type='submit' class='btn btn-success btn-xs' name='$aux' >liberar</button></span></td>";
-                                        echo "<td></td>";
-                                    else:
-                                        $aux = $valor['id'];
-                                        echo "<td><span><button type='submit' class='btn btn-danger btn-xs' name='$aux'>bloquear</button></span></td>";
-                                    endif;
-                                    echo "</tr>";
-                                endforeach;
+                                    foreach ($dados as $key => $valor):
+                                        echo "<tr>";
+                                        echo "<td>{$valor['turma_id']}</td>";
+                                        echo "<td>{$valor['conteudo']}</td>";
+                                        echo "<td>{$valor['data']}</td>";
+                                        if ($valor['status'] == 0):
+                                            $aux = $valor['id'];
+                                            echo "<td><span><button type='submit' class='btn btn-success btn-xs' name='$aux' >liberar</button></span></td>";
+                                            echo "<td></td>";
+                                        else:
+                                            $aux = $valor['id'];
+                                            echo "<td><span><button type='submit' class='btn btn-danger btn-xs' name='$aux'>bloquear</button></span></td>";
+                                        endif;
+                                        echo "</tr>";
+                                    endforeach;
                                 ?>
                             </tbody>
                             <tfoot>

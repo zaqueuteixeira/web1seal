@@ -73,8 +73,8 @@ class Atualizar extends Conexao {
         } else {
             $this->BDAtualiza("$tabela", "WHERE(id = {$id})", 'status'," '1'");
         }
-
-        header("Location: /listar/usuario");
+        
+        header("Location: /listar/".$tabela);
     }
 
 }
