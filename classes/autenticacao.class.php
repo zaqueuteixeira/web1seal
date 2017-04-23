@@ -12,6 +12,7 @@ class Autenticacao {
 
         $matricula = $_POST['matricula'];
         $senha = $_POST['senha'];
+        $erro = [];
 
         $dados = [
             'matricula' => $matricula,
@@ -22,19 +23,22 @@ class Autenticacao {
 
         if ($validacao->status) {
 
-            $mysqli = $login->BDAbreConexao();
-
             $matricula = ($validacao->dados[0]["matricula"]);
-
             $senha = ($validacao->dados[1]["senha"]);
 
-            $resultado = $login->BDSeleciona('usuario', '*', "WHERE(matricula like '$matricula' and senha = '$senha')");
+            $conexao = $login->BDAbreConexao();
+            $consulta = $login->BDSeleciona('usuario', 'matricula, senha', "WHERE(matricula = '{$matricula}')");
+            $login->BDFecharConexao($conexao);
 
-            if ($resultado[0]['status'] == 1) {
+            $bdMatricula = $consulta[0]['matricula'];
+            $bdSenha = $consulta[0]['senha'];
 
+            if (is_null($bdMatricula)) {
+                $erro = array_merge($erro, ["Dados invalidos"]);
+            } else {
                 if ($login->checarTentativasLogin($matricula)) {
 
-                    if (!is_null($resultado[0]['id'])) {
+                    if ($senha == $bdSenha) {
                         session_start();
                         $_SESSION['matricula'] = $_POST['matricula'];
 
@@ -43,19 +47,15 @@ class Autenticacao {
                         header("Location: /inicio");
                     } else {
                         $login->registrarTentativaLogin($matricula);
-                        $login->BDFecharConexao($mysqli);
-                        header("Location: /login");
+                        $erro = array_merge($erro, ["Dados incorretos, por favor confira seus dados e tente novamente!"]);
                     }
-                } else {
-                    print_r("usuario bloqueado");
                 }
-            } else {
-                print_r("usuario bloqueado");
             }
+            if (count($erro) > 0) {
+                print_r(($erro));
 
-            $login->BDFecharConexao($mysqli);
-        } else {
-            print_r($validacao->erros);
+                exit();
+            }
         }
     }
 
