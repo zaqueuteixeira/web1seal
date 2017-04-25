@@ -67,22 +67,28 @@ $conexao->BDFecharConexao($con);
                             </div>
                             <tbody>
                                 <?php
-                                foreach ($dados as $key => $valor):
+                                if ($dados):
+                                    foreach ($dados as $key => $valor):
+                                        echo "<tr>";
+                                        echo "<td>{$valor['turma_id']}</td>";
+                                        echo "<td>{$valor['conteudo']}</td>";
+                                        echo "<td>{$valor['dataInicio']}</td>";
+                                        echo "<td>{$valor['dataTermino']}</td>";
+                                        if ($valor['status'] == 0):
+                                            $aux = $valor['id'];
+                                            echo "<td><span><button type='submit' class='btn btn-success btn-xs' name='$aux' >liberar</button></span></td>";
+                                            echo "<td></td>";
+                                        else:
+                                            $aux = $valor['id'];
+                                            echo "<td><span><button type='submit' class='btn btn-danger btn-xs' name='$aux'>bloquear</button></span></td>";
+                                        endif;
+                                        echo "</tr>";
+                                    endforeach;
+                                else:
                                     echo "<tr>";
-                                    echo "<td>{$valor['turma_id']}</td>";
-                                    echo "<td>{$valor['conteudo']}</td>";
-                                    echo "<td>{$valor['dataInicio']}</td>";
-                                    echo "<td>{$valor['dataTermino']}</td>";
-                                    if ($valor['status'] == 0):
-                                        $aux = $valor['id'];
-                                        echo "<td><span><button type='submit' class='btn btn-success btn-xs' name='$aux' >liberar</button></span></td>";
-                                        echo "<td></td>";
-                                    else:
-                                        $aux = $valor['id'];
-                                        echo "<td><span><button type='submit' class='btn btn-danger btn-xs' name='$aux'>bloquear</button></span></td>";
-                                    endif;
+                                    echo '<td> Nenhuma atividade encontrada</td>';
                                     echo "</tr>";
-                                endforeach;
+                                endif;
                                 ?>
                             </tbody>
                             <tfoot>
