@@ -46,18 +46,20 @@ class Atualizar extends Conexao {
     }
 
     public function atualizarSenha($dados) {
-
+        
         $validar = new ValidarCampos();
+        
         $teste = $validar->validarEdicaoSenha($dados);
         $dados = $teste->dados;
-
+        
+        $tabela = $this->BDRetornarTabela($dados['matricula']);
+        
         if (!empty($teste->erro)) {
             print_r($teste->erros);
         } else {
             $conn = $this->BDAbreConexao();
-            $this->BDAtualiza('usuario', "WHERE(matricula like '{$dados['matricula']}')", 'senha', "'{$dados['senha']}'");
+            $this->BDAtualiza("$tabela", "WHERE(matricula like '{$dados['matricula']}')", 'senha', "'{$dados['senha']}'");
             $this->BDFecharConexao($conn);
-
 
             header("Location: /editar/senha");
         }
