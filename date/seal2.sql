@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 28-Abr-2017 às 02:41
+-- Generation Time: 28-Abr-2017 às 20:59
 -- Versão do servidor: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -45,7 +45,7 @@ CREATE TABLE `alunos` (
 --
 
 INSERT INTO `alunos` (`id`, `papel_id`, `nome`, `username`, `matricula`, `email`, `ano`, `senha`, `semestre`, `status`, `ativo`) VALUES
-(1, 2, 'Deigon Prates Araujo', 'Deigon', '800002585', 'deigon_prates@hotmail.com', 2013, '827ccb0eea8a706c4c34a16891f84e7b', 1, 1, 1);
+(1, 2, 'Deigon Prates Araujo', 'Deigon', '800002585', 'deigon_prates@hotmail.com', 2013, '827ccb0eea8a706c4c34a16891f84e7b', 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -112,7 +112,7 @@ CREATE TABLE `monitores` (
   `id` int(11) NOT NULL,
   `turma_id` int(11) NOT NULL,
   `papel_id` int(11) NOT NULL DEFAULT '3',
-  `maticula` varchar(45) NOT NULL,
+  `matricula` varchar(45) NOT NULL,
   `nome` varchar(45) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `ativo` int(1) NOT NULL DEFAULT '1',
@@ -169,8 +169,9 @@ INSERT INTO `papeis` (`id`, `descricao`) VALUES
 CREATE TABLE `professores` (
   `id` int(11) NOT NULL,
   `nome` varchar(45) NOT NULL,
+  `username` varchar(50) NOT NULL,
   `papel_id` int(11) NOT NULL DEFAULT '1',
-  `identificacao` varchar(45) NOT NULL,
+  `matricula` varchar(45) NOT NULL,
   `senha` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL,
   `ativo` int(1) NOT NULL DEFAULT '0',
@@ -181,8 +182,8 @@ CREATE TABLE `professores` (
 -- Extraindo dados da tabela `professores`
 --
 
-INSERT INTO `professores` (`id`, `nome`, `papel_id`, `identificacao`, `senha`, `email`, `ativo`, `status`) VALUES
-(1, 'Cimara Souza', 1, '80000666', '827ccb0eea8a706c4c34a16891f84e7b', 'cimara@ifbaiano.edu.br', 0, 1);
+INSERT INTO `professores` (`id`, `nome`, `username`, `papel_id`, `matricula`, `senha`, `email`, `ativo`, `status`) VALUES
+(1, 'Cimara Souza', 'Cimara', 1, '80000666', '827ccb0eea8a706c4c34a16891f84e7b', 'cimara@ifbaiano.edu.br', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -346,7 +347,7 @@ ALTER TABLE `categorias`
 --
 ALTER TABLE `monitores`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `maticula_UNIQUE` (`maticula`),
+  ADD UNIQUE KEY `maticula_UNIQUE` (`matricula`),
   ADD KEY `fk_monitor_turma1_idx` (`turma_id`),
   ADD KEY `fk_monitor_papel1_idx` (`papel_id`);
 
@@ -367,7 +368,7 @@ ALTER TABLE `papeis`
 --
 ALTER TABLE `professores`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `identificacao_UNIQUE` (`identificacao`),
+  ADD UNIQUE KEY `identificacao_UNIQUE` (`matricula`),
   ADD UNIQUE KEY `email_UNIQUE` (`email`),
   ADD KEY `fk_professor_papel1_idx` (`papel_id`);
 
