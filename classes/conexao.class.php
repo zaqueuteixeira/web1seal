@@ -116,12 +116,27 @@ class Conexao {
 
     public function BDRetornaID($matricula) {
         $matricula = (int) $matricula;
-        $sql = "SELECT id FROM alunos where(matricula = {$matricula})";
-        $resultado = $this->BDExecutaQuery($sql);
+        $aluno = "SELECT id FROM alunos where(matricula = {$matricula})";
+        $professor = "SELECT id FROM professores where(matricula = {$matricula})";
+        $monitores = "SELECT id FROM monitores where(matricula = {$matricula})";
+        $resultado1 = $this->BDExecutaQuery($aluno);
+        $resultado2 = $this->BDExecutaQuery($professor);
+        $resultado3 = $this->BDExecutaQuery($monitores);
 
-        $id = mysqli_fetch_array($resultado);
+        $aluno = mysqli_fetch_array($resultado1);
+        $professor = mysqli_fetch_array($resultado2);
+        $monitor = mysqli_fetch_array($resultado3);
 
-        return $id[0];
+        if (isset($aluno[0]) && !empty($aluno[0]) && !is_null($aluno[0])) {
+            return $aluno[0];
+        } elseif (isset($monitor[0]) && !empty($monitor[0]) && !is_null($monitor[0])) {
+            return $monitor[0];
+        } elseif (isset($professor[0]) && !empty($professor[0]) && !is_null($professor[0])) {
+            return $professor[0];
+        } else {
+            return FALSE;
+        }
+
     }
 
     public function BDRetornarPapelID($matricula) {
@@ -137,16 +152,13 @@ class Conexao {
         $professor = mysqli_fetch_array($resultado2);
         $monitor = mysqli_fetch_array($resultado3);
 
-        if (isset($aluno[0]) && !empty($aluno[0]) && !is_null($aluno[0]) ) {
+        if (isset($aluno[0]) && !empty($aluno[0]) && !is_null($aluno[0])) {
             return $aluno[0];
-        }
-        elseif (isset($monitor[0]) && !empty($monitor[0]) && !is_null($monitor[0]) ) {
+        } elseif (isset($monitor[0]) && !empty($monitor[0]) && !is_null($monitor[0])) {
             return $monitor[0];
-        }
-        elseif (isset($professor[0]) && !empty($professor[0]) && !is_null($professor[0])) {
+        } elseif (isset($professor[0]) && !empty($professor[0]) && !is_null($professor[0])) {
             return $professor[0];
-        }
-        else{
+        } else {
             return FALSE;
         }
     }

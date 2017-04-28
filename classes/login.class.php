@@ -61,7 +61,7 @@ class Login extends Conexao {
         }
     }
     
-    public function checarTentativasLogin($matricula) {
+    public function checarTentativasLogin($matricula, $tabela) {
         $conexao = $this->BDAbreConexao();
         
         $id = $this->BDRetornaID($matricula);
@@ -83,8 +83,22 @@ class Login extends Conexao {
     }
 
     public function sair() {
+        
         session_start();
-        $this->BDAtualiza('alunos', "WHERE(matricula = '{$_SESSION['matricula']}')", 'ativo', 0);
+        $consulta = $this->BDRetornarPapelID($_SESSION['matricula']);
+        
+        switch ($consulta){
+        case 1:
+            $table = 'professores';
+            break;
+        case 2:
+            $table = 'alunos';
+            break;
+        case 3:
+            $table = 'monitores';
+            break;
+        }
+        $this->BDAtualiza("$table", "WHERE(matricula = '{$_SESSION['matricula']}')", 'ativo', 0);
         session_destroy();
         header("Location: /login");
     }
