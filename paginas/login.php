@@ -22,14 +22,6 @@ if (isset($_SESSION['matricula'])) {
         <link href="../assets/css/icons.css" rel="stylesheet" type="text/css" />
         <link href="../assets/css/pages.css" rel="stylesheet" type="text/css" />
         <link href="../assets/css/responsive.css" rel="stylesheet" type="text/css" />
-
-        <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
-
         <script src="../assets/js/modernizr.min.js"></script>
 
     </head>
@@ -41,12 +33,10 @@ if (isset($_SESSION['matricula'])) {
                 <div class="panel-heading"> 
                     <center>  <img src="../assets/images/logo.png"></center>
                 </div> 
-                <div class="button-list"><a class="btn btn-info waves-effect waves-light" href="javascript:;" onclick="$.Notification.notify('info', 'top left', 'Sample Notification', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae orci ut dolor scelerisque aliquam.')">Info</a>
-                    <a class="btn btn-success waves-effect waves-light" href="javascript:;" onclick="$.Notification.notify('success', 'top left', 'Sample Notification', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae orci ut dolor scelerisque aliquam.')">Success</a>
+                <div class="button-list">
                     <a class="btn btn-warning waves-effect waves-light" href="javascript:;" onclick="$.Notification.notify('warning', 'top left', 'Sample Notification', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae orci ut dolor scelerisque aliquam.')">Warning</a>
                     <a class="btn btn-danger waves-effect waves-light" href="javascript:;" onclick="$.Notification.notify('error', 'top left', 'Sample Notification', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae orci ut dolor scelerisque aliquam.')">Error</a>
                     <a class="btn btn-inverse waves-effect waves-light" href="javascript:;" onclick="$.Notification.notify('black', 'top left', 'Sample Notification', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae orci ut dolor scelerisque aliquam.')">Black</a>
-                    <a class="btn btn-white waves-effect" href="javascript:;" onclick="$.Notification.notify('white', 'top left', 'Sample Notification', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae orci ut dolor scelerisque aliquam.')">White</a>
                 </div>
 
                 <div class="panel-body">
@@ -61,26 +51,9 @@ if (isset($_SESSION['matricula'])) {
                                 <input class="form-control" type="password" required="" name="senha" placeholder="Senha">
                             </div>
                         </div>
-                        <div class="form-group ">
-                            <div class="col-xs-12">
-                                <div class="checkbox checkbox-primary">
-                                    <input id="checkbox-signup" type="checkbox">
-                                    <label for="checkbox-signup">
-                                        Lembrar-me
-                                    </label>
-                                </div>
-
-                            </div>
-                        </div>
                         <div class="form-group text-center m-t-40">
                             <div class="col-xs-12">
                                 <button class="btn btn-danger btn-block text-uppercase waves-effect waves-light" type="submit">Entrar</button>
-                            </div>
-                        </div>
-
-                        <div class="form-group m-t-30 m-b-0">
-                            <div class="col-sm-12">
-                                <a href="recupera" class="text-dark"><i class="fa fa-lock m-r-5"></i>Recuperacar Senha</a>
                             </div>
                         </div>
                     </form> 

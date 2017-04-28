@@ -5,7 +5,7 @@ class Conexao {
     private $localhost = 'localhost';
     private $user = 'root';
     private $pass = '';
-    private $bd = 'seal';
+    private $bd = 'seal2';
 
     /**
      * @author Deigon Prates <deigonprates@gmail.com>
@@ -90,7 +90,7 @@ class Conexao {
 
         $filtros = ($filtros) ? " {$filtros}" : null;
 
-        $sql = "DELETE {$opcoes} FROM {$tabela}{$filtros}";
+        $sql = "DELETE FROM {$tabela}{$filtros}";
         $resultado = $this->BDExecutaQuery($sql);
 
         if (!mysqli_num_rows($resultado)) {
@@ -100,7 +100,7 @@ class Conexao {
         }
     }
 
-    public function BDAtualiza($tabela, $filtros = null, $campo = 'satatus', $valor = '0') {
+    public function BDAtualiza($tabela, $filtros = null, $campo = 'status', $valor = '0') {
 
         $sql = "UPDATE {$tabela} SET {$campo} = {$valor} {$filtros}";
         var_dump($sql);
@@ -116,7 +116,7 @@ class Conexao {
 
     public function BDRetornaID($matricula) {
         $matricula = (int) $matricula;
-        $sql = "SELECT id FROM usuario where(matricula = {$matricula})";
+        $sql = "SELECT id FROM alunos where(matricula = {$matricula})";
         $resultado = $this->BDExecutaQuery($sql);
 
         $id = mysqli_fetch_array($resultado);

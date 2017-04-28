@@ -1,12 +1,12 @@
 <?php
-$title = "Cadastrar Avaliacao";
+$title = "Cadastrar Avaliação";
 require_once './header.php';
 require_once './classes/conexao.class.php';
 
 $conexao = new Conexao();
 $con = $conexao->BDAbreConexao();
 
-$dados = $conexao->BDSeleciona('turma', '*', "where(status = '1')");
+$dados = $conexao->BDSeleciona('turmas', '*', "where(status = '1')");
 
 $conexao->BDFecharConexao($con);
 ?>
@@ -24,14 +24,13 @@ $conexao->BDFecharConexao($con);
                             Cadastrar
                         </li>
                         <li>
-                            <a href="/cadastrar/avaliacao">Avaliçao</a>
+                            <a href="/cadastrar/avaliacao">Avaliação</a>
                         </li>
                     </ol>
                 </div>
             </div>
             <div class="row">
-
-                <center><h4 class="page-title">Cadastrando avaliçao</h4></center>
+                <center><h4 class="page-title">Cadastrando avaliação</h4></center>
                 <br>
                 <br>
 

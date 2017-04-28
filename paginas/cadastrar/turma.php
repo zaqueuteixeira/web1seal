@@ -7,7 +7,7 @@ require_once './classes/conexao.class.php';
 $conexao = new Conexao();
 
 $con = $conexao->BDAbreConexao();
-$professores = $conexao->BDSeleciona('usuario', '*', "where(papel_id = '1')");
+$professores = $conexao->BDSeleciona('professores', '*', "where(papel_id = '1')");
 $conexao->BDFecharConexao($con);
 
 ?>

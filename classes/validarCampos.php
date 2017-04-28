@@ -2,6 +2,9 @@
 
 include_once './classes/conexao.class.php';
 
+date_default_timezone_set("America/Sao_Paulo");
+setlocale(LC_ALL, 'pt_BR');
+
 class ValidarCampos {
 
     public function validarLogin($dados) {
@@ -132,6 +135,8 @@ class ValidarCampos {
         $data = $dados['data'];
         $valor = $dados['valor'];
         $dataAtual = date('Y-m-d');
+        $dataTermino = $data;
+        
         if (is_null($assunto)) {
             $objRetorno->erro[] = 'O campo assunto nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
@@ -144,17 +149,14 @@ class ValidarCampos {
         } else {
             $objRetorno->dados = array_merge($objRetorno->dados, ['turma_id' => $turma]);
         }
-        if (is_null($data)) {
-            $objRetorno->erro[] = 'O campo data nao foi preenchido corretamente';
-            $objRetorno->status = FALSE;
-        } else {
-            $objRetorno->dados = array_merge($objRetorno->dados, ['data' => $data]);
-        }
         if(strtotime($data) < strtotime($dataAtual)){
             $objRetorno->erro[] = 'A data informada e menor que a data atual. Por favor corrija';
             $objRetorno->status = FALSE;
         } else {
-            $objRetorno->dados = array_merge($objRetorno->dados, ['data' => $data]);
+            $objRetorno->dados = array_merge($objRetorno->dados, [
+                                                                   'dataInicio' => $data,
+                                                                   'dataTermino' => $data
+                                                                 ]);
         }
         if (is_null($valor)) {
             $objRetorno->erro[] = 'O campo valor nao foi preenchido corretamente';
@@ -162,7 +164,10 @@ class ValidarCampos {
         } else {
             $objRetorno->dados = array_merge($objRetorno->dados, ['nota' => $valor]);
         }
-
+        
+        if($objRetorno->status){
+            $objRetorno->dados = array_merge($objRetorno->dados, ['tipo_id' => 1]);
+        }
         return $objRetorno;
     }
 

@@ -46,7 +46,7 @@ class Login extends Conexao {
 
         if (!is_null($id)) {
 
-            $this->BDExclui('tentativas_login', $opcoes, "WHERE(usuario_id = '{$id}')");
+            $this->BDExclui('tentativas_login', "WHERE(usuario_id = '{$id}')");
 
             if (mysqli_affected_rows($conexao) > 0) {
                 $this->BDFecharConexao($conexao);
@@ -71,7 +71,7 @@ class Login extends Conexao {
            $count= $this->BDSeleciona('tentativas_login', 'count(id) as total', "WHERE(usuario_id = '{$id}')");
            
            if($count[0]['total'] == 10){
-               $this->BDAtualiza('usuario', "WHERE(status = '{$id}')", 'status', 0);
+               $this->BDAtualiza('alunos', "WHERE(status = '{$id}')", 'status', 0);
            }
            if($count[0]['total'] < 10){
                return TRUE;
@@ -84,6 +84,7 @@ class Login extends Conexao {
 
     public function sair() {
         session_start();
+        $this->BDAtualiza('alunos', "WHERE(matricula = '{$_SESSION['matricula']}')", 'ativo', 0);
         session_destroy();
         header("Location: /login");
     }

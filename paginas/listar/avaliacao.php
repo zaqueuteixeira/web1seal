@@ -6,8 +6,7 @@ require_once './classes/conexao.class.php';
 $conexao = new Conexao();
 
 $con = $conexao->BDAbreConexao();
-$dados = $conexao->BDSeleciona('avaliacao', '*');
-
+$dados = $conexao->BDSeleciona('atividades', '*', "WHERE(tipo_id = 1)");
 $conexao->BDFecharConexao($con);
 ?>
 <div class="row">
@@ -24,17 +23,17 @@ $conexao->BDFecharConexao($con);
                             listar
                         </li>
                         <li>
-                            <a href="/listar/avaliacoes">Avaliacoes</a>
+                            <a href="/listar/avaliacao">Avaliações</a>
                         </li>
                     </ol>
                 </div>
             </div>
             <div class="row">
-                <center><h4 class="page-title">Listando Avaliaçoes</h4></center>
+                <center><h4 class="page-title">Listando Avaliações</h4></center>
                 <br>
                 <br>
                 <div class="card-box">
-                    <form action="/atualizar/status/avaliacao" class="form-horizontal" role="form" method="post">
+                    <form action="/atualizar/status/avaliacao/atividades" class="form-horizontal" role="form" method="post">
                         <table id="demo-foo-filtering" class="table table-striped toggle-circle m-b-0" data-page-size="7">
                             <thead>
                                 <tr>
@@ -67,10 +66,14 @@ $conexao->BDFecharConexao($con);
                             <tbody>
                                 <?php
                                     foreach ($dados as $key => $valor):
+                                        #pegar o nome da turma
+                                        $aux = $valor['turma_id'];
+                                        $nomeTurma = $conexao->BDSeleciona('turmas', 'nome', "WHERE(id = '{$aux}')"); 
+                                        
                                         echo "<tr>";
-                                        echo "<td>{$valor['turma_id']}</td>";
+                                        echo "<td>{$nomeTurma[0]['nome']}</td>";
                                         echo "<td>{$valor['conteudo']}</td>";
-                                        echo "<td>{$valor['data']}</td>";
+                                        echo "<td>{$valor['dataInicio']}</td>";
                                         if ($valor['status'] == 0):
                                             $aux = $valor['id'];
                                             echo "<td><span><button type='submit' class='btn btn-success btn-xs' name='$aux' >liberar</button></span></td>";

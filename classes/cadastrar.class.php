@@ -29,7 +29,7 @@ class Cadastrar extends Conexao {
 
         if ($objValidar->status) {
 
-            $this->DBGravar('atividade', $objValidar->dados);
+            $this->DBGravar('atividades', $objValidar->dados);
 
             header("Location: /inicio");
         } else {
@@ -43,7 +43,7 @@ class Cadastrar extends Conexao {
         $objValidar = $validar->validarCadastroAvaliacao($dados);
 
         if ($objValidar->status) {
-            $this->DBGravar('avaliacao', $objValidar->dados);
+            $this->DBGravar('atividades', $objValidar->dados);
 
             header("Location: /inicio");
         } else {
@@ -56,7 +56,7 @@ class Cadastrar extends Conexao {
         $objValidar = $validar->validarCadastroTurma($dados);
 
         if ($objValidar->status) {
-            $this->DBGravar('turma', $objValidar->dados);
+            $this->DBGravar('turmas', $objValidar->dados);
 
             header("Location: /inicio");
         } else {

@@ -63,7 +63,7 @@ class Atualizar extends Conexao {
         }
     }
 
-    public function atualizaStatus($tabela,$dados) {
+    public function atualizaStatus($tabela, $dados, $retorno) {
 
         $id = implode(", ", array_keys($dados));
         $status = $this->BDSeleciona("$tabela", 'status', "WHERE(id = '{$id}')");
@@ -74,7 +74,7 @@ class Atualizar extends Conexao {
             $this->BDAtualiza("$tabela", "WHERE(id = {$id})", 'status'," '1'");
         }
         
-        header("Location: /listar/".$tabela);
+        header("Location: /listar/".$retorno);
     }
 
 }

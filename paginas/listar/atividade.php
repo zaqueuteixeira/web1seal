@@ -6,7 +6,7 @@ require_once './classes/conexao.class.php';
 $conexao = new Conexao();
 
 $con = $conexao->BDAbreConexao();
-$dados = $conexao->BDSeleciona('atividade', '*');
+$dados = $conexao->BDSeleciona('atividades', '*', "WHERE(tipo_id = 2)");
 
 $conexao->BDFecharConexao($con);
 ?>
@@ -34,7 +34,7 @@ $conexao->BDFecharConexao($con);
                 <br>
                 <br>
                 <div class="card-box">
-                    <form action="/atualizar/status/atividade" class="form-horizontal" role="form" method="post">
+                    <form action="/atualizar/status/atividade/atividades" class="form-horizontal" role="form" method="post">
                         <table id="demo-foo-filtering" class="table table-striped toggle-circle m-b-0" data-page-size="7">
                             <thead>
                                 <tr>

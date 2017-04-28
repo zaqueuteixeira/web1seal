@@ -19,13 +19,13 @@ $conexao = new Conexao();
                             listar
                         </li>
                         <li>
-                            <a href="/listar/usuario">Usuario</a>
+                            <a href="/listar/usuario">Alunos</a>
                         </li>
                     </ol>
                 </div>
             </div>
             <div class="row">
-                <center><h4 class="page-title">Listando Usuarios</h4></center>
+                <center><h4 class="page-title">Listando Alunos</h4></center>
                 <br>
                 <br>
                 <div class="card-box">
@@ -35,7 +35,6 @@ $conexao = new Conexao();
                                 <tr>
                                     <th data-toggle="true">Nome</th>
                                     <th data-toggle="true">Matricula</th>
-                                    <th data-hide="phone, tablet">Turma</th>
                                     <th data-hide="phone, tablet">Semestre</th>
                                     <th data-hide="phone, tablet">Ano</th>
                                     <th data-hide="phone, tablet">Status</th>
@@ -64,14 +63,13 @@ $conexao = new Conexao();
                             <tbody>
                                 <?php
                                 $con = $conexao->BDAbreConexao();
-                                $dados = $conexao->BDSeleciona('usuario', '*');
+                                $dados = $conexao->BDSeleciona('alunos', '*');
                                 $conexao->BDFecharConexao($con);
 
                                 foreach ($dados as $key => $valor):
                                     echo "<tr>";
                                     echo "<td>{$valor['nome']}</td>";
                                     echo "<td>{$valor['matricula']}</td>";
-                                    echo "<td>{$valor['turma']}</td>";
                                     echo "<td>{$valor['ano']}</td>";
                                     echo "<td>{$valor['semestre']}</td>";
                                     if ($valor['status'] == 0):

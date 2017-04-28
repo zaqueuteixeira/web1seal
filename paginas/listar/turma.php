@@ -6,7 +6,7 @@ require_once './classes/conexao.class.php';
 $conexao = new Conexao();
 
 $con = $conexao->BDAbreConexao();
-$dados = $conexao->BDSeleciona('turma', '*');
+$dados = $conexao->BDSeleciona('turmas', '*');
 
 $conexao->BDFecharConexao($con);
 ?>
