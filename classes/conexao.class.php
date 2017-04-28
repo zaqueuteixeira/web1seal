@@ -162,5 +162,29 @@ class Conexao {
             return FALSE;
         }
     }
+    
+    public function BDRetornarTabela($matricula) {
+        $matricula = (int) $matricula;
+        $aluno = "SELECT papel_id FROM alunos where(matricula = {$matricula})";
+        $professor = "SELECT papel_id FROM professores where(matricula = {$matricula})";
+        $monitores = "SELECT papel_id FROM monitores where(matricula = {$matricula})";
+        $resultado1 = $this->BDExecutaQuery($aluno);
+        $resultado2 = $this->BDExecutaQuery($professor);
+        $resultado3 = $this->BDExecutaQuery($monitores);
+
+        $aluno = mysqli_fetch_array($resultado1);
+        $professor = mysqli_fetch_array($resultado2);
+        $monitor = mysqli_fetch_array($resultado3);
+
+        if (isset($aluno[0]) && !empty($aluno[0]) && !is_null($aluno[0])) {
+            return 'alunos';
+        } elseif (isset($monitor[0]) && !empty($monitor[0]) && !is_null($monitor[0])) {
+            return 'monitores';
+        } elseif (isset($professor[0]) && !empty($professor[0]) && !is_null($professor[0])) {
+            return 'professor';
+        } else {
+            return FALSE;
+        }
+    }
 
 }
