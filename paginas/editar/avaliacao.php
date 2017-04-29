@@ -1,8 +1,11 @@
 <?php
-
 $title = "Editar Avaliacao";
-require_once './header.php';
 require_once './classes/conexao.class.php';
+require_once './classes/autenticacao.class.php';
+
+$autenticacao = new Autenticacao();
+$header = $autenticacao->definirNiveisAcesso();
+require_once "$header";
 ?>
 <div class="row">
     <div class="col-sm-12">
@@ -51,7 +54,7 @@ require_once './classes/conexao.class.php';
                         <div class="col-md-5">
                             <input type="date" class="form-control" name="data" value="" placeholder="">
                         </div>
-                        
+
                         <label class="col-md-1 control-label">Valor:</label>
                         <div class="col-md-3">
                             <input type="number" class="form-control" name="valor" value=""placeholder="">

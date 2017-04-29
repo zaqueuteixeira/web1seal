@@ -1,7 +1,12 @@
 <?php
 $title = "Cadastrar Atividade";
-require_once './header.php';
 require_once './classes/conexao.class.php';
+
+require_once './classes/autenticacao.class.php';
+
+$autenticacao = new Autenticacao();
+$header = $autenticacao->definirNiveisAcesso();
+require_once "$header";
 
 $conexao = new Conexao();
 $con = $conexao->BDAbreConexao();

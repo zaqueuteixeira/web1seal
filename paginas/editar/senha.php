@@ -1,7 +1,10 @@
 <?php
-
 $title = "Editar Turma";
-require_once './header.php';
+require_once './classes/autenticacao.class.php';
+
+$autenticacao = new Autenticacao();
+$header = $autenticacao->definirNiveisAcesso();
+require_once "$header";
 ?>
 <div class="row">
     <div class="col-sm-12">
@@ -45,13 +48,13 @@ require_once './header.php';
                         <div class="col-md-4">
                             <input type="password" class="form-control" name="repeta-senha" value="">
                         </div>
-                        
+
                     </div>
-                        <div class="form-group m-b-0">
-                            <div class="col-sm-offset-5 col-sm-2">
-                                <button type="submit" class="btn btn-info waves-effect waves-light">Atualizar</button>
-                            </div>
+                    <div class="form-group m-b-0">
+                        <div class="col-sm-offset-5 col-sm-2">
+                            <button type="submit" class="btn btn-info waves-effect waves-light">Atualizar</button>
                         </div>
+                    </div>
                 </form>
             </div>
         </div>

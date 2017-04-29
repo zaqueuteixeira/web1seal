@@ -1,7 +1,12 @@
 <?php
 $title = "Editar Perfil";
-require_once './header.php';
 require_once './classes/conexao.class.php';
+require_once './classes/autenticacao.class.php';
+
+$autenticacao = new Autenticacao();
+$header = $autenticacao->definirNiveisAcesso();
+require_once "$header";
+
 $conexao = new Conexao();
 
 $con = $conexao->BDAbreConexao();
@@ -63,38 +68,38 @@ $conexao->BDFecharConexao($con);
                         </div>
                     </div>
                     <div class="form-group">
-                            <label class="col-md-2 control-label">Ano</label>
-                            <div class="col-md-2">
-                                <input  type="text" class="form-control" name="ano" value="<?php echo $ano; ?>">
-                            </div>
-                            <label class="col-md-1 control-label">Semestre</label>
-                            <div class="col-md-1">
-                                <input  type="text" class="form-control" name="semestre" value="<?php echo $semestre; ?>">
-                            </div>
-                            
-                            <label class="col-md-2 control-label">Senha antiga</label>
-                            <div class="col-md-3">
-                                <input type="password" class="form-control" name="senha-antiga" value="<?php ?>" placeholder="**********">
-                            </div>
+                        <label class="col-md-2 control-label">Ano</label>
+                        <div class="col-md-2">
+                            <input  type="text" class="form-control" name="ano" value="<?php echo $ano; ?>">
                         </div>
-                        <div class="form-group">
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-2 control-label">Nova Senha</label>
-                            <div class="col-md-3">
-                                <input type="password" class="form-control" name="senha-nova" value="<?php ?>" placeholder="**********">
-                            </div>
-                            <label class="col-md-3 control-label">Repita a Senha</label>
-                            <div class="col-md-3">
-                                <input type="password" class="form-control" name="repeta-senha" value="<?php ?>" placeholder="**********">
-                            </div>
+                        <label class="col-md-1 control-label">Semestre</label>
+                        <div class="col-md-1">
+                            <input  type="text" class="form-control" name="semestre" value="<?php echo $semestre; ?>">
                         </div>
 
-                        <div class="form-group m-b-0">
-                            <div class="col-sm-offset-5 col-sm-9">
-                                <button type="submit" class="btn btn-success waves-effect waves-light">Atualizar</button>
-                            </div>
+                        <label class="col-md-2 control-label">Senha antiga</label>
+                        <div class="col-md-3">
+                            <input type="password" class="form-control" name="senha-antiga" value="<?php ?>" placeholder="**********">
                         </div>
+                    </div>
+                    <div class="form-group">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Nova Senha</label>
+                        <div class="col-md-3">
+                            <input type="password" class="form-control" name="senha-nova" value="<?php ?>" placeholder="**********">
+                        </div>
+                        <label class="col-md-3 control-label">Repita a Senha</label>
+                        <div class="col-md-3">
+                            <input type="password" class="form-control" name="repeta-senha" value="<?php ?>" placeholder="**********">
+                        </div>
+                    </div>
+
+                    <div class="form-group m-b-0">
+                        <div class="col-sm-offset-5 col-sm-9">
+                            <button type="submit" class="btn btn-success waves-effect waves-light">Atualizar</button>
+                        </div>
+                    </div>
                 </form>
             </div>   
         </div>
