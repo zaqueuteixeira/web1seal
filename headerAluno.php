@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 if (!isset($_SESSION["matricula"])) {
     header("Location: /login");
     exit();
@@ -95,43 +93,31 @@ if (!isset($_SESSION["matricula"])) {
                             <li class="">
                                 <a href="/inicio" class="waves-effect active"><i class="ti-home"></i> <span>inicio</span> </a>
                             </li>
-
                             <li class="has_sub">
-                                <a href="#" class="waves-effect"><i class="ti-list"></i> <span>Editar</span> </a>
-                                <ul class="list-unstyled">
-                                    <li><a href="/editar/atividade">Atividade</a></li>
-                                    <li><a href="/editar/avaliacao">Avaliacao</a></li>
-                                    <li><a href="/editar/senha">Senha</a></li>
-                                    <li><a href="/editar/turma">Turma</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="has_sub">
-                                <a href="#" class="waves-effect"><i class="ti-pencil-alt"></i><span>Cadastar</span> </a>
+                                <a href="#" class="waves-effect"><i class="ti-pencil-alt"></i><span>Atividades</span> </a>
                                 <ul class="list-unstyled">
                                     <li><a href="/cadastrar/atividade">Atividade</a></li>
                                     <li><a href="/cadastrar/avaliacao">Avaliação</a></li>
-                                    <li><a href="/cadastrar/turma">Turma</a></li>
                                 </ul>
                             </li>
-
+                            <li class="has_sub">
+                                <a href="#" class="waves-effect"><i class="ti-list"></i><span>Matricular</span> </a>
+                                <ul class="list-unstyled">
+                                    <li><a href="/editar/turma">Turma</a></li>
+                                </ul>
+                            </li>
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="ti-light-bulb"></i><span>Listar</span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="/listar/atividade">Atividades</a></li>
                                     <li><a href="/listar/avaliacao">Avaliações</a></li>
                                     <li><a href="/listar/turma">Turmas</a></li>
-                                    <li><a href="/listar/usuario">Usuarios</a></li>
                                 </ul>
                             </li>
-
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="ti-spray"></i> <span>Outros</span> </a>
                                 <ul class="list-unstyled">
                                     <li><a href="/outros/historico">Histórico</a></li>
-                                    <li><a href="/outros/recuperarSenha">Recuperar Senha</a></li>
-                                    <li><a href="/outros/bloquearAluno">Bloquear Aluno</a></li>
-                                    <li><a href="/outros/desbloquearAluno">Desbloquear Aluno</a></li>
                                     <li><a href="/outros/visualizarCampeonato">Visualizar campeonato</a></li>
                                 </ul>
                             </li>

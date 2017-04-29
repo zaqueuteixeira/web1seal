@@ -6,23 +6,13 @@ $conexao = new Conexao();
 
 $con = $conexao->BDAbreConexao();
 
-$nome = $conexao->BDSeleciona('usuario', 'nome', "WHERE(matricula like '{$_SESSION['matricula']}')");
-$nome = $nome[0]['nome'];
-
-$email = $conexao->BDSeleciona('usuario', 'email', "WHERE(matricula like '{$_SESSION['matricula']}')");
-$email = $email[0]['email'];
-
-$username = $conexao->BDSeleciona('usuario', 'username', "WHERE(matricula like '{$_SESSION['matricula']}')");
-$username = $username[0]['username'];
-
-$turma = $conexao->BDSeleciona('usuario', 'turma', "WHERE(matricula like '{$_SESSION['matricula']}')");
-$turma = $turma[0]['turma'];
-
-$semestre = $conexao->BDSeleciona('usuario', 'semestre', "WHERE(matricula like '{$_SESSION['matricula']}')");
-$semestre = $semestre[0]['semestre'];
-
-$ano = $conexao->BDSeleciona('usuario', 'ano', "WHERE(matricula like '{$_SESSION['matricula']}')");
-$ano = $ano[0]['ano'];
+$tabela = $conexao->BDRetornarTabela($_SESSION['matricula']);
+$consulta = $conexao->BDSeleciona("$tabela", '*', "WHERE(matricula like '{$_SESSION['matricula']}')");
+$nome = $consulta[0]['nome'];
+$email = $consulta[0]['email'];
+$username = $consulta[0]['username'];
+$semestre = $consulta[0]['semestre'];
+$ano = $consulta[0]['ano'];
 
 $conexao->BDFecharConexao($con);
 ?>
@@ -73,33 +63,30 @@ $conexao->BDFecharConexao($con);
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-2 control-label">Turma</label>
-                        <div class="col-md-2">
-                            <input type="text" class="form-control" name="turma" value="<?php echo $turma; ?>">
-                        </div>
-                            <label class="col-md-1 control-label">Ano</label>
+                            <label class="col-md-2 control-label">Ano</label>
                             <div class="col-md-2">
                                 <input  type="text" class="form-control" name="ano" value="<?php echo $ano; ?>">
                             </div>
                             <label class="col-md-1 control-label">Semestre</label>
-                            <div class="col-md-3">
+                            <div class="col-md-1">
                                 <input  type="text" class="form-control" name="semestre" value="<?php echo $semestre; ?>">
                             </div>
-                        </div>
-                        <div class="form-group">
+                            
                             <label class="col-md-2 control-label">Senha antiga</label>
-                            <div class="col-md-5">
+                            <div class="col-md-3">
                                 <input type="password" class="form-control" name="senha-antiga" value="<?php ?>" placeholder="**********">
                             </div>
                         </div>
                         <div class="form-group">
+                        </div>
+                        <div class="form-group">
                             <label class="col-md-2 control-label">Nova Senha</label>
                             <div class="col-md-3">
-                                <input type="password" class="form-control" name="senha-nova" value="<?php ?>"placeholder="**********">
+                                <input type="password" class="form-control" name="senha-nova" value="<?php ?>" placeholder="**********">
                             </div>
                             <label class="col-md-3 control-label">Repita a Senha</label>
                             <div class="col-md-3">
-                                <input type="password" class="form-control" name="repeta-senha" value="<?php ?>"placeholder="**********">
+                                <input type="password" class="form-control" name="repeta-senha" value="<?php ?>" placeholder="**********">
                             </div>
                         </div>
 

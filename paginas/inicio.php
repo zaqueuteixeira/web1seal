@@ -1,6 +1,10 @@
 <?php
 $title = "Inicio";
-require_once './header.php';
+require_once './classes/autenticacao.class.php';
+
+$autenticacao = new Autenticacao();
+$header = $autenticacao->definirNiveisAcesso();
+require_once "$header";
 ?>
 <div class="row">
     <div class="col-sm-12">

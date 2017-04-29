@@ -32,7 +32,7 @@ class Autenticacao {
                 $bdSenha = $consulta[0]['senha'];
                 $bdTabela = $consulta['tabela'];
                 $ativo = (int) $consulta[0]['ativo'];
-                
+
                 if (is_null($bdMatricula)) {
                     $erro = array_merge($erro, ["Dados invalidos"]);
                 } else {
@@ -97,6 +97,27 @@ class Autenticacao {
             return $monitor;
         } else {
             return FALSE;
+        }
+    }
+
+    public function definirNiveisAcesso() {
+        session_start();
+        $login = new Login();
+        $conexao = $login->BDAbreConexao();
+
+        $consulta = $login->BDRetornarPapelID($_SESSION['matricula']);
+        $login->BDFecharConexao($conexao);
+
+        switch ($consulta) {
+            case 1:
+                return './headerProfessor.php';
+                break;
+            case 2:
+                return './headerAluno.php';
+                break;
+            case 3:
+                return './headerMonitor.php';
+                break;
         }
     }
 
