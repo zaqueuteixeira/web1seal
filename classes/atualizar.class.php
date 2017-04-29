@@ -15,14 +15,15 @@ class Atualizar extends Conexao {
     public function atualizarPerfil($dados) {
 
         $validar = new ValidarCampos();
-        $teste = $validar->validarEdicaoPerfil($dados);
+        $teste = $validar->validarEdicaoPerfil($dados, $_SESSION["matricula"]);
         $dados = $teste->dados;
-
 
         if ($teste) {
             $dados = array_filter($dados); //limpa o array de null e vazios
             //cria uma string so com as keys
 
+
+            $tabela = $this->BDRetornarTabela($_SESSION["matricula"]);
             unset($dados['senha-antiga']);
             unset($dados['senha-nova']);
             unset($dados['repeta-senha']);
@@ -37,23 +38,23 @@ class Atualizar extends Conexao {
             $valores = explode(',', $valores);
 
             for ($i = 0; $i < count($indices); $i++) {
-                $this->BDAtualiza('usuario', "WHERE(matricula like '{$_SESSION["matricula"]}')", $indices[$i], $valores[$i]);
+                $this->BDAtualiza("$tabela", "WHERE(matricula like '{$_SESSION["matricula"]}')", $indices[$i], $valores[$i]);
             }
-            header("Location: /inicio");
+            header("Location: /editar/perfil");
         } else {
             print_r($teste->erros);
         }
     }
 
     public function atualizarSenha($dados) {
-        
+
         $validar = new ValidarCampos();
-        
+
         $teste = $validar->validarEdicaoSenha($dados);
         $dados = $teste->dados;
-        
+
         $tabela = $this->BDRetornarTabela($dados['matricula']);
-        
+
         if (!empty($teste->erro)) {
             print_r($teste->erros);
         } else {
@@ -69,14 +70,14 @@ class Atualizar extends Conexao {
 
         $id = implode(", ", array_keys($dados));
         $status = $this->BDSeleciona("$tabela", 'status', "WHERE(id = '{$id}')");
-        
+
         if ($status[0]['status'] == 1) {
             $this->BDAtualiza("$tabela", "WHERE(id = {$id})", 'status', '0');
         } else {
-            $this->BDAtualiza("$tabela", "WHERE(id = {$id})", 'status'," '1'");
+            $this->BDAtualiza("$tabela", "WHERE(id = {$id})", 'status', " '1'");
         }
-        
-        header("Location: /listar/".$retorno);
+
+        header("Location: /listar/" . $retorno);
     }
 
 }

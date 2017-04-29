@@ -136,7 +136,7 @@ class ValidarCampos {
         $valor = $dados['valor'];
         $dataAtual = date('Y-m-d');
         $dataTermino = $data;
-        
+
         if (is_null($assunto)) {
             $objRetorno->erro[] = 'O campo assunto nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
@@ -149,14 +149,14 @@ class ValidarCampos {
         } else {
             $objRetorno->dados = array_merge($objRetorno->dados, ['turma_id' => $turma]);
         }
-        if(strtotime($data) < strtotime($dataAtual)){
+        if (strtotime($data) < strtotime($dataAtual)) {
             $objRetorno->erro[] = 'A data informada e menor que a data atual. Por favor corrija';
             $objRetorno->status = FALSE;
         } else {
             $objRetorno->dados = array_merge($objRetorno->dados, [
-                                                                   'dataInicio' => $data,
-                                                                   'dataTermino' => $data
-                                                                 ]);
+                'dataInicio' => $data,
+                'dataTermino' => $data
+            ]);
         }
         if (is_null($valor)) {
             $objRetorno->erro[] = 'O campo valor nao foi preenchido corretamente';
@@ -164,8 +164,8 @@ class ValidarCampos {
         } else {
             $objRetorno->dados = array_merge($objRetorno->dados, ['nota' => $valor]);
         }
-        
-        if($objRetorno->status){
+
+        if ($objRetorno->status) {
             $objRetorno->dados = array_merge($objRetorno->dados, ['tipo_id' => 1]);
         }
         return $objRetorno;
@@ -207,15 +207,15 @@ class ValidarCampos {
         } else {
             $objRetorno->dados = array_merge($objRetorno->dados, ['dataTermino' => $dataTermino]);
         }
-        if(strtotime($dataInicio) > strtotime($dataTermino)){
+        if (strtotime($dataInicio) > strtotime($dataTermino)) {
             $objRetorno->erro[] = 'A data de inicio tem que ser menor que a data de termino';
             $objRetorno->status = FALSE;
-        } 
-        if(strtotime($dataInicio) < strtotime($dataAtual)){
+        }
+        if (strtotime($dataInicio) < strtotime($dataAtual)) {
             $objRetorno->erro[] = 'A data de inicio esta menor que a data atual por favor corrija';
             $objRetorno->status = FALSE;
         }
-        if(strtotime($dataTermino) < strtotime($dataAtual)){
+        if (strtotime($dataTermino) < strtotime($dataAtual)) {
             $objRetorno->erro[] = 'A data de termino esta menor que a data atual por favor corrija';
             $objRetorno->status = FALSE;
         }
@@ -272,11 +272,11 @@ class ValidarCampos {
         } else {
             $objRetorno->dados = array_merge($objRetorno->dados, ['semestre' => $semestre]);
         }
-        
+
         return $objRetorno;
     }
 
-    public function validarEdicaoPerfil($dados) {
+    public function validarEdicaoPerfil($dados, $matricula) {
 
         $objRetorno = new stdClass();
         $objRetorno->erro = [];
@@ -286,7 +286,6 @@ class ValidarCampos {
         $nome = ($dados['nome']) ? filter_var($dados['nome'], FILTER_SANITIZE_STRING) : null;
         $email = ($dados['email']) ? filter_var($dados['email'], FILTER_SANITIZE_EMAIL) : NULL;
         $username = ($dados['username']) ? filter_var($dados['username'], FILTER_SANITIZE_STRING) : NULL;
-        $turma = ($dados['turma']) ? filter_var($dados['turma'], FILTER_SANITIZE_STRING) : NULL;
         $ano = ($dados['ano']) ? filter_var($dados['ano'], FILTER_SANITIZE_NUMBER_INT) : NULL;
         $semestre = ($dados['semestre']) ? filter_var($dados['semestre'], FILTER_SANITIZE_NUMBER_INT) : NULL;
         $senhaAntiga = ($dados['senha-antiga']) ? filter_var($dados['senha-antiga'], FILTER_SANITIZE_STRING) : false;
@@ -310,12 +309,6 @@ class ValidarCampos {
             $objRetorno->status = FALSE;
         } else {
             $objRetorno->dadosdados = array_merge($dados, ['username' => $username]);
-        }
-        if (is_null($turma)) {
-            $objRetorno->erro[] = 'O campo turma nao foi preenchido corretamente';
-            $objRetorno->status = FALSE;
-        } else {
-            $objRetorno->dadosdados = array_merge($dados, ['turma' => $turma]);
         }
         if (is_null($ano)) {
             $objRetorno->erro[] = 'O campo ano nao foi preenchido corretamente';
@@ -341,8 +334,9 @@ class ValidarCampos {
             }
         }
 
-        $con = new Conexao;
-        $bdEmail = $con->BDSeleciona('usuario', 'email', "WHERE(email like '{$email}')");
+        $conexao = new Conexao;
+        $tabela = $conexao->BDRetornarTabela($matricula);
+        $bdEmail = $conexao->BDSeleciona("$tabela", 'email', "WHERE(email like '{$email}')");
 
         if ($bdEmail) {
             $objRetorno->erro[] = 'Ja existe um cadastro feito com esse email, por favor use outro!';
