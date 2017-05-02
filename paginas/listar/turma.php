@@ -37,7 +37,7 @@ $conexao->BDFecharConexao($con);
                 <br>
                 <br>
                 <div class="card-box">
-                    <form action="/atualizar/status/turma" class="form-horizontal" role="form" method="post">
+                    <form action="/atualizar/status/turma/turmas" class="form-horizontal" role="form" method="post">
                         <table id="demo-foo-filtering" class="table table-striped toggle-circle m-b-0" data-page-size="7">
                             <thead>
                                 <tr>
