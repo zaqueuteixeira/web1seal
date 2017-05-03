@@ -179,7 +179,7 @@ class Conexao {
         } elseif (isset($monitor[0]) && !empty($monitor[0]) && !is_null($monitor[0])) {
             return 'monitores';
         } elseif (isset($professor[0]) && !empty($professor[0]) && !is_null($professor[0])) {
-            return 'professor';
+            return 'professores';
         } else {
             return FALSE;
         }

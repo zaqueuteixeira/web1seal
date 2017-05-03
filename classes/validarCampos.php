@@ -46,7 +46,6 @@ class ValidarCampos {
         $matricula = ($dados['matricula']) ? filter_var($dados['matricula'], FILTER_SANITIZE_STRING) : NULL;
         $email = ($dados['email']) ? filter_var($dados['email'], FILTER_SANITIZE_EMAIL) : NULL;
         $username = ($dados['username']) ? filter_var($dados['username'], FILTER_SANITIZE_STRING) : NULL;
-        $turma = ($dados['turma']) ? filter_var($dados['turma'], FILTER_SANITIZE_STRING) : NULL;
         $ano = ($dados['ano']) ? filter_var($dados['ano'], FILTER_SANITIZE_NUMBER_INT) : NULL;
         $semestre = ($dados['semestre']) ? filter_var($dados['semestre'], FILTER_SANITIZE_NUMBER_INT) : NULL;
         $senha = ($dados['senha']) ? filter_var($dados['senha'], FILTER_SANITIZE_STRING) : NULL;
@@ -76,12 +75,6 @@ class ValidarCampos {
         } else {
             $objRetorno->dados = array_merge($objRetorno->dados, ['username' => $username]);
         }
-        if (is_null($turma)) {
-            $objRetorno->erro[] = 'O campo turma nao foi preenchido corretamente';
-            $objRetorno->status = FALSE;
-        } else {
-            $objRetorno->dados = array_merge($objRetorno->dados, ['turma' => $turma]);
-        }
         if (is_null($ano)) {
             $objRetorno->erro[] = 'O campo ano nao foi preenchido corretamente';
             $objRetorno->status = FALSE;
@@ -109,12 +102,12 @@ class ValidarCampos {
             $objRetorno->erro[] = 'As senhas informadas nao coincedem';
             $objRetorno->status = FALSE;
         }
-        $bdEmail = $conexao->BDSeleciona('usuario', 'email', "WHERE(email like '{$email}')");
+        $bdEmail = $this->validarEntrada($email, "email");
         if ($bdEmail) {
             $objRetorno->erro[] = 'Ja existe um cadastro feito com esse email, por favor use outro!';
             $objRetorno->status = FALSE;
         }
-        $bdMatricula = $conexao->BDSeleciona('usuario', 'matricula', "WHERE(matricula like '{$matricula}')");
+        $bdMatricula = $this->validarEntrada($matricula, "matricula");
         if ($bdMatricula) {
             $objRetorno->erro[] = 'Ja existe um cadastro feito com essa matricula, por favor use outra!';
             $objRetorno->status = FALSE;
@@ -333,11 +326,7 @@ class ValidarCampos {
                 $objRetorno->dados = array_merge($dados, ['senha' => $senha]);
             }
         }
-
-        $conexao = new Conexao;
-        $tabela = $conexao->BDRetornarTabela($matricula);
-        $bdEmail = $conexao->BDSeleciona("$tabela", 'email', "WHERE(email like '{$email}')");
-
+        $bdEmail = $this->validarEntrada($email, 'email');
         if ($bdEmail) {
             $objRetorno->erro[] = 'Ja existe um cadastro feito com esse email, por favor use outro!';
             $objRetorno->status = FALSE;
@@ -376,6 +365,23 @@ class ValidarCampos {
 
 
         return $objRetorno;
+    }
+
+    public function validarEntrada($variavel , $descricao) {
+        $conexao = new Conexao;
+        $aluno = $conexao->BDSeleciona('alunos', "{$descricao}", "WHERE({$descricao} like '{$variavel}')");
+        $professor = $conexao->BDSeleciona('professores',  "{$descricao}", "WHERE({$descricao} like '{$variavel}')");
+        $monitor = $conexao->BDSeleciona('monitores',  "{$descricao}", "WHERE({$descricao} like '{$variavel}')");
+        
+        if(count($monitor)> 0){
+            return FALSE;
+        }elseif(count($professor)> 0){
+            return false;
+        }elseif(count($aluno)> 0){
+            return false;
+        }else{
+            return TRUE;
+        }
     }
 
 }

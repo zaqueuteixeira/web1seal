@@ -9,9 +9,9 @@ class Cadastrar extends Conexao {
 
         $validar = new ValidarCampos();
         $objValidar = $validar->ValidarCadastroUsuario($dados);
-
+        
         if ($objValidar->status === TRUE) {
-            $this->DBGravar('usuario', $objValidar->dados);
+            $this->DBGravar('alunos', $objValidar->dados);
 
             session_start();
             $_SESSION['matricula'] = $_POST['matricula'];

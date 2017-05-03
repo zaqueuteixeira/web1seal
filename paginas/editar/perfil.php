@@ -16,8 +16,10 @@ $consulta = $conexao->BDSeleciona("$tabela", '*', "WHERE(matricula like '{$_SESS
 $nome = $consulta[0]['nome'];
 $email = $consulta[0]['email'];
 $username = $consulta[0]['username'];
-$semestre = $consulta[0]['semestre'];
-$ano = $consulta[0]['ano'];
+if ($tabela != 'professores') {
+    $semestre = $consulta[0]['semestre'];
+    $ano = $consulta[0]['ano'];
+}
 
 $conexao->BDFecharConexao($con);
 ?>
@@ -68,6 +70,7 @@ $conexao->BDFecharConexao($con);
                         </div>
                     </div>
                     <div class="form-group">
+                        <?php if ($tabela != 'professores'):?>
                         <label class="col-md-2 control-label">Ano</label>
                         <div class="col-md-2">
                             <input  type="text" class="form-control" name="ano" value="<?php echo $ano; ?>">
@@ -76,6 +79,7 @@ $conexao->BDFecharConexao($con);
                         <div class="col-md-1">
                             <input  type="text" class="form-control" name="semestre" value="<?php echo $semestre; ?>">
                         </div>
+                        <?php endif;?>
 
                         <label class="col-md-2 control-label">Senha antiga</label>
                         <div class="col-md-3">

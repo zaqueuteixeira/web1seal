@@ -20,11 +20,14 @@ class Login extends Conexao {
         $conexao = $this->BDAbreConexao();
 
         $id = $this->BDRetornaID($matricula);
-
-        if (!is_null($id)) {
+        
+        $papel_id = $this->BDRetornarPapelID($matricula);   
+        
+        if  ((!is_null($id)) && (!is_null($papel_id))) {
 
             $dados = [
                 'usuario_id' => $id,
+                'papel_id' => $papel_id,
                 'data' => date('Y-m-d')
             ];
 
@@ -43,11 +46,11 @@ class Login extends Conexao {
         $conexao = $this->BDAbreConexao();
 
         $id = $this->BDRetornaID($matricula);
-
+        $papel_id = $this->BDRetornarPapelID($matricula);   
         if (!is_null($id)) {
 
-            $this->BDExclui('tentativas_login', "WHERE(usuario_id = '{$id}')");
-
+            $this->BDExclui('tentativas_login', "WHERE(usuario_id = '{$id}' and papel_id = '{$papel_id}')");
+            
             if (mysqli_affected_rows($conexao) > 0) {
                 $this->BDFecharConexao($conexao);
                 return true;

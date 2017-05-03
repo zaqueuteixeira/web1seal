@@ -35,7 +35,7 @@ if (isset($_SESSION['matricula'])) {
                     <center>  <img src="../assets/images/logo.png"></center>
                 </div>
                 <div class="panel-body">
-                    <form  method="post" class="form-horizontal m-t-20" action="cadastrando/usuario">
+                    <form  method="post" class="form-horizontal m-t-20" action="cadastrando/aluno">
                         <div class="form-group ">
                             <div class="col-xs-8">
                                 <input class="form-control" type="text" required="" name="nome" placeholder="Nome">

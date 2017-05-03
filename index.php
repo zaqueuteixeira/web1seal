@@ -58,7 +58,7 @@ endif;
 if (file_exists(PASTA . $URL[0] . '.php')):
     require(PASTA . $URL[0] . '.php');
 
-elseif ($URL[0] . '/' . $URL[1] == 'cadastrando/usuario'):
+elseif ($URL[0] . '/' . $URL[1] == 'cadastrando/aluno'):
     $cadastrar = new Cadastrar();
     $cadastrar->cadastrarAluno($_POST);
     
