@@ -5,7 +5,7 @@ require_once 'validarCampos.php';
 
 class Autenticacao {
 
-    public function autenticarAluno($dados) {
+    public function autenticarUsuario($dados) {
         $login = new Login();
         $validar = new ValidarCampos();
 
@@ -24,13 +24,15 @@ class Autenticacao {
 
             $matricula = ($validacao->dados[0]["matricula"]);
             $senha = ($validacao->dados[1]["senha"]);
-            $consulta = $this->definirUsuario($matricula);
-
+            
+            $tabela = $login->BDRetornarTabela($matricula);
+            $consulta = $login->BDSeleciona("$tabela", '*', "where(matricula = '{$matricula}')");
+            
             if ($consulta != FALSE) {
-
-                $bdMatricula = $consulta[0]['matricula'];
+                
+                $bdMatricula = $matricula;
                 $bdSenha = $consulta[0]['senha'];
-                $bdTabela = $consulta['tabela'];
+                $bdTabela = $tabela;
                 $ativo = (int) $consulta[0]['ativo'];
 
                 if (is_null($bdMatricula)) {
@@ -52,8 +54,7 @@ class Autenticacao {
                                 $erro = array_merge($erro, ["Dados incorretos, por favor confira seus dados e tente novamente!"]);
                             }
                         } else {
-                            var_dump($login->checarTentativasLogin($matricula, $bdTabela));
-                            exit();
+                            $login->registrarTentativaLogin($matricula);
                             $erro = array_merge($erro, ["Usuario bloqueado"]);
                         }
                     } else {
@@ -68,38 +69,6 @@ class Autenticacao {
             }
         }
     }
-
-    private function definirUsuario($matricula) {
-        $login = new Login();
-        $conexao = $login->BDAbreConexao();
-
-        $aluno = $login->BDSeleciona('alunos', 'id,matricula, senha, ativo', "WHERE(matricula = '{$matricula}')");
-        $professor = $login->BDSeleciona('professores', 'id,matricula, senha, ativo', "WHERE(matricula = '{$matricula}')");
-        $monitor = $login->BDSeleciona('monitores', 'id,matricula, senha, ativo', "WHERE(matricula = '{$matricula}')");
-
-        $login->BDFecharConexao($conexao);
-
-
-        if (isset($aluno) && !empty($aluno) && !is_null($aluno)) {
-            $aluno = array_merge($aluno, [
-                'tabela' => 'alunos'
-            ]);
-            return $aluno;
-        } elseif (isset($professor) && !empty($professor) && !is_null($professor)) {
-            $professor = array_merge($professor, [
-                'tabela' => 'professores'
-            ]);
-            return $professor;
-        } elseif (isset($monitor) && !empty($monitor) && !is_null($monitor)) {
-            $monitor = array_merge($monitor, [
-                'tabela' => 'monitores'
-            ]);
-            return $monitor;
-        } else {
-            return FALSE;
-        }
-    }
-
     public function definirNiveisAcesso() {
         session_start();
         $login = new Login();

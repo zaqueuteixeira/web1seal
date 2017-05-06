@@ -64,17 +64,18 @@ class Login extends Conexao {
         }
     }
     
-    public function checarTentativasLogin($matricula, $tabela) {
+    public function checarTentativasLogin($matricula,$papel_id) {
         $conexao = $this->BDAbreConexao();
         
         $id = $this->BDRetornaID($matricula);
+        $tabela = $this->BDRetornarTabela($matricula);
         
         if(!is_null($id)){
             
-           $count= $this->BDSeleciona('tentativas_login', 'count(id) as total', "WHERE(usuario_id = '{$id}')");
+           $count= $this->BDSeleciona('tentativas_login', 'count(id) as total', "WHERE(usuario_id = '{$id}' and papel_id = '{$papel_id}')");
            
            if($count[0]['total'] == 10){
-               $this->BDAtualiza('alunos', "WHERE(status = '{$id}')", 'status', 0);
+               $this->BDAtualiza("$tabela", "WHERE(status = '{$id}')", 'status', 0);
            }
            if($count[0]['total'] < 10){
                return TRUE;
@@ -86,21 +87,9 @@ class Login extends Conexao {
     }
 
     public function sair() {
-        
         session_start();
         $consulta = $this->BDRetornarPapelID($_SESSION['matricula']);
-        
-        switch ($consulta){
-        case 1:
-            $table = 'professores';
-            break;
-        case 2:
-            $table = 'alunos';
-            break;
-        case 3:
-            $table = 'monitores';
-            break;
-        }
+        $table = $this->BDRetornarTabela($_SESSION['matricula']);
         $this->BDAtualiza("$table", "WHERE(matricula = '{$_SESSION['matricula']}')", 'ativo', 0);
         session_destroy();
         header("Location: /login");

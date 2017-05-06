@@ -41,6 +41,11 @@ if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'cadastr
     $cadastrar = new Cadastrar();
     $cadastrar->cadastrarAtividade($_POST);
 endif;
+if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'cadastrando/questoesAtividade')):
+    include_once'./classes/cadastrar.class.php';
+    $cadastrar = new Cadastrar();
+    $cadastrar->cadastrarQuestoesAtividade($_POST);
+endif;
 if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'cadastrando/avaliacao')):
     include_once'./classes/cadastrar.class.php';
     $cadastrar = new Cadastrar();
@@ -53,7 +58,7 @@ if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'cadastr
 endif;
 if ((isset($URL[0])) && ($URL[0] == 'autenticacao')):
     $autenticacao = new Autenticacao();
-    $autenticacao->autenticarAluno($_POST);
+    $autenticacao->autenticarUsuario($_POST);
 endif;
 if (file_exists(PASTA . $URL[0] . '.php')):
     require(PASTA . $URL[0] . '.php');

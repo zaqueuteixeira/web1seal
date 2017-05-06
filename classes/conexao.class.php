@@ -85,11 +85,10 @@ class Conexao {
         }
     }
 
-    public function BDExclui($tabela, $opcoes = '*', $filtros = null) {
-
-        $filtros = ($filtros) ? " {$filtros}" : null;
-
+    public function BDExclui($tabela, $filtros = null) {
+        
         $sql = "DELETE FROM {$tabela}{$filtros}";
+        /* @var $resultado type */
         $resultado = $this->BDExecutaQuery($sql);
 
         if (!mysqli_num_rows($resultado)) {
@@ -134,7 +133,6 @@ class Conexao {
         } else {
             return FALSE;
         }
-
     }
 
     public function BDRetornarPapelID($matricula) {
@@ -160,7 +158,7 @@ class Conexao {
             return FALSE;
         }
     }
-    
+
     public function BDRetornarTabela($matricula) {
         $matricula = (int) $matricula;
         $aluno = "SELECT papel_id FROM alunos where(matricula = {$matricula})";

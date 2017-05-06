@@ -215,12 +215,130 @@ class ValidarCampos {
         return $objRetorno;
     }
 
-    public function validarCadastroQuestaoAvaliacao($dados) {
-        
+
+    public function validarCadastroQuestao($dados) {
+        $objRetorno = new stdClass();
+        $objRetorno->erro = [];
+        $objRetorno->dados = [];
+        $objRetorno->status = TRUE;
+
+        $tipoQuestao = ($dados['tipoQuestao']) ? filter_var($dados['tipoQuestao'], FILTER_SANITIZE_STRING) : null;
+        $pergunta = ($dados['pergunta']) ? filter_var($dados['pergunta'], FILTER_SANITIZE_STRING) : null;
+        $perguntaSubjetiva = ($dados['perguntaSubjetiva']) ? filter_var($dados['perguntaSubjetiva'], FILTER_SANITIZE_STRING) : null;
+        $alternativa_a = ($dados['alternativa_a']) ? filter_var($dados['alternativa_a'], FILTER_SANITIZE_STRING) : null;
+        $alternativa_b = ($dados['alternativa_b']) ? filter_var($dados['alternativa_b'], FILTER_SANITIZE_STRING) : null;
+        $alternativa_c = ($dados['alternativa_c']) ? filter_var($dados['alternativa_c'], FILTER_SANITIZE_STRING) : null;
+        $alternativa_d = ($dados['alternativa_d']) ? filter_var($dados['alternativa_d'], FILTER_SANITIZE_STRING) : null;
+        $alternativa_e = ($dados['alternativa_d']) ? filter_var($dados['alternativa_e'], FILTER_SANITIZE_STRING) : null;
+        $alternativa_e = ($dados['alternativa_d']) ? filter_var($dados['alternativa_e'], FILTER_SANITIZE_STRING) : null;
+        $alternativa = ($dados['alternativa']) ? filter_var($dados['alternativa'], FILTER_SANITIZE_STRING) : null;
+        $solucao = ($dados['solucao']) ? filter_var($dados['solucao'], FILTER_SANITIZE_STRING) : null;
+        $atividade_id = 1; #pegar o id da atividade
+        $numero = $this->retornarNumeroQuestao($atividade_id);
+        $nivel_id = ($dados['nivel_id']) ? filter_var($dados['nivel_id'], FILTER_SANITIZE_STRING) : null;
+
+        if ($tipoQuestao == 2) {
+            $objRetorno->dados = array_merge($objRetorno->dados, ['categoria_id' => $tipoQuestao,
+                'atividade_id' => $atividade_id
+            ]);
+            if (!is_null($perguntaSubjetiva)) {
+                $objRetorno->dados = array_merge($objRetorno->dados, ['solucao' => $solucao]);
+            } else {
+                $objRetorno->erro[] = 'O campo solucao nao foi preenchido corretamente';
+                $objRetorno->status = FALSE;
+            }
+            if (!is_null($perguntaSubjetiva)) {
+                $objRetorno->dados = array_merge($objRetorno->dados, ['pergunta' => $perguntaSubjetiva]);
+            } else {
+                $objRetorno->erro[] = 'O campo Pergunta nao foi preenchido corretamente';
+                $objRetorno->status = FALSE;
+            }
+            if ($numero != false) {
+                $objRetorno->dados = array_merge($objRetorno->dados, ['numero' => $numero]);
+            } else {
+                $objRetorno->erro[] = 'O campo numero nao foi preenchido corretamente contate o administrado do sistema';
+                $objRetorno->status = FALSE;
+            }
+        } elseif ($tipoQuestao == 1) {
+            if (!is_null($tipoQuestao) && (($tipoQuestao > 0) && ($tipoQuestao < 3))) {
+                $objRetorno->dados = array_merge($objRetorno->dados, ['categoria_id' => $tipoQuestao,
+                    'atividade_id' => $atividade_id
+                ]);
+            } else {
+                $objRetorno->erro[] = 'O campo Tipo da questão nao foi preenchido corretamente';
+                $objRetorno->status = FALSE;
+            }
+            if ($numero != false) {
+                $objRetorno->dados = array_merge($objRetorno->dados, ['numero' => $numero]);
+            } else {
+                $objRetorno->erro[] = 'O campo numero nao foi preenchido corretamente contate o administrado do sistema';
+                $objRetorno->status = FALSE;
+            }
+            if (!is_null($pergunta)) {
+                $objRetorno->dados = array_merge($objRetorno->dados, ['pergunta' => $pergunta]);
+            } else {
+                $objRetorno->erro[] = 'O campo pergunta nao foi preenchido corretamente contate';
+                $objRetorno->status = FALSE;
+            }
+            if (!is_null($alternativa_a)) {
+                $objRetorno->dados = array_merge($objRetorno->dados, ['alternativa_a' => $alternativa_a]);
+            } else {
+                $objRetorno->erro[] = 'O campo alternativa a nao foi preenchido corretamente contate';
+                $objRetorno->status = FALSE;
+            }
+            if (!is_null($alternativa_b)) {
+                $objRetorno->dados = array_merge($objRetorno->dados, ['alternativa_b' => $alternativa_b]);
+            } else {
+                $objRetorno->erro[] = 'O campo alternativa a nao foi preenchido corretamente contate';
+                $objRetorno->status = FALSE;
+            }
+            if (!is_null($alternativa_c)) {
+                $objRetorno->dados = array_merge($objRetorno->dados, ['alternativa_c' => $alternativa_c]);
+            } else {
+                $objRetorno->erro[] = 'O campo alternativa c nao foi preenchido corretamente';
+                $objRetorno->status = FALSE;
+            }
+            if (!is_null($alternativa_d)) {
+                $objRetorno->dados = array_merge($objRetorno->dados, ['alternativa_d' => $alternativa_d]);
+            } else {
+                $objRetorno->erro[] = 'O campo alternativa d nao foi preenchido corretamente';
+                $objRetorno->status = FALSE;
+            }
+            if (!is_null($alternativa_a)) {
+                $objRetorno->dados = array_merge($objRetorno->dados, ['alternativa_a' => $alternativa_a]);
+            } else {
+                $objRetorno->erro[] = 'O campo alternativa a nao foi preenchido corretamente';
+                $objRetorno->status = FALSE;
+            }
+            if (!is_null($alternativa)) {
+                $objRetorno->dados = array_merge($objRetorno->dados, ['alternativa' => $alternativa]);
+            } else {
+                $objRetorno->erro[] = 'O campo alternativa nao foi preenchido corretamente';
+                $objRetorno->status = FALSE;
+            }
+        }
+        if (!is_null($nivel_id)) {
+            $objRetorno->dados = array_merge($objRetorno->dados, ['nivel_id' => $nivel_id]);
+        } else {
+            $objRetorno->erro[] = 'O campo Nivel nao foi preenchido corretamente';
+            $objRetorno->status = FALSE;
+        }
+
+
+        return $objRetorno;
     }
 
-    public function validarCadastroQuestaoAtividade($dados) {
-        
+    public function retornarNumeroQuestao($atividade_id) {
+        $login = new Login();
+        $consulta = $login->BDSeleciona('questoes', 'numero', "WHERE(id = '{$atividade_id}')");
+
+        if (count($consulta) > 0) {
+            return ($consulta[0]['numero'] + 1);
+        } elseif (count($consulta) == 0) {
+            return 1;
+        } else {
+            return false;
+        }
     }
 
     public function validarCadastroTurma($dados) {
@@ -367,19 +485,19 @@ class ValidarCampos {
         return $objRetorno;
     }
 
-    public function validarEntrada($variavel , $descricao) {
+    public function validarEntrada($variavel, $descricao) {
         $conexao = new Conexao;
         $aluno = $conexao->BDSeleciona('alunos', "{$descricao}", "WHERE({$descricao} like '{$variavel}')");
-        $professor = $conexao->BDSeleciona('professores',  "{$descricao}", "WHERE({$descricao} like '{$variavel}')");
-        $monitor = $conexao->BDSeleciona('monitores',  "{$descricao}", "WHERE({$descricao} like '{$variavel}')");
-        
-        if(count($monitor)> 0){
+        $professor = $conexao->BDSeleciona('professores', "{$descricao}", "WHERE({$descricao} like '{$variavel}')");
+        $monitor = $conexao->BDSeleciona('monitores', "{$descricao}", "WHERE({$descricao} like '{$variavel}')");
+
+        if (count($monitor) > 0) {
             return FALSE;
-        }elseif(count($professor)> 0){
+        } elseif (count($professor) > 0) {
             return false;
-        }elseif(count($aluno)> 0){
+        } elseif (count($aluno) > 0) {
             return false;
-        }else{
+        } else {
             return TRUE;
         }
     }
