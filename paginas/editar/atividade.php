@@ -78,7 +78,7 @@ $conexao->BDFecharConexao($con);
                         </div>
                         <label class="col-md-2 control-label">Remover questões:</label>
                         <div class="col-md-3">
-                            <button type="submit" class="btn btn-danger waves-effect waves-light">Remover</button>
+                            <button type="submit" class="btn btn-danger waves-effect waves-light"><a href="/editar/removerQuestao" style="color: white;">Remover</a></button>
                         </div>
                     </div>
                     <br>
