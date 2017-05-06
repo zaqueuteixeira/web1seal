@@ -31,7 +31,7 @@ class Cadastrar extends Conexao {
 
             $this->DBGravar('atividades', $objValidar->dados);
 
-            header("Location: /inicio");
+            header("Location: /cadastrar/questaoatividade");
         } else {
             print_r($objValidar->erro);
         }
@@ -44,8 +44,7 @@ class Cadastrar extends Conexao {
 
         if ($objValidar->status) {
             $this->DBGravar('atividades', $objValidar->dados);
-
-            header("Location: /inicio");
+            header("Location: /cadastrar/questaoavaliacao");
         } else {
             print_r($objValidar->erro);
         }
@@ -68,15 +67,15 @@ class Cadastrar extends Conexao {
         $validar = new ValidarCampos();
         $objValidar = $validar->validarCadastroQuestao($dados);
         $conn = $this->BDAbreConexao();
- 
+
         if ($objValidar->status) {
             $dados = $objValidar->dados;
             unset($dados['alternativa']);
             unset($dados['solucao']);
             unset($dados['perguntaSubjetiva']);
-            
+
             $this->DBGravar('questoes', $dados);
-            
+
             $this->cadastrarSolucao($objValidar->dados);
             header("Location: /inicio");
         } else {
@@ -84,22 +83,21 @@ class Cadastrar extends Conexao {
         }
         $this->BDFecharConexao($conn);
     }
-    
+
     private function cadastrarSolucao($dados) {
-        
+
         $lastID = $this->BDSeleciona('questoes', 'id', "order by id desc LIMIT 1");
         $solucao = $dados['solucao'];
         $alternativa = $dados['alternativa'];
-        $id= $lastID[0]['id'];
-        
+        $id = $lastID[0]['id'];
+
         $grava = [
-                    'questoes_id' => $id,
-                    'solucao' => $solucao,
-                    'alternativa' =>$alternativa
-                 ];
-        
-         $this->DBGravar('solucoes', $grava);
-           
+            'questoes_id' => $id,
+            'solucao' => $solucao,
+            'alternativa' => $alternativa
+        ];
+
+        $this->DBGravar('solucoes', $grava);
     }
 
 }

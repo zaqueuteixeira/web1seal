@@ -39,7 +39,7 @@ class Autenticacao {
                     $erro = array_merge($erro, ["Dados invalidos"]);
                 } else {
                     if ($ativo == 0) {
-                        if ($login->checarTentativasLogin($matricula, $bdTabela)) {
+                        if ($login->checarTentativasLogin($matricula)) {
 
                             if ($senha == $bdSenha) {
                                 session_start();
@@ -48,13 +48,12 @@ class Autenticacao {
                                 $login->BDAtualiza("$bdTabela", "WHERE(matricula = {$matricula})", 'ativo', 1);
                                 $login->excluirTentativasLogin($matricula);
 
-                                header("Location: /inicio");
+                                header("Location: ./inicio");
                             } else {
                                 $login->registrarTentativaLogin($matricula);
                                 $erro = array_merge($erro, ["Dados incorretos, por favor confira seus dados e tente novamente!"]);
                             }
                         } else {
-                            $login->registrarTentativaLogin($matricula);
                             $erro = array_merge($erro, ["Usuario bloqueado"]);
                         }
                     } else {

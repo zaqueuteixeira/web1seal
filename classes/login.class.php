@@ -20,7 +20,6 @@ class Login extends Conexao {
         $conexao = $this->BDAbreConexao();
 
         $id = $this->BDRetornaID($matricula);
-        
         $papel_id = $this->BDRetornarPapelID($matricula);   
         
         if  ((!is_null($id)) && (!is_null($papel_id))) {
@@ -64,11 +63,12 @@ class Login extends Conexao {
         }
     }
     
-    public function checarTentativasLogin($matricula,$papel_id) {
+    public function checarTentativasLogin($matricula) {
         $conexao = $this->BDAbreConexao();
         
         $id = $this->BDRetornaID($matricula);
         $tabela = $this->BDRetornarTabela($matricula);
+        $papel_id = $this->BDRetornarPapelID($matricula);
         
         if(!is_null($id)){
             
