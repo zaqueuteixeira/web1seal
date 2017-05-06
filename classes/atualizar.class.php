@@ -75,20 +75,23 @@ class Atualizar extends Conexao {
         } else {
             $this->BDAtualiza("$tabela", "WHERE(id = {$id})", 'status', " '1'");
         }
-
-        header("Location: /listar/" . $retorno);
+        
+        if ($retorno == 'removerQuestoes') {
+            header("Location: /editar/removerQuestao");
+        } else {
+            header("Location: /listar/" . $retorno);
+        }
     }
-    
+
     public function atualizarAtividade($dados) {
-        
+
         $dados = array_keys($dados);
-        
+
         unset($_SESSION['atividade_id']);
-        
+
         $_SESSION['atividade_id'] = $dados[0];
-        
+
         header("Location: /editar/atividade");
-        
     }
 
 }
