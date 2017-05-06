@@ -12,8 +12,6 @@ $conexao = new Conexao();
 $con = $conexao->BDAbreConexao();
 $dados = $conexao->BDSeleciona('atividades', '*', "WHERE(tipo_id = 1 and status = 1)");
 
-$turmas = $conexao->BDSeleciona('turmas', '*', "where(status = '1')");
-
 $conexao->BDFecharConexao($con);
 
 ?>
@@ -31,23 +29,24 @@ $conexao->BDFecharConexao($con);
                             editar
                         </li>
                         <li>
-                            <a href="/editar/avaliacao">Avaliações</a>
+                            <a href="/editar/atividade">Atividades</a>
                         </li>
                     </ol>
                 </div>
             </div>
             <div class="row">
-                <center><h4 class="page-title">Editar Avaliações</h4></center>
+                <center><h4 class="page-title">Definir atividade para Edição</h4></center>
                 <br>
                 <br>
                 <div class="card-box">
-                    <form action="/atualizar/status/atividade/atividades" class="form-horizontal" role="form" method="post">
+                    <form action="/editando/atividade" class="form-horizontal" role="form" method="post">
                         <table id="demo-foo-filtering" class="table table-striped toggle-circle m-b-0" data-page-size="7">
                             <thead>
                                 <tr>
                                     <th data-toggle="true">Turma</th>
-                                    <th data-toggle="true">Conteúdo</th>
-                                    <th data-hide="phone, tablet">Data</th>
+                                    <th data-toggle="true">Conteudo</th>
+                                    <th data-hide="phone, tablet">Inicio</th>
+                                    <th data-hide="phone, tablet">Termino</th>
                                     <th data-hide="phone, tablet">Ação</th>
                                 </tr>
                             </thead>
@@ -79,8 +78,9 @@ $conexao->BDFecharConexao($con);
                                         echo "<td>{$valor['turma_id']}</td>";
                                         echo "<td>{$valor['conteudo']}</td>";
                                         echo "<td>{$valor['dataInicio']}</td>";
+                                        echo "<td>{$valor['dataTermino']}</td>";
                                         $aux = $valor['id'];
-                                        echo "<td><span><button type='button' class='btn btn-warning btn-xs' data-toggle='modal' data-target='#con-close-modal' name='$aux'>Editar</button></span></td>";
+                                        echo "<td><span><button type='submit' class='btn btn-warning btn-xs' name='$aux'>Editar</button></span></td>";
                                         echo "</tr>";
                                     endforeach;
                                 else:
@@ -100,52 +100,6 @@ $conexao->BDFecharConexao($con);
                                 </tr>
                             </tfoot>
                         </table>
-						
-                <div id="con-close-modal" data-backdrop="static" class="modal fade" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h4 class="modal-title"><strong>Editar Avaliação</strong></h4>
-                            </div>
-                            <div class="modal-body">
-								<div class="form-group">
-                        <label class="col-md-2 control-label">Assunto:</label>
-                        <div class="col-md-5">
-                            <input type="text" class="form-control" name="assunto" value="">
-                        </div>
-                        <label class="col-md-1 control-label">Turma:</label>
-                        <div class="col-md-3">
-                            <select class="form-control" name="turma">
-                                <option selected="" disabled="">Selecione</option>
-                                <?php
-                                foreach ($turmas as $key => $value) {
-                                    echo "<option value='{$value['id']}'>" . $value['nome'] . "</option>";
-                                }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-2 control-label">Data</label>
-                        <div class="col-md-5">
-                            <input type="date" class="form-control" name="data" value="" placeholder="">
-                        </div>
-
-                        <label class="col-md-1 control-label">Valor:</label>
-                        <div class="col-md-3">
-                            <input type="number" class="form-control" name="valor" value=""placeholder="">
-                        </div>
-                    </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Fechar</button>
-                                <button type="button" class="btn btn-success waves-effect waves-light">Salvar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- /.modal -->
-
                     </form>
                 </div>
             </div>
