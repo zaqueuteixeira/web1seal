@@ -99,7 +99,7 @@ if (!isset($_SESSION["matricula"])) {
                                 <a href="#" class="waves-effect"><i class="ti-list"></i> <span>Editar</span> </a>
                                 <ul class="list-unstyled">
                                     <li><a href="/editar/definirAtividade">Atividade</a></li>
-                                    <li><a href="/editar/avaliacao">Avaliação</a></li>
+                                    <li><a href="/editar/definirAvaliacao">Avaliação</a></li>
                                     <li><a href="/editar/senha">Senha</a></li>
                                     <li><a href="/editar/turma">Turma</a></li>
                                 </ul>
