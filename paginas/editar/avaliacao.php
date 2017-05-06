@@ -1,6 +1,7 @@
 <?php
-$title = "Listar Atividades";
+$title = "Cadastrar Atividade";
 require_once './classes/conexao.class.php';
+
 require_once './classes/autenticacao.class.php';
 
 $autenticacao = new Autenticacao();
@@ -8,14 +9,13 @@ $header = $autenticacao->definirNiveisAcesso();
 require_once "$header";
 
 $conexao = new Conexao();
-
 $con = $conexao->BDAbreConexao();
-$dados = $conexao->BDSeleciona('atividades', '*', "WHERE(tipo_id = 1 and status = 1)");
 
-$turmas = $conexao->BDSeleciona('turmas', '*', "where(status = '1')");
+$atividade = $conexao->BDSeleciona('atividades', '*', "WHERE (id = '{$_SESSION['atividade_id']}')");
+
+$dados = $conexao->BDSeleciona('turmas', '*', "where(status = '1')");
 
 $conexao->BDFecharConexao($con);
-
 ?>
 <div class="row">
     <div class="col-sm-12">
@@ -28,98 +28,33 @@ $conexao->BDFecharConexao($con);
                             <a href="/inicio">Inicio</a>
                         </li>
                         <li class="active">
-                            editar
+                            Editar
                         </li>
                         <li>
-                            <a href="/editar/avaliacao">Avaliações</a>
+                            <a href="/editar/definirAtividade">Atividade</a>
                         </li>
                     </ol>
                 </div>
             </div>
             <div class="row">
-                <center><h4 class="page-title">Editar Avaliações</h4></center>
+                <center><h4 class="page-title">Editar atividade</h4></center>
                 <br>
                 <br>
-                <div class="card-box">
-                    <form action="/atualizar/status/atividade/atividades" class="form-horizontal" role="form" method="post">
-                        <table id="demo-foo-filtering" class="table table-striped toggle-circle m-b-0" data-page-size="7">
-                            <thead>
-                                <tr>
-                                    <th data-toggle="true">Turma</th>
-                                    <th data-toggle="true">Conteúdo</th>
-                                    <th data-hide="phone, tablet">Data</th>
-                                    <th data-hide="phone, tablet">Ação</th>
-                                </tr>
-                            </thead>
-                            <div class="form-inline m-b-20">
-                                <div class="row">
-                                    <div class="col-sm-6 text-xs-center">
-                                        <div class="form-group">
-                                            <label class="control-label m-r-5">Status</label>
-                                            <select id="demo-foo-filter-status" class="form-control input-sm">
-                                                <option selected="" disabled=""value="">Selecione</option>
-                                                <option value="">Todos</option>
-                                                <option value="disponivel">disponivel</option>
-                                                <option value="bloqueado">bloqueado</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 text-xs-center text-right">
-                                        <div class="form-group">
-                                            <input id="demo-foo-search" type="text" placeholder="Pesquisar" class="form-control input-sm" autocomplete="on">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <tbody>
-                                <?php
-                                if ($dados):
-                                    foreach ($dados as $key => $valor):
-                                        echo "<tr>";
-                                        echo "<td>{$valor['turma_id']}</td>";
-                                        echo "<td>{$valor['conteudo']}</td>";
-                                        echo "<td>{$valor['dataInicio']}</td>";
-                                        $aux = $valor['id'];
-                                        echo "<td><span><button type='button' class='btn btn-warning btn-xs' data-toggle='modal' data-target='#con-close-modal' name='$aux'>Editar</button></span></td>";
-                                        echo "</tr>";
-                                    endforeach;
-                                else:
-                                    echo "<tr>";
-                                    echo '<td> Nenhuma atividade encontrada</td>';
-                                    echo "</tr>";
-                                endif;
-                                ?>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="5">
-                                        <div class="text-right">
-                                            <ul class="pagination pagination-split m-t-30 m-b-0"></ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
-						
-                <div id="con-close-modal" data-backdrop="static" class="modal fade" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h4 class="modal-title"><strong>Editar Avaliação</strong></h4>
-                            </div>
-                            <div class="modal-body">
-								<div class="form-group">
+                <form action="/cadastrando/atividade" class="form-horizontal" role="form" method="post">                                    
+                    <div class="form-group">
                         <label class="col-md-2 control-label">Assunto:</label>
                         <div class="col-md-5">
-                            <input type="text" class="form-control" name="assunto" value="">
+                            <input type="text" class="form-control" name="assunto" value="<?php echo $atividade[0]['conteudo']; ?>">
                         </div>
                         <label class="col-md-1 control-label">Turma:</label>
                         <div class="col-md-3">
                             <select class="form-control" name="turma">
                                 <option selected="" disabled="">Selecione</option>
                                 <?php
-                                foreach ($turmas as $key => $value) {
+                                foreach ($dados as $key => $value) {
+                                    if ($value['id'] == $atividade[0][turma_id]) {
+                                        echo "<option selected value='{$value['id']}'>" . $value['nome'] . "</option>";
+                                    }
                                     echo "<option value='{$value['id']}'>" . $value['nome'] . "</option>";
                                 }
                                 ?>
@@ -127,31 +62,37 @@ $conexao->BDFecharConexao($con);
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-2 control-label">Data</label>
+                        <label class="col-md-2 control-label">Data inicio:</label>
                         <div class="col-md-5">
-                            <input type="date" class="form-control" name="data" value="" placeholder="">
+                            <input type="date" class="form-control" name="dataInicio" value="<?php echo $atividade[0]['dataInicio']; ?>" placeholder="">
                         </div>
-
-                        <label class="col-md-1 control-label">Valor:</label>
+                        <label class="col-md-1 control-label">Termino:</label>
                         <div class="col-md-3">
-                            <input type="number" class="form-control" name="valor" value=""placeholder="">
+                            <input type="date" class="form-control" name="dataTermino" value="<?php echo $atividade[0]['dataTermino']; ?>" placeholder="">
                         </div>
                     </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Fechar</button>
-                                <button type="button" class="btn btn-success waves-effect waves-light">Salvar</button>
-                            </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Adicionar questões:</label>
+                        <div class="col-md-4">
+                            <button type="buttom" class="btn btn-warning waves-effect waves-light"><a href="/cadastrar/adicionarQuestao" style="color: white;">Adicionar</a></button>
+                        </div>
+                        <label class="col-md-2 control-label">Remover questões:</label>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-danger waves-effect waves-light"><a href="/editar/removerQuestao" style="color: white;">Remover</a></button>
                         </div>
                     </div>
-                </div><!-- /.modal -->
-
-                    </form>
-                </div>
-            </div>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="form-group m-b-0">
+                        <div class="col-sm-offset-5 col-sm-9">
+                            <button type="submit" class="btn btn-success waves-effect waves-light">Atualizar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>   
         </div>
     </div>
-</div>
 </div>
 
 
