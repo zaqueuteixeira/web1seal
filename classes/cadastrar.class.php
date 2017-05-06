@@ -106,5 +106,35 @@ class Cadastrar extends Conexao {
 
         $this->DBGravar('solucoes', $grava);
     }
+    
+    public function adicionarQuestoes($dados) {
+        session_start();
+        
+        $validar = new ValidarCampos();
+        $conn = $this->BDAbreConexao();
+        
+        $atividade = $_SESSION['atividade_id'];
+        
+        $dados = array_merge($dados, [
+                'atividade_id' => $atividade
+        ]);
+        
+        $objValidar = $validar->validarCadastroQuestao($dados);
+        
+        if ($objValidar->status) {
+            $dados = $objValidar->dados;
+            unset($dados['alternativa']);
+            unset($dados['solucao']);
+            unset($dados['perguntaSubjetiva']);
+
+            $this->DBGravar('questoes', $dados);
+
+            $this->cadastrarSolucao($objValidar->dados);
+            header("Location: /cadastrar/adicionarQuestao");
+        } else {
+            print_r($objValidar->erro);
+        }
+        $this->BDFecharConexao($conn);
+    }
 
 }
