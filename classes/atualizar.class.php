@@ -78,5 +78,17 @@ class Atualizar extends Conexao {
 
         header("Location: /listar/" . $retorno);
     }
+    
+    public function atualizarAtividade($dados) {
+        
+        $dados = array_keys($dados);
+        
+        unset($_SESSION['atividade_id']);
+        
+        $_SESSION['atividade_id'] = $dados[0];
+        
+        header("Location: /editar/atividade");
+        
+    }
 
 }
