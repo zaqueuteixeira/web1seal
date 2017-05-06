@@ -1,11 +1,19 @@
 <?php
-$title = "Editar Atividade";
+$title = "Listar Atividades";
 require_once './classes/conexao.class.php';
 require_once './classes/autenticacao.class.php';
 
 $autenticacao = new Autenticacao();
 $header = $autenticacao->definirNiveisAcesso();
 require_once "$header";
+
+$conexao = new Conexao();
+
+$con = $conexao->BDAbreConexao();
+$dados = $conexao->BDSeleciona('atividades', '*', "WHERE(tipo_id = 2 and status = 1)");
+
+$conexao->BDFecharConexao($con);
+
 ?>
 <div class="row">
     <div class="col-sm-12">
@@ -21,53 +29,83 @@ require_once "$header";
                             editar
                         </li>
                         <li>
-                            <a href="/editar/atividade">Atividade</a>
+                            <a href="/editar/atividades">Atividades</a>
                         </li>
                     </ol>
                 </div>
             </div>
             <div class="row">
-
-                <center><h4 class="page-title">Editar atividade</h4></center>
+                <center><h4 class="page-title">Editar Atividades</h4></center>
                 <br>
                 <br>
-
-                <form action="/atualizando/atividade" class="form-horizontal" role="form" method="post">                                    
-                    <div class="form-group">
-                        <label class="col-md-2 control-label">Assunto:</label>
-                        <div class="col-md-5">
-                            <input type="text" class="form-control" name="assunto" value="">
-                        </div>
-                        <label class="col-md-1 control-label">Turma:</label>
-                        <div class="col-md-3">
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-2 control-label">Data inicio:</label>
-                        <div class="col-md-5">
-                            <input type="date" class="form-control" name="dataInicio" value="" placeholder="">
-                        </div>
-                        <label class="col-md-1 control-label">Termino:</label>
-                        <div class="col-md-3">
-                            <input type="date" class="form-control" name="dataTermino" value="" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group m-b-0">
-                        <div class="col-sm-offset-5 col-sm-9">
-                            <button type="submit" class="btn btn-info waves-effect waves-light">Cadastrar</button>
-                        </div>
-                    </div>
-                </form>
-            </div>   
+                <div class="card-box">
+                    <form action="/atualizar/status/atividade/atividades" class="form-horizontal" role="form" method="post">
+                        <table id="demo-foo-filtering" class="table table-striped toggle-circle m-b-0" data-page-size="7">
+                            <thead>
+                                <tr>
+                                    <th data-toggle="true">Turma</th>
+                                    <th data-toggle="true">Conteudo</th>
+                                    <th data-hide="phone, tablet">Inicio</th>
+                                    <th data-hide="phone, tablet">Termino</th>
+                                    <th data-hide="phone, tablet">Ação</th>
+                                </tr>
+                            </thead>
+                            <div class="form-inline m-b-20">
+                                <div class="row">
+                                    <div class="col-sm-6 text-xs-center">
+                                        <div class="form-group">
+                                            <label class="control-label m-r-5">Status</label>
+                                            <select id="demo-foo-filter-status" class="form-control input-sm">
+                                                <option selected="" disabled=""value="">Selecione</option>
+                                                <option value="">Todos</option>
+                                                <option value="disponivel">disponivel</option>
+                                                <option value="bloqueado">bloqueado</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 text-xs-center text-right">
+                                        <div class="form-group">
+                                            <input id="demo-foo-search" type="text" placeholder="Pesquisar" class="form-control input-sm" autocomplete="on">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <tbody>
+                                <?php
+                                if ($dados):
+                                    foreach ($dados as $key => $valor):
+                                        echo "<tr>";
+                                        echo "<td>{$valor['turma_id']}</td>";
+                                        echo "<td>{$valor['conteudo']}</td>";
+                                        echo "<td>{$valor['dataInicio']}</td>";
+                                        echo "<td>{$valor['dataTermino']}</td>";
+                                        $aux = $valor['id'];
+                                        echo "<td><span><button type='submit' class='btn btn-warning btn-xs' name='$aux'>Editar</button></span></td>";
+                                        echo "</tr>";
+                                    endforeach;
+                                else:
+                                    echo "<tr>";
+                                    echo '<td> Nenhuma atividade encontrada</td>';
+                                    echo "</tr>";
+                                endif;
+                                ?>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5">
+                                        <div class="text-right">
+                                            <ul class="pagination pagination-split m-t-30 m-b-0"></ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
+</div>
 </div>
 
 
