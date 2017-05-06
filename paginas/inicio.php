@@ -9,7 +9,7 @@ require_once "$header";
 <div class="row">
     <div class="col-sm-12">
         <div class="card-box">
-            oi eu sou o goku!
+            oi eu sou o goku!!
         </div>
     </div>
 </div>
