@@ -44,7 +44,7 @@ endif;
 if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'cadastrando/questoesAtividade')):
     include_once'./classes/cadastrar.class.php';
     $cadastrar = new Cadastrar();
-    $cadastrar->cadastrarQuestoesAtividade($_POST);
+    $cadastrar->cadastrarQuestoes($_POST);
 endif;
 if ((isset($URL[0])) && (isset($URL[1])) && ($URL[0] . '/' . $URL[1] == 'cadastrando/avaliacao')):
     include_once'./classes/cadastrar.class.php';

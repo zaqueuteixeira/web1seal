@@ -31,7 +31,7 @@ class Cadastrar extends Conexao {
 
             $this->DBGravar('atividades', $objValidar->dados);
 
-            header("Location: /cadastrar/questaoatividade");
+            header("Location: /cadastrar/questao");
         } else {
             print_r($objValidar->erro);
         }
@@ -44,7 +44,7 @@ class Cadastrar extends Conexao {
 
         if ($objValidar->status) {
             $this->DBGravar('atividades', $objValidar->dados);
-            header("Location: /cadastrar/questaoavaliacao");
+            header("Location: /cadastrar/questao");
         } else {
             print_r($objValidar->erro);
         }
@@ -63,11 +63,18 @@ class Cadastrar extends Conexao {
         }
     }
 
-    public function cadastrarQuestoesAtividade($dados) {
+    public function cadastrarQuestoes($dados) {
         $validar = new ValidarCampos();
-        $objValidar = $validar->validarCadastroQuestao($dados);
         $conn = $this->BDAbreConexao();
-
+        
+        $lastAtividade = $this->BDSeleciona('atividades', 'id', "order by id desc LIMIT 1");
+        $atividade = $lastAtividade[0]['id'];
+        $dados = array_merge($dados, [
+                'atividade_id' => $atividade
+        ]);
+        
+        $objValidar = $validar->validarCadastroQuestao($dados);
+        
         if ($objValidar->status) {
             $dados = $objValidar->dados;
             unset($dados['alternativa']);
@@ -77,7 +84,7 @@ class Cadastrar extends Conexao {
             $this->DBGravar('questoes', $dados);
 
             $this->cadastrarSolucao($objValidar->dados);
-            header("Location: /inicio");
+            header("Location: /cadastrar/questao");
         } else {
             print_r($objValidar->erro);
         }
