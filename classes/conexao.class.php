@@ -86,9 +86,8 @@ class Conexao {
     }
 
     public function BDExclui($tabela, $filtros = null) {
-        
-        $sql = "DELETE FROM {$tabela}{$filtros}";
-        /* @var $resultado type */
+
+        $sql = "DELETE FROM {$tabela} {$filtros}";
         $resultado = $this->BDExecutaQuery($sql);
 
         if (!mysqli_num_rows($resultado)) {
