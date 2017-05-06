@@ -98,8 +98,8 @@ if (!isset($_SESSION["matricula"])) {
                             <li class="has_sub">
                                 <a href="#" class="waves-effect"><i class="ti-list"></i> <span>Editar</span> </a>
                                 <ul class="list-unstyled">
-                                    <li><a href="/editar/atividade">Atividade</a></li>
-                                    <li><a href="/editar/avaliacao">Avaliacao</a></li>
+                                    <li><a href="/editar/definirAtividade">Atividade</a></li>
+                                    <li><a href="/editar/avaliacao">Avaliação</a></li>
                                     <li><a href="/editar/senha">Senha</a></li>
                                     <li><a href="/editar/turma">Turma</a></li>
                                 </ul>

@@ -18,7 +18,7 @@ if (!isset($_SESSION["matricula"])) {
 
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="/assets/plugins/morris/morris.css">
-        
+
         <!--Tables -->
         <link href="/assets/plugins/footable/css/footable.core.css" rel="stylesheet">
         <link href="/assets/plugins/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" />
@@ -39,6 +39,7 @@ if (!isset($_SESSION["matricula"])) {
         <![endif]-->
 
         <script src="/assets/js/modernizr.min.js"></script>
+       
 
     </head>
 
